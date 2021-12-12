@@ -12,6 +12,7 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+        <link rel="stylesheet" href="{{ asset('fontawesome/all.min.css') }}">
 
         <!-- Scripts -->
         @routes
@@ -20,8 +21,8 @@
     <body class="font-sans antialiased">
         @inertia
 
-        @env ('local')
+        {{-- @env ('local')
             <script src="http://localhost:8080/js/bundle.js"></script>
-        @endenv
+        @endenv --}}
     </body>
 </html>
