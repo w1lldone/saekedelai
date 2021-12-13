@@ -22,46 +22,11 @@
               <span class="font-medium">Success!</span> {{ status }}
             </div>
           </div>
-
         </div>
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
           <div class="p-6">
-            <form @submit.prevent="submit()">
-              <div>
-                <BreezeLabel for="fullname" value="Name" />
-                <BreezeInput
-                  id="fullname"
-                  type="text"
-                  class="mt-1 block w-full"
-                  v-model="form.name"
-                  required
-                  autofocus
-                  autocomplete="fullname"
-                />
-              </div>
-              <div class="mt-4">
-                <BreezeLabel for="email" value="Email" />
-                <BreezeInput
-                  id="email"
-                  type="email"
-                  class="mt-1 block w-full"
-                  v-model="form.email"
-                  required
-                  autofocus
-                  autocomplete="username"
-                />
-              </div>
-
-              <div class="flex items-center justify-end mt-4">
-                <BreezeButton
-                  class="ml-4"
-                  :class="{ 'opacity-25': form.processing }"
-                  :disabled="form.processing"
-                >
-                  Simpan
-                </BreezeButton>
-              </div>
-            </form>
+            <UserEdit :user="user" :submit-route="route('profile.update')">
+            </UserEdit>
           </div>
         </div>
       </div>
@@ -76,6 +41,7 @@ import BreezeCheckbox from "@/Components/Checkbox.vue";
 import BreezeInput from "@/Components/Input.vue";
 import BreezeLabel from "@/Components/Label.vue";
 import BreezeValidationErrors from "@/Components/ValidationErrors.vue";
+import UserEdit from '@/Components/User/Edit.vue';
 import { Head } from "@inertiajs/inertia-vue3";
 
 export default {
@@ -91,6 +57,7 @@ export default {
     BreezeLabel,
     BreezeValidationErrors,
     Head,
+    UserEdit,
   },
   data() {
     return {

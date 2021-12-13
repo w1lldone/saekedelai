@@ -21,6 +21,13 @@
                 >
                   Dashboard
                 </BreezeNavLink>
+                <BreezeNavLink
+                  v-if="$page.props.can['user.viewAny']"
+                  :href="route('user.index')"
+                  :active="route().current('user.index')"
+                >
+                  User
+                </BreezeNavLink>
               </div>
             </div>
 
@@ -153,6 +160,13 @@
               :active="route().current('dashboard')"
             >
               Dashboard
+            </BreezeResponsiveNavLink>
+            <BreezeResponsiveNavLink
+              v-if="$page.props.can['user.viewAny']"
+              :href="route('user.index')"
+              :active="route().current('user.index')"
+            >
+              User
             </BreezeResponsiveNavLink>
           </div>
 
