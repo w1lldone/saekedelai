@@ -20328,6 +20328,41 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     Link: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__.Link
+  },
+  mounted: function mounted() {
+    "use strict";
+
+    $(".preloader").fadeOut(); // this is for close icon when navigation open in mobile view
+
+    $(".nav-toggler").on('click', function () {
+      $("#main-wrapper").toggleClass("show-sidebar");
+      $(".nav-toggler i").toggleClass("fa-times");
+    });
+    $(".search-box a, .search-box .app-search .srh-btn").on('click', function () {
+      $(".app-search").toggle(200);
+      $(".app-search input").focus();
+    }); // ==============================================================
+    // Resize all elements
+    // ==============================================================
+
+    $("body, .page-wrapper").trigger("resize");
+    $(".page-wrapper").delay(20).show(); //****************************
+
+    /* This is for the mini-sidebar if width is less then 1170*/
+    //****************************
+
+    var setsidebartype = function setsidebartype() {
+      var width = window.innerWidth > 0 ? window.innerWidth : this.screen.width;
+
+      if (width < 1170) {
+        $("#main-wrapper").attr("data-sidebartype", "mini-sidebar");
+      } else {
+        $("#main-wrapper").attr("data-sidebartype", "full");
+      }
+    };
+
+    $(window).ready(setsidebartype);
+    $(window).on("resize", setsidebartype);
   }
 });
 
@@ -21381,7 +21416,7 @@ var _hoisted_4 = {
 };
 
 var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", {
-  "class": "logo-text text-success mx-auto px-2"
+  "class": "logo-text text-success mx-md-auto px-2"
 }, " Saekedelai ", -1
 /* HOISTED */
 );
@@ -21502,26 +21537,66 @@ var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_27 = {
+var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "px-4 d-md-none"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr")], -1
+/* HOISTED */
+);
+
+var _hoisted_28 = {
+  "class": "sidebar-item pt-2 d-md-none"
+};
+
+var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+  "class": "far fa-clock",
+  "aria-hidden": "true"
+}, null, -1
+/* HOISTED */
+);
+
+var _hoisted_30 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "class": "hide-menu"
+}, "Profile", -1
+/* HOISTED */
+);
+
+var _hoisted_31 = {
+  "class": "sidebar-item pt-2 d-md-none"
+};
+
+var _hoisted_32 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+  "class": "fa fa-sign-out-alt",
+  "aria-hidden": "true"
+}, null, -1
+/* HOISTED */
+);
+
+var _hoisted_33 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "class": "hide-menu"
+}, "Logout", -1
+/* HOISTED */
+);
+
+var _hoisted_34 = {
   "class": "page-wrapper"
 };
-var _hoisted_28 = {
+var _hoisted_35 = {
   "class": "page-breadcrumb bg-white"
 };
-var _hoisted_29 = {
+var _hoisted_36 = {
   "class": "row align-items-center"
 };
-var _hoisted_30 = {
+var _hoisted_37 = {
   "class": "col-md-8"
 };
-var _hoisted_31 = {
+var _hoisted_38 = {
   "class": "page-title"
 };
-var _hoisted_32 = {
+var _hoisted_39 = {
   "class": "container-fluid"
 };
 
-var _hoisted_33 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("footer", {
+var _hoisted_40 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("footer", {
   "class": "footer text-center"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 2021 © Ample Admin brought to you by "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
   href: "https://www.wrappixel.com/"
@@ -21573,8 +21648,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, 8
   /* PROPS */
   , ["href"])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" User profile and search "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== ")])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Topbar header "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Left Sidebar - style you can find in sidebar.scss  "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("aside", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Sidebar scroll"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Sidebar navigation"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("nav", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" User Profile"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["sidebar-link waves-effect waves-dark sidebar-link", {
-      'active': _ctx.route().current('dashboard')
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["sidebar-link waves-effect waves-dark", {
+      active: _ctx.route().current('dashboard')
     }]),
     href: _ctx.route('dashboard'),
     "aria-expanded": "false"
@@ -21589,8 +21664,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* PROPS */
   , ["class", "href"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_24, [_ctx.$page.props.can['user.viewAny'] ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Link, {
     key: 0,
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["sidebar-link waves-effect waves-dark sidebar-link", {
-      'active': _ctx.route().current('user.index')
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["sidebar-link waves-effect waves-dark", {
+      active: _ctx.route().current('user.index')
     }]),
     href: _ctx.route('user.index'),
     "aria-expanded": "false"
@@ -21603,7 +21678,36 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   }, 8
   /* PROPS */
-  , ["class", "href"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Sidebar navigation ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Sidebar scroll")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Left Sidebar - style you can find in sidebar.scss  "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Page wrapper  "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Bread crumb and right sidebar toggle "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "header")])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /.col-lg-12 ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Bread crumb and right sidebar toggle "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Container fluid  "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "default")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Container fluid  "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" footer "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), _hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End footer "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== ")])])], 2112
+  , ["class", "href"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), _hoisted_27, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["sidebar-link waves-effect waves-dark", {
+      active: _ctx.route().current('profile.index')
+    }]),
+    href: _ctx.route('profile.index'),
+    "aria-expanded": "false"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_29, _hoisted_30];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["class", "href"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
+    "class": "sidebar-link waves-effect waves-dark",
+    href: _ctx.route('logout'),
+    method: "post",
+    "aria-expanded": "false"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_32, _hoisted_33];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["href"])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Sidebar navigation ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Sidebar scroll")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Left Sidebar - style you can find in sidebar.scss  "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Page wrapper  "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_34, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Bread crumb and right sidebar toggle "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_35, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_36, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_37, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "header")])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /.col-lg-12 ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Bread crumb and right sidebar toggle "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Container fluid  "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_39, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "default")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Container fluid  "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" footer "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), _hoisted_40, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End footer "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== ")])])], 2112
   /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */
   );
 }
@@ -22971,8 +23075,6 @@ __webpack_require__(/*! bootstrap/dist/js/bootstrap.bundle */ "./node_modules/bo
 
 __webpack_require__(/*! ./sidebarmenu */ "./resources/js/sidebarmenu.js");
 
-__webpack_require__(/*! ./custom */ "./resources/js/custom.js");
-
 
 
 
@@ -23034,50 +23136,6 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
-
-/***/ }),
-
-/***/ "./resources/js/custom.js":
-/*!********************************!*\
-  !*** ./resources/js/custom.js ***!
-  \********************************/
-/***/ (() => {
-
-$(function () {
-  "use strict";
-
-  $(".preloader").fadeOut(); // this is for close icon when navigation open in mobile view
-
-  $(".nav-toggler").on('click', function () {
-    $("#main-wrapper").toggleClass("show-sidebar");
-    $(".nav-toggler i").toggleClass("fa-times");
-  });
-  $(".search-box a, .search-box .app-search .srh-btn").on('click', function () {
-    $(".app-search").toggle(200);
-    $(".app-search input").focus();
-  }); // ==============================================================
-  // Resize all elements
-  // ==============================================================
-
-  $("body, .page-wrapper").trigger("resize");
-  $(".page-wrapper").delay(20).show(); //****************************
-
-  /* This is for the mini-sidebar if width is less then 1170*/
-  //****************************
-
-  var setsidebartype = function setsidebartype() {
-    var width = window.innerWidth > 0 ? window.innerWidth : this.screen.width;
-
-    if (width < 1170) {
-      $("#main-wrapper").attr("data-sidebartype", "mini-sidebar");
-    } else {
-      $("#main-wrapper").attr("data-sidebartype", "full");
-    }
-  };
-
-  $(window).ready(setsidebartype);
-  $(window).on("resize", setsidebartype);
-});
 
 /***/ }),
 
@@ -34138,7 +34196,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.logo-text {\n    font-size: 1.7rem;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.logo-text {\n  font-size: 1.7rem;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
