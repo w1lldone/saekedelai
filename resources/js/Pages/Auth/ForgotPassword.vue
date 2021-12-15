@@ -13,14 +13,14 @@
 
     <form @submit.prevent="submit">
         <div>
-            <BreezeLabel for="email" value="Email" />
-            <BreezeInput id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autofocus autocomplete="username" />
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" name="email" id="" v-model="form.email">
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <BreezeButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+        <div class="d-flex align-items-center justify-content-end mt-4">
+            <button type="submit" class="btn btn-primary" :class="{ 'disabled': form.processing }" :disabled="form.processing">
                 Email Password Reset Link
-            </BreezeButton>
+            </button>
         </div>
     </form>
 </template>

@@ -11,7 +11,7 @@ class ProfileController extends Controller
     public function index(Request $request)
     {
         return Inertia::render('Auth/Profile', [
-            'user' => $request->user()->only('name', 'email'),
+            'user' => $request->user(),
             'status' => session('status')
         ]);
     }

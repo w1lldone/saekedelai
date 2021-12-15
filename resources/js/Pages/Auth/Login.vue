@@ -9,39 +9,30 @@
     </div>
 
     <form @submit.prevent="submit">
-      <div>
-        <BreezeLabel for="email" value="Email" />
-        <BreezeInput
-          id="email"
-          type="email"
-          class="mt-1 block w-full"
-          v-model="form.email"
-          required
-          autofocus
-          autocomplete="username"
-        />
+      <div class="mb-4">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" v-model="form.email" />
       </div>
 
-      <div class="mt-4">
-        <BreezeLabel for="password" value="Password" />
-        <BreezeInput
-          id="password"
-          type="password"
-          class="mt-1 block w-full"
-          v-model="form.password"
-          required
-          autocomplete="current-password"
-        />
+      <div class="mb-4">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" v-model="form.password" />
       </div>
 
-      <div class="block mt-4">
-        <label class="flex items-center">
-          <BreezeCheckbox name="remember" v-model:checked="form.remember" />
-          <span class="ml-2 text-sm text-gray-600">Remember me</span>
-        </label>
+      <div class="mb-4">
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value=""
+            id="rememberMe"
+            v-model="form.remember"
+          />
+          <label class="form-check-label" for="rememberMe"> Remember me </label>
+        </div>
       </div>
 
-      <div class="flex items-center justify-end mt-4">
+      <div class="d-flex align-items-center justify-content-between mt-4">
         <Link
           v-if="canResetPassword"
           :href="route('password.request')"
@@ -50,17 +41,23 @@
           Forgot your password?
         </Link>
 
-        <BreezeButton
-          class="ml-4"
+        <button
+          class="ml-4 btn btn-primary"
           :class="{ 'opacity-25': form.processing }"
           :disabled="form.processing"
         >
           Log in
-        </BreezeButton>
+        </button>
       </div>
     </form>
     <template v-slot:outside>
-      <sign-in-with-google class="mt-4"></sign-in-with-google>
+      <div class="row justify-content-center">
+        <div class="col-md-3">
+          <a :href="route('auth.google.redirect')">
+            <img class="img-fluid" src="/img/google_sign_in.png" alt="" />
+          </a>
+        </div>
+      </div>
     </template>
   </BreezeGuestLayout>
 </template>
@@ -73,7 +70,7 @@ import BreezeInput from "@/Components/Input.vue";
 import BreezeLabel from "@/Components/Label.vue";
 import BreezeValidationErrors from "@/Components/ValidationErrors.vue";
 import { Head, Link } from "@inertiajs/inertia-vue3";
-import SignInWithGoogle from "@/Components/SignInWithGoogle.vue"
+import SignInWithGoogle from "@/Components/SignInWithGoogle.vue";
 
 export default {
   // layout: BreezeGuestLayout,

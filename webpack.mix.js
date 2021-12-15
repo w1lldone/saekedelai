@@ -18,6 +18,7 @@ mix.js("resources/js/app.js", "public/js")
         require("tailwindcss"),
         require("autoprefixer"),
     ])
+    .sass("resources/scss/style.scss", "public/css")
     .webpackConfig(require("./webpack.config"))
     .copyDirectory("resources/img", "public/img");
 

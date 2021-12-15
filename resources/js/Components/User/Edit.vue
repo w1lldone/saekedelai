@@ -1,82 +1,60 @@
 <template>
-  <form @submit.prevent="submit()">
-    <div>
-      <BreezeLabel for="fullname" value="Name" />
-      <BreezeInput
-        id="fullname"
-        type="text"
-        class="mt-1 block w-full"
-        v-model="form.name"
-        required
-        autofocus
-        autocomplete="fullname"
-      />
-    </div>
-    <div class="mt-4">
-      <BreezeLabel for="email" value="Email" />
-      <BreezeInput
-        id="email"
-        type="email"
-        class="mt-1 block w-full"
-        v-model="form.email"
-        required
-        autofocus
-        autocomplete="username"
-      />
+  <form @submit.prevent="submit()" class="form">
+    <BreezeValidationErrors class="mb-4" />
+
+    <div
+      v-if="status"
+      class="alert alert-success alert-dismissible fade show"
+      role="alert"
+    >
+      <strong>Success!</strong> {{ status }}
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
     </div>
 
-    <div class="mt-4">
-      <BreezeLabel for="phone_number" value="No HP" />
-      <BreezeInput
-        id="phone_number"
-        type="text"
-        class="mt-1 block w-full"
-        v-model="form.phone_number"
-        autocomplete="phone_number"
-      />
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" class="form-control" v-model="form.email" />
     </div>
-
-    <div class="mt-4">
-      <BreezeLabel for="id_number" value="NIK" />
-      <BreezeInput
-        id="id_number"
-        type="text"
-        class="mt-1 block w-full"
-        v-model="form.id_number"
-        autocomplete="id_number"
-      />
+    <div class="mb-3">
+      <label for="name" class="form-label">Nama</label>
+      <input type="text" class="form-control" v-model="form.name" />
     </div>
-
-    <div class="flex items-center justify-end mt-4">
-      <BreezeButton
-        class="ml-4"
-        :class="{ 'opacity-25': form.processing }"
-        :disabled="form.processing"
+    <div class="mb-3">
+      <label for="phone_number" class="form-label">No HP</label>
+      <input type="text" class="form-control" v-model="form.phone_number" />
+    </div>
+    <div class="mb-3">
+      <label for="id_number" class="form-label">NIK</label>
+      <input type="text" class="form-control" v-model="form.id_number" />
+    </div>
+    <div class="d-flex justify-content-end">
+      <button
+        type="submit"
+        class="btn btn-success"
+        :class="{ disabled: form.processing }"
       >
         Simpan
-      </BreezeButton>
+      </button>
     </div>
   </form>
 </template>
 
 <script>
-import BreezeButton from "@/Components/Button.vue";
-import BreezeCheckbox from "@/Components/Checkbox.vue";
-import BreezeInput from "@/Components/Input.vue";
-import BreezeLabel from "@/Components/Label.vue";
 import BreezeValidationErrors from "@/Components/ValidationErrors.vue";
 
 export default {
+  components: {
+    BreezeValidationErrors,
+  },
   props: {
     user: Object,
     submitRoute: String,
-  },
-  components: {
-    BreezeButton,
-    BreezeCheckbox,
-    BreezeInput,
-    BreezeLabel,
-    BreezeValidationErrors,
+    status: String,
   },
   data() {
     return {
@@ -84,14 +62,14 @@ export default {
         name: this.user.name,
         email: this.user.email,
         id_number: this.user.id_number,
-        phone_number: this.user.phone_number
+        phone_number: this.user.phone_number,
       }),
     };
   },
   methods: {
     submit() {
       this.form.put(this.submitRoute, {
-          onSuccess: () => this.$emit('success')
+        onSuccess: () => this.$emit("success"),
       });
     },
   },
