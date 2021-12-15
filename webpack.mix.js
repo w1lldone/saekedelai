@@ -13,11 +13,12 @@ const mix = require('laravel-mix');
 
 mix.js("resources/js/app.js", "public/js")
     .vue()
-    .postCss("resources/css/app.css", "public/css", [
-        require("postcss-import"),
-        require("tailwindcss"),
-        require("autoprefixer"),
-    ])
+    // .postCss("resources/css/app.css", "public/css", [
+    //     require("postcss-import"),
+    //     require("tailwindcss"),
+    //     require("autoprefixer"),
+    // ])
+    .sass("resources/scss/style.scss", "public/css")
     .webpackConfig(require("./webpack.config"))
     .copyDirectory("resources/img", "public/img");
 

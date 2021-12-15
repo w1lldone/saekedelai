@@ -2,67 +2,14 @@
   <Head title="Profile" />
 
   <BreezeAuthenticatedLayout>
-    <template #header>
-      <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        Ubah Profil
-      </h2>
-    </template>
+    <template #header> Ubah Profil </template>
 
-    <div class="py-12">
-      <div class="max-w-lg mx-auto sm:px-6 lg:px-8">
-        <BreezeValidationErrors class="mb-4" />
-
-        <div v-if="status">
-          <div
-            class="flex items-center bg-green-100 rounded-lg p-4 mb-4 text-sm text-green-700"
-            role="alert"
-          >
-            <i class="fa fa-info-circle"></i>
-            <div class="pl-2">
-              <span class="font-medium">Success!</span> {{ status }}
-            </div>
-          </div>
-
-        </div>
-        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-          <div class="p-6">
-            <form @submit.prevent="submit()">
-              <div>
-                <BreezeLabel for="fullname" value="Name" />
-                <BreezeInput
-                  id="fullname"
-                  type="text"
-                  class="mt-1 block w-full"
-                  v-model="form.name"
-                  required
-                  autofocus
-                  autocomplete="fullname"
-                />
-              </div>
-              <div class="mt-4">
-                <BreezeLabel for="email" value="Email" />
-                <BreezeInput
-                  id="email"
-                  type="email"
-                  class="mt-1 block w-full"
-                  v-model="form.email"
-                  required
-                  autofocus
-                  autocomplete="username"
-                />
-              </div>
-
-              <div class="flex items-center justify-end mt-4">
-                <BreezeButton
-                  class="ml-4"
-                  :class="{ 'opacity-25': form.processing }"
-                  :disabled="form.processing"
-                >
-                  Simpan
-                </BreezeButton>
-              </div>
-            </form>
-          </div>
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card card-body p-4">
+          <UserEdit :user="user" :status="status" :submit-route="route('profile.update')">
+          </UserEdit>
+          <!-- END OF COL-8 -->
         </div>
       </div>
     </div>
@@ -70,12 +17,13 @@
 </template>
 
 <script>
-import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
+import BreezeAuthenticatedLayout from "@/Layouts/Auth.vue";
 import BreezeButton from "@/Components/Button.vue";
 import BreezeCheckbox from "@/Components/Checkbox.vue";
 import BreezeInput from "@/Components/Input.vue";
 import BreezeLabel from "@/Components/Label.vue";
 import BreezeValidationErrors from "@/Components/ValidationErrors.vue";
+import UserEdit from "@/Components/User/Edit.vue";
 import { Head } from "@inertiajs/inertia-vue3";
 
 export default {
@@ -91,6 +39,7 @@ export default {
     BreezeLabel,
     BreezeValidationErrors,
     Head,
+    UserEdit,
   },
   data() {
     return {
@@ -108,5 +57,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

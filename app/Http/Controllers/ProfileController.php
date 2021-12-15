@@ -11,7 +11,7 @@ class ProfileController extends Controller
     public function index(Request $request)
     {
         return Inertia::render('Auth/Profile', [
-            'user' => $request->user()->only('name', 'email'),
+            'user' => $request->user(),
             'status' => session('status')
         ]);
     }
@@ -20,7 +20,9 @@ class ProfileController extends Controller
     {
         $data = $request->validate([
             'name' => 'string',
-            'email' => [Rule::unique('users')->ignore($request->user()->id)]
+            'email' => [Rule::unique('users')->ignore($request->user()->id), 'email'],
+            'phone_number' => 'string|min:6|max:20|nullable',
+            'id_number' => 'string|min:16|max:16|nullable',
         ]);
 
         $request->user()->update($data);

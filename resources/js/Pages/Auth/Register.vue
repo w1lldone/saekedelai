@@ -4,74 +4,66 @@
   <BreezeValidationErrors class="mb-4" />
   <BreezeGuestLayout>
     <form @submit.prevent="submit">
-      <div>
-        <BreezeLabel for="name" value="Name" />
-        <BreezeInput
-          id="name"
-          type="text"
-          class="mt-1 block w-full"
-          v-model="form.name"
-          required
-          autofocus
-          autocomplete="name"
-        />
+      <div class="mb-4">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" required class="form-control" v-model="form.name" />
       </div>
 
-      <div class="mt-4">
-        <BreezeLabel for="email" value="Email" />
-        <BreezeInput
-          id="email"
+      <div class="mb-4">
+        <label for="email" class="form-label">Email</label>
+        <input
           type="email"
-          class="mt-1 block w-full"
+          required
+          class="form-control"
           v-model="form.email"
-          required
-          autocomplete="username"
         />
       </div>
 
-      <div class="mt-4">
-        <BreezeLabel for="password" value="Password" />
-        <BreezeInput
-          id="password"
+      <div class="mb-4">
+        <label for="password" class="form-label">New Password</label>
+        <input
           type="password"
-          class="mt-1 block w-full"
+          required
+          class="form-control"
           v-model="form.password"
-          required
-          autocomplete="new-password"
         />
       </div>
 
-      <div class="mt-4">
-        <BreezeLabel for="password_confirmation" value="Confirm Password" />
-        <BreezeInput
-          id="password_confirmation"
-          type="password"
-          class="mt-1 block w-full"
-          v-model="form.password_confirmation"
-          required
-          autocomplete="new-password"
-        />
-      </div>
-
-      <div class="flex items-center justify-end mt-4">
-        <Link
-          :href="route('login')"
-          class="underline text-sm text-gray-600 hover:text-gray-900"
+      <div class="mb-4">
+        <label for="password_confirmation" class="form-label"
+          >Password Confirmation</label
         >
+        <input
+          type="password"
+          required
+          class="form-control"
+          v-model="form.password_confirmation"
+        />
+      </div>
+
+      <div class="d-flex align-items-center justify-content-between mt-4">
+        <Link :href="route('login')" class="underline text-sm">
           Already registered?
         </Link>
 
-        <BreezeButton
-          class="ml-4"
+        <button
+          type="submit"
+          class="btn btn-primary"
           :class="{ 'opacity-25': form.processing }"
           :disabled="form.processing"
         >
           Register
-        </BreezeButton>
+        </button>
       </div>
     </form>
     <template v-slot:outside>
-      <sign-in-with-google class="mt-4"></sign-in-with-google>
+      <div class="row justify-content-center">
+        <div class="col-md-3">
+          <a :href="route('auth.google.redirect')">
+            <img class="img-fluid" src="/img/google_sign_in.png" alt="" />
+          </a>
+        </div>
+      </div>
     </template>
   </BreezeGuestLayout>
 </template>
@@ -83,7 +75,7 @@ import BreezeInput from "@/Components/Input.vue";
 import BreezeLabel from "@/Components/Label.vue";
 import BreezeValidationErrors from "@/Components/ValidationErrors.vue";
 import { Head, Link } from "@inertiajs/inertia-vue3";
-import SignInWithGoogle from '@/Components/SignInWithGoogle.vue';
+import SignInWithGoogle from "@/Components/SignInWithGoogle.vue";
 
 export default {
   components: {

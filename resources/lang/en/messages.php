@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'success' => 'Profile Updated!'
+    'success' => 'Data Updated!'
 ];

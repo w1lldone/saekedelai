@@ -5,24 +5,24 @@
 
     <form @submit.prevent="submit">
         <div>
-            <BreezeLabel for="email" value="Email" />
-            <BreezeInput id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autofocus autocomplete="username" />
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" v-model="form.email" name="email">
         </div>
 
         <div class="mt-4">
-            <BreezeLabel for="password" value="Password" />
-            <BreezeInput id="password" type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="new-password" />
+            <label for="password" class="form-password">New Password</label>
+            <input type="password" class="form-control" name="password" id="password" v-model="form.password">
         </div>
 
         <div class="mt-4">
-            <BreezeLabel for="password_confirmation" value="Confirm Password" />
-            <BreezeInput id="password_confirmation" type="password" class="mt-1 block w-full" v-model="form.password_confirmation" required autocomplete="new-password" />
+            <label for="password_confirmation" class="form-label">Password Confirmation</label>
+            <input type="password" class="form-control" v-model="form.password_confirmation">
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <BreezeButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+        <div class="d-flex align-items-center justify-content-end mt-4">
+            <button class="btn btn-primary" :class="{ 'disabled': form.processing }" :disabled="form.processing">
                 Reset Password
-            </BreezeButton>
+            </button>
         </div>
     </form>
 </template>

@@ -3,25 +3,91 @@
 
     <BreezeAuthenticatedLayout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Dashboard
-            </h2>
+            Dashboard
         </template>
 
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 bg-white border-b border-gray-200">
-                        You're logged in!
-                    </div>
-                </div>
+        <!-- ============================================================== -->
+        <!-- Three charts -->
+        <!-- ============================================================== -->
+        <div class="row justify-content-center">
+          <div class="col-lg-4 col-md-12">
+            <div class="white-box analytics-info">
+              <h3 class="box-title">Total Visit</h3>
+              <ul class="list-inline two-part d-flex align-items-center mb-0">
+                <li>
+                  <div id="sparklinedash">
+                    <canvas
+                      width="67"
+                      height="30"
+                      style="
+                        display: inline-block;
+                        width: 67px;
+                        height: 30px;
+                        vertical-align: top;
+                      "
+                    ></canvas>
+                  </div>
+                </li>
+                <li class="ms-auto">
+                  <span class="counter text-success">659</span>
+                </li>
+              </ul>
             </div>
+          </div>
+          <div class="col-lg-4 col-md-12">
+            <div class="white-box analytics-info">
+              <h3 class="box-title">Total Page Views</h3>
+              <ul class="list-inline two-part d-flex align-items-center mb-0">
+                <li>
+                  <div id="sparklinedash2">
+                    <canvas
+                      width="67"
+                      height="30"
+                      style="
+                        display: inline-block;
+                        width: 67px;
+                        height: 30px;
+                        vertical-align: top;
+                      "
+                    ></canvas>
+                  </div>
+                </li>
+                <li class="ms-auto">
+                  <span class="counter text-purple">869</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-12">
+            <div class="white-box analytics-info">
+              <h3 class="box-title">Unique Visitor</h3>
+              <ul class="list-inline two-part d-flex align-items-center mb-0">
+                <li>
+                  <div id="sparklinedash3">
+                    <canvas
+                      width="67"
+                      height="30"
+                      style="
+                        display: inline-block;
+                        width: 67px;
+                        height: 30px;
+                        vertical-align: top;
+                      "
+                    ></canvas>
+                  </div>
+                </li>
+                <li class="ms-auto">
+                  <span class="counter text-info">911</span>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
     </BreezeAuthenticatedLayout>
 </template>
 
 <script>
-import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue'
+import BreezeAuthenticatedLayout from '@/Layouts/Auth.vue'
 import { Head } from '@inertiajs/inertia-vue3';
 
 export default {

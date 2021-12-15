@@ -1,26 +1,43 @@
 <template>
-    <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-        <div>
-            <Link href="/">
-                <BreezeApplicationLogo class="w-20 h-20 fill-current text-gray-500" />
-            </Link>
+  <div class="py-5 bg-gray full-height">
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-md-3 mb-4">
+          <a href="/">
+            <BreezeApplicationLogo class="img-fluid" />
+          </a>
         </div>
-
-        <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+      </div>
+      <div class="row justify-content-center mt-3">
+        <div class="col-md-4">
+          <div class="card p-4">
             <slot />
+          </div>
         </div>
-        <slot name="outside"/>
+      </div>
+      <slot name="outside" />
     </div>
+  </div>
 </template>
 
 <script>
-import BreezeApplicationLogo from '@/Components/ApplicationLogo.vue'
-import { Link } from '@inertiajs/inertia-vue3';
+import BreezeApplicationLogo from "@/Components/ApplicationLogo.vue";
+import { Link } from "@inertiajs/inertia-vue3";
 
 export default {
-    components: {
-        BreezeApplicationLogo,
-        Link,
-    }
-}
+  components: {
+    BreezeApplicationLogo,
+    Link,
+  },
+};
 </script>
+
+<style scoped>
+    .bg-gray {
+        background: #e9ecef;
+    }
+
+    .full-height {
+        min-height: 100vh;
+    }
+</style>
