@@ -21,7 +21,7 @@
           <!-- Logo -->
           <!-- ============================================================== -->
           <Link class="navbar-brand" :href="route('dashboard')">
-            <b class="logo-text text-success mx-auto px-2"> Saekedelai </b>
+            <b class="logo-text text-success mx-md-auto px-2"> Saekedelai </b>
           </Link>
           <!-- ============================================================== -->
           <!-- End Logo -->
@@ -79,19 +79,28 @@
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                {{ $page.props.auth.user.name }} <i class="fa fa-chevron-down"></i>
+                {{ $page.props.auth.user.name }}
+                <i class="fa fa-chevron-down"></i>
               </a>
               <ul
                 class="dropdown-menu dropdown-menu-end"
                 aria-labelledby="navbarDropdown"
               >
                 <li>
-                  <Link class="dropdown-item" :href="route('profile.index')">Profile</Link>
+                  <Link class="dropdown-item" :href="route('profile.index')"
+                    >Profile</Link
+                  >
                 </li>
                 <li><hr class="dropdown-divider" /></li>
                 <li>
-                  <Link method="post" as="button" class="dropdown-item" :href="route('logout')">
-                  Logout</Link>
+                  <Link
+                    method="post"
+                    as="button"
+                    class="dropdown-item"
+                    :href="route('logout')"
+                  >
+                    Logout</Link
+                  >
                 </li>
               </ul>
             </li>
@@ -117,8 +126,8 @@
             <!-- User Profile-->
             <li class="sidebar-item pt-2">
               <Link
-                class="sidebar-link waves-effect waves-dark sidebar-link"
-                :class="{ 'active': route().current('dashboard') }"
+                class="sidebar-link waves-effect waves-dark"
+                :class="{ active: route().current('dashboard') }"
                 :href="route('dashboard')"
                 aria-expanded="false"
               >
@@ -129,13 +138,38 @@
             <li class="sidebar-item pt-2">
               <Link
                 v-if="$page.props.can['user.viewAny']"
-                class="sidebar-link waves-effect waves-dark sidebar-link"
-                :class="{ 'active': route().current('user.index') }"
+                class="sidebar-link waves-effect waves-dark"
+                :class="{ active: route().current('user.index') }"
                 :href="route('user.index')"
                 aria-expanded="false"
               >
                 <i class="far fa-user" aria-hidden="true"></i>
                 <span class="hide-menu">User</span>
+              </Link>
+            </li>
+            <div class="px-4 d-md-none">
+                <hr>
+            </div>
+            <li class="sidebar-item pt-2 d-md-none">
+              <Link
+                class="sidebar-link waves-effect waves-dark "
+                :class="{ active: route().current('profile.index') }"
+                :href="route('profile.index')"
+                aria-expanded="false"
+              >
+                <i class="far fa-clock" aria-hidden="true"></i>
+                <span class="hide-menu">Profile</span>
+              </Link>
+            </li>
+            <li class="sidebar-item pt-2 d-md-none">
+              <Link
+                class="sidebar-link waves-effect waves-dark "
+                :href="route('logout')"
+                method="post"
+                aria-expanded="false"
+              >
+                <i class="fa fa-sign-out-alt" aria-hidden="true"></i>
+                <span class="hide-menu">Logout</span>
               </Link>
             </li>
           </ul>
@@ -199,11 +233,46 @@ export default {
   components: {
     Link,
   },
+  mounted() {
+    "use strict";
+
+    $(".preloader").fadeOut();
+    // this is for close icon when navigation open in mobile view
+    $(".nav-toggler").on('click', function() {
+        $("#main-wrapper").toggleClass("show-sidebar");
+        $(".nav-toggler i").toggleClass("fa-times");
+    });
+
+    $(".search-box a, .search-box .app-search .srh-btn").on('click', function() {
+        $(".app-search").toggle(200);
+        $(".app-search input").focus();
+    });
+
+    // ==============================================================
+    // Resize all elements
+    // ==============================================================
+    $("body, .page-wrapper").trigger("resize");
+    $(".page-wrapper").delay(20).show();
+
+    //****************************
+    /* This is for the mini-sidebar if width is less then 1170*/
+    //****************************
+    var setsidebartype = function() {
+        var width = (window.innerWidth > 0) ? window.innerWidth : this.screen.width;
+        if (width < 1170) {
+            $("#main-wrapper").attr("data-sidebartype", "mini-sidebar");
+        } else {
+            $("#main-wrapper").attr("data-sidebartype", "full");
+        }
+    };
+    $(window).ready(setsidebartype);
+    $(window).on("resize", setsidebartype);
+  },
 };
 </script>
 
 <style>
 .logo-text {
-    font-size: 1.7rem;
+  font-size: 1.7rem;
 }
 </style>

@@ -2,7 +2,6 @@ require('./bootstrap');
 window.$ = require("./jquery.min");
 require('bootstrap/dist/js/bootstrap.bundle');
 require('./sidebarmenu');
-require('./custom');
 
 import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/inertia-vue3';
