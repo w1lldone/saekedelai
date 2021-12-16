@@ -32,15 +32,15 @@ jobs:
         host: ${{ secrets.SERVER_HOST }}
         password: ${{ secrets.SSH_PASSWORD }}
         script: |
-        cd ${{ secrets.PROJECT_PATH }}
-        (php artisan down --message 'The app is being (quickly!) updated. Please try again in a minute.') || true
-        git fetch origin test
-        git reset --hard origin/test
-        composer install --no-interaction --prefer-dist --optimize-autoloader
-        php artisan migrate --force
-        php artisan queue:restart
-        php artisan optimize
-        php artisan up
-        echo "Application deployed!"
+          cd ${{ secrets.PROJECT_PATH }}
+          (php artisan down --message 'The app is being (quickly!) updated. Please try again in a minute.') || true
+          git fetch origin test
+          git reset --hard origin/test
+          composer install --no-interaction --prefer-dist --optimize-autoloader
+          php artisan migrate --force
+          php artisan queue:restart
+          php artisan optimize
+          php artisan up
+          echo "Application deployed!"
 
 
