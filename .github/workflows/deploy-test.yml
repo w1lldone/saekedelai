@@ -14,7 +14,7 @@ jobs:
     - name: Set up Node
       uses: actions/setup-node@v1
       with:
-        node-version: 'lts/*'
+        node-version: 'lts/gallium'
     - run: npm install
     - run: npm run production
     - name: Commit built assets
