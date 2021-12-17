@@ -6,8 +6,14 @@
 
     <div class="row justify-content-center">
       <div class="col-md-6">
+        <ProfileNav class="mb-4"></ProfileNav>
+
         <div class="card card-body p-4">
-          <UserEdit :user="user" :status="status" :submit-route="route('profile.update')">
+          <UserEdit
+            :user="user"
+            :status="status"
+            :submit-route="route('profile.update')"
+          >
           </UserEdit>
           <!-- END OF COL-8 -->
         </div>
@@ -21,6 +27,7 @@ import BreezeAuthenticatedLayout from "@/Layouts/Auth.vue";
 import BreezeValidationErrors from "@/Components/ValidationErrors.vue";
 import UserEdit from "@/Components/User/Edit.vue";
 import { Head } from "@inertiajs/inertia-vue3";
+import ProfileNav from "@/Components/ProfileNav.vue";
 
 export default {
   props: {
@@ -32,6 +39,7 @@ export default {
     BreezeValidationErrors,
     Head,
     UserEdit,
+    ProfileNav,
   },
   data() {
     return {

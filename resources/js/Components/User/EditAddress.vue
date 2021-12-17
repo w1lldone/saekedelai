@@ -1,5 +1,18 @@
 <template>
   <form @submit.prevent="submit()">
+    <div
+      v-if="status"
+      class="alert alert-success alert-dismissible fade show"
+      role="alert"
+    >
+      <strong>Success!</strong> {{ status }}
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
     <div class="mb-3">
       <label for="province" class="form-label">Provinsi</label>
       <vue-select
@@ -40,7 +53,9 @@
       ></vue-select>
     </div>
     <div class="mb-3">
-      <label for="address" class="form-label">Dusun RT/RW - <small class="form-text">Opsional</small></label>
+      <label for="address" class="form-label"
+        >Dusun RT/RW - <small class="form-text">Opsional</small></label
+      >
 
       <input
         type="text"
@@ -71,6 +86,7 @@ export default {
   props: {
     address: Object,
     submitUrl: String,
+    status: String
   },
   data() {
     return {
