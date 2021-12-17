@@ -5,7 +5,7 @@
     <template #header> Ubah Profil </template>
 
     <div class="row justify-content-center">
-      <div class="col-md-8">
+      <div class="col-md-6">
         <div class="card card-body p-4">
           <UserEdit :user="user" :status="status" :submit-route="route('profile.update')">
           </UserEdit>
@@ -18,10 +18,6 @@
 
 <script>
 import BreezeAuthenticatedLayout from "@/Layouts/Auth.vue";
-import BreezeButton from "@/Components/Button.vue";
-import BreezeCheckbox from "@/Components/Checkbox.vue";
-import BreezeInput from "@/Components/Input.vue";
-import BreezeLabel from "@/Components/Label.vue";
 import BreezeValidationErrors from "@/Components/ValidationErrors.vue";
 import UserEdit from "@/Components/User/Edit.vue";
 import { Head } from "@inertiajs/inertia-vue3";
@@ -33,10 +29,6 @@ export default {
   },
   components: {
     BreezeAuthenticatedLayout,
-    BreezeButton,
-    BreezeCheckbox,
-    BreezeInput,
-    BreezeLabel,
     BreezeValidationErrors,
     Head,
     UserEdit,

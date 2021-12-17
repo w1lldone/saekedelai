@@ -60,6 +60,8 @@ class UserController extends Controller
     {
         $this->authorize('view', $user);
 
+        $user->load('address');
+
         return Inertia::render('User/Show', [
             'user' => $user,
             'status' => session('status'),
@@ -77,7 +79,14 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        $this->authorize('update', $user);
+
+        $user->load('address');
+
+        return Inertia::render('User/Edit', [
+            'user' => $user,
+            'status' => session('status'),
+        ]);
     }
 
     /**

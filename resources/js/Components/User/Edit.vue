@@ -1,7 +1,5 @@
 <template>
   <form @submit.prevent="submit()" class="form">
-    <BreezeValidationErrors class="mb-4" />
-
     <div
       v-if="status"
       class="alert alert-success alert-dismissible fade show"
@@ -31,6 +29,9 @@
     <div class="mb-3">
       <label for="id_number" class="form-label">NIK</label>
       <input type="text" class="form-control" v-model="form.id_number" />
+    </div>
+    <div class="mb-3">
+
     </div>
     <div class="d-flex justify-content-end">
       <button

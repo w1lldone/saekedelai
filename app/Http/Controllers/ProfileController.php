@@ -16,6 +16,16 @@ class ProfileController extends Controller
         ]);
     }
 
+    public function editAddress(Request $request)
+    {
+        $user = $request->user()->load('address');
+
+        return Inertia::render('Auth/ProfileAddress', [
+            'user' => $user,
+            'status' => session('status')
+        ]);
+    }
+
     public function update(Request $request)
     {
         $data = $request->validate([

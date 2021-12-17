@@ -10,7 +10,7 @@
     <div class="row justify-content-center">
       <div class="col-md-8">
         <div class="card card-body p-4">
-          <div v-if="isEditing == false">
+          <div>
             <div>
               <span class="font-semibold text-gray-400">Nama</span>
               <h3 class="font-semibold text-xl text-gray-800">
@@ -43,23 +43,23 @@
                 </span>
               </h3>
             </div>
+            <div class="mt-3">
+              <span class="font-semibold text-gray-400">Alamat</span>
+              <h3 class="font-semibold text-xl text-gray-800" v-if="user.address.formatted_address">
+                {{ user.address.formatted_address }}
+              </h3>
+              <h3 class="text-muted" v-else>Alamat tidak tersedia</h3>
+            </div>
 
             <div class="mt-3 d-flex justify-content-end">
-              <button
+              <Link
                 class="btn btn-primary"
                 v-if="can.update"
-                @click="isEditing = true"
+                :href="route('user.edit', user.id)"
               >
                 Edit
-              </button>
+              </Link>
             </div>
-          </div>
-          <div v-else>
-            <EditUser
-              :user="user"
-              :submit-route="route('user.update', user.id)"
-              @success="isEditing = false"
-            ></EditUser>
           </div>
         </div>
       </div>
