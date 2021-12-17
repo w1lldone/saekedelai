@@ -18,8 +18,8 @@ class CreateAddressesTable extends Migration
             $table->morphs('addressable');
             $table->string('province')->nullable();
             $table->string('city')->nullable();
-            $table->string('distric')->nullable();
-            $table->string('subdistric')->nullable();
+            $table->string('district')->nullable();
+            $table->string('subdistrict')->nullable();
             $table->string('address')->nullable();
             $table->timestamps();
         });

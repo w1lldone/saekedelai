@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Address;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -20,6 +21,7 @@ class UserSeeder extends Seeder
 
         User::factory()
             ->count(50)
+            ->has(Address::factory())
             ->create();
     }
 }

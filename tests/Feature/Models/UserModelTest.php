@@ -20,4 +20,15 @@ class UserModelTest extends TestCase
             'id' => $user->id
         ]);
     }
+
+    /** @test */
+    public function it_automatically_create_an_address()
+    {
+        $user = User::factory()->create();
+
+        $this->assertDatabaseHas('addresses', [
+            'addressable_type' => User::class,
+            'addressable_id' => $user->id
+        ]);
+    }
 }

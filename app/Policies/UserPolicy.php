@@ -58,6 +58,10 @@ class UserPolicy
      */
     public function update(User $user, User $model)
     {
+        if ($user->is($model)) {
+            return true;
+        }
+
         if ($model->is_superadmin) {
             return false;
         }
@@ -76,6 +80,10 @@ class UserPolicy
      */
     public function delete(User $user, User $model)
     {
+        if ($user->is($model)) {
+            return false;
+        }
+
         if ($model->is_superadmin) {
             return false;
         }
