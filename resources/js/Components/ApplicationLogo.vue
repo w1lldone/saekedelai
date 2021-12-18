@@ -1,9 +1,9 @@
 <template>
-    <div class="text-center text-success logo font-bold">Saekedelai</div>
+  <img src="/img/logo.svg" class="img-fluid" alt="" style="">
 </template>
 
 <style scoped>
-    .logo {
-        font-size: 4vw;
+    img {
+        width: 80%;
     }
 </style>
