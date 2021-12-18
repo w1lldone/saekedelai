@@ -2,10 +2,8 @@
   <div class="py-5 bg-gray full-height">
     <div class="container-fluid">
       <div class="row justify-content-center">
-        <div class="col-md-3 mb-4">
-          <a href="/">
-            <BreezeApplicationLogo class="img-fluid" />
-          </a>
+        <div class="col-md-3 mb-4 text-center">
+            <BreezeApplicationLogo/>
         </div>
       </div>
       <div class="row justify-content-center mt-3">
