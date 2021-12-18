@@ -52,10 +52,8 @@
     </form>
     <template v-slot:outside>
       <div class="row justify-content-center">
-        <div class="col-md-3">
-          <a :href="route('auth.google.redirect')">
-            <img class="img-fluid" src="/img/google_sign_in.png" alt="" />
-          </a>
+        <div class="col-md-3 text-center">
+          <GoogleButton></GoogleButton>
         </div>
       </div>
     </template>
@@ -70,7 +68,7 @@ import BreezeInput from "@/Components/Input.vue";
 import BreezeLabel from "@/Components/Label.vue";
 import BreezeValidationErrors from "@/Components/ValidationErrors.vue";
 import { Head, Link } from "@inertiajs/inertia-vue3";
-import SignInWithGoogle from "@/Components/SignInWithGoogle.vue";
+import GoogleButton from "@/Components/GoogleButton.vue";
 
 export default {
   // layout: BreezeGuestLayout,
@@ -84,7 +82,7 @@ export default {
     BreezeValidationErrors,
     Head,
     Link,
-    SignInWithGoogle,
+    GoogleButton,
   },
 
   props: {
