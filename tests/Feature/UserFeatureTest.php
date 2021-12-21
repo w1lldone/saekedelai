@@ -9,7 +9,7 @@ use Tests\TestCase;
 
 class UserFeatureTest extends TestCase
 {
-    use RefreshDatabase;
+    use RefreshDatabase, WithFaker;
 
     /** @test */
     public function admin_can_see_user_list()
@@ -46,5 +46,39 @@ class UserFeatureTest extends TestCase
         $response->assertRedirect();
         $data['id'] = $user->id;
         $this->assertDatabaseHas('users', $data);
+    }
+
+    /** @test */
+    public function enumerator_can_update_role()
+    {
+        $this->login(
+            User::factory()->create(['role' => 'enumerator'])
+        );
+        $user = User::factory()->create(['role' => null]);
+
+        $role = $this->faker->randomElement(User::getRoles());
+        $response = $this->putJson(route('user.role.update', $user), [
+            'role' => $role
+        ]);
+
+        $response->assertRedirect();
+
+        $this->assertDatabaseHas(User::class, [
+            'id' => $user->id,
+            'role' => $role
+        ]);
+    }
+
+    /** @test */
+    public function user_can_only_select_registered_role()
+    {
+        $this->login();
+        $user = User::factory()->create();
+
+        $response = $this->putJson(route('user.role.update', $user), [
+            'role' => $this->faker->word
+        ]);
+
+        $response->assertJsonValidationErrors('role');
     }
 }

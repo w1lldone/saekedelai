@@ -30,7 +30,7 @@
                 <td>{{ user.email }}</td>
                 <td>
                   <span v-if="user.is_superadmin">Admin</span>
-                  <span v-else>Member</span>
+                  <span v-else>{{ user.role }}</span>
                 </td>
               </tr>
             </tbody>

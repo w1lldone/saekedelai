@@ -41,6 +41,20 @@
               Address
             </button>
           </li>
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link"
+              id="pills-role-tab"
+              data-bs-toggle="pill"
+              data-bs-target="#pills-role"
+              type="button"
+              role="tab"
+              aria-controls="pills-role"
+              aria-selected="false"
+            >
+              Role
+            </button>
+          </li>
         </ul>
 
         <div class="card card-body p-4">
@@ -84,6 +98,14 @@
                 :submit-url="route('user.address.update', user.id)"
               ></EditAddress>
             </div>
+            <div
+              class="tab-pane fade"
+              id="pills-role"
+              role="tabpanel"
+              aria-labelledby="pills-role-tab"
+            >
+                <EditRole :roles="roles" :role="user.role" :submit-url="route('user.role.update', user.id)"></EditRole>
+            </div>
           </div>
         </div>
       </div>
@@ -96,6 +118,7 @@ import { Head, Link } from "@inertiajs/inertia-vue3";
 import AuthenticatedLayout from "@/Layouts/Auth.vue";
 import EditUserBasic from "@/Components/User/Edit.vue";
 import EditAddress from "@/Components/User/EditAddress.vue";
+import EditRole from '@/Components/User/EditRole.vue';
 import BreezeValidationErrors from "@/Components/ValidationErrors.vue";
 
 export default {
@@ -106,10 +129,12 @@ export default {
     Link,
     EditUserBasic,
     EditAddress,
+    EditRole
   },
   props: {
     user: Object,
     status: String,
+    roles: Array
   },
 };
 </script>
