@@ -9,7 +9,7 @@ use Tests\TestCase;
 
 class UserModelTest extends TestCase
 {
-    use RefreshDatabase;
+    use RefreshDatabase, WithFaker;
 
     /** @test */
     public function it_can_be_created_using_factory()
@@ -30,5 +30,16 @@ class UserModelTest extends TestCase
             'addressable_type' => User::class,
             'addressable_id' => $user->id
         ]);
+    }
+
+    /** @test */
+    public function it_can_check_roles()
+    {
+        $role = 'viewer';
+        $otherRole = 'enumerator';
+        $user = User::factory()->create(['role' => $role]);
+
+        $this->assertTrue($user->hasRole([$role]));
+        $this->assertFalse($user->hasRole([$otherRole]));
     }
 }

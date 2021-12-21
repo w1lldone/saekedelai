@@ -31,7 +31,7 @@ class UserPolicy
      */
     public function view(User $user, User $model)
     {
-        if ($user->is_superadmin) {
+        if ($user->is_superadmin || $user->hasRole(['enumerator'])) {
             return true;
         }
     }
@@ -44,7 +44,7 @@ class UserPolicy
      */
     public function create(User $user)
     {
-        if ($user->is_superadmin) {
+        if ($user->is_superadmin || $user->hasRole(['enumerator'])) {
             return true;
         }
     }
@@ -66,7 +66,14 @@ class UserPolicy
             return false;
         }
 
-        if ($user->is_superadmin) {
+        if ($user->is_superadmin || $user->hasRole(['enumerator'])) {
+            return true;
+        }
+    }
+
+    public function updateRole(User $user, User $model)
+    {
+        if ($user->is_superadmin || $user->hasRole(['enumerator'])) {
             return true;
         }
     }
@@ -88,7 +95,7 @@ class UserPolicy
             return false;
         }
 
-        if ($user->is_superadmin) {
+        if ($user->is_superadmin || $user->hasRole(['enumerator'])) {
             return true;
         }
     }

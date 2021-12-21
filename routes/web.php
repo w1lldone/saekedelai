@@ -4,6 +4,7 @@ use App\Http\Controllers\AddressController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserAddressController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserRoleController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -43,9 +44,12 @@ Route::prefix('profile')->name('profile.')->middleware(['auth'])->group(function
 
 Route::middleware(['auth'])->resource('user', UserController::class);
 
-Route::put('/user/{user}/address', [UserAddressController::class, 'update'])
-    ->middleware(['auth'])
-    ->name('user.address.update');
+Route::prefix('/user/{user}')->middleware(['auth'])->name('user.')->group(function ()
+{
+    Route::put('/address', [UserAddressController::class, 'update'])
+        ->name('address.update');
+    Route::put('/role', [UserRoleController::class, 'update'])->name('role.update');
+});
 
 
 require __DIR__.'/auth.php';

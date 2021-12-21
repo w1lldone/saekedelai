@@ -12,6 +12,8 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    public static $roles = ['enumerator', 'viewer', 'member'];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -23,7 +25,8 @@ class User extends Authenticatable
         'password',
         'is_superadmin',
         'phone_number',
-        'id_number'
+        'id_number',
+        'role'
     ];
 
     /**
@@ -60,5 +63,25 @@ class User extends Authenticatable
     public function address()
     {
         return $this->morphOne(Address::class, 'addressable');
+    }
+
+    public static function getRoles()
+    {
+        return self::$roles;
+    }
+
+    /**
+     * check if whether the user has the role
+     *
+     * @param array $roles
+     * @return boolean
+     */
+    public function hasRole(array $roles = [])
+    {
+        if (in_array($this->role, $roles)) {
+            return true;
+        }
+
+        return false;
     }
 }

@@ -20,7 +20,7 @@ class UserController extends Controller
 
         $query = User::query();
 
-        $query->select('id', 'name', 'email', 'is_superadmin');
+        $query->select('id', 'name', 'email', 'is_superadmin', 'role');
 
         $users = $query->paginate()->appends($request->all());
 
@@ -86,6 +86,7 @@ class UserController extends Controller
         return Inertia::render('User/Edit', [
             'user' => $user,
             'status' => session('status'),
+            'roles' => User::getRoles()
         ]);
     }
 
