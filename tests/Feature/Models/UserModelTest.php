@@ -2,10 +2,11 @@
 
 namespace Tests\Feature\Models;
 
-use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\User;
+use App\Models\Organization;
+use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UserModelTest extends TestCase
 {
@@ -41,5 +42,20 @@ class UserModelTest extends TestCase
 
         $this->assertTrue($user->hasRole([$role]));
         $this->assertFalse($user->hasRole([$otherRole]));
+    }
+
+    /** @test */
+    public function it_belongs_to_many_organizations()
+    {
+        $user = User::factory()->create();
+        $organiztion = Organization::factory()->create();
+
+        $user->organizations()->attach($organiztion);
+
+        $this->assertDatabaseHas('organization_user', [
+            'organization_id' => $organiztion->id,
+            'user_id' => $user->id
+        ]);
+        $this->assertCount(1, $user->organizations);
     }
 }
