@@ -3,8 +3,8 @@
 
   <AuthenticatedLayout>
     <template #header>
-      <Link class="text-primary" :href="route('user.index')">Users List</Link>
-      <i class="fa fa-chevron-right mx-2"></i>User Details
+      <Link class="text-primary" :href="route('user.index')">Pengguna</Link>
+      <i class="fa fa-chevron-right mx-2"></i>Detail pengguna
     </template>
 
     <div class="row justify-content-center">
