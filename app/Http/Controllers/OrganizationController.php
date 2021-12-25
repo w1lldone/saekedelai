@@ -90,6 +90,8 @@ class OrganizationController extends Controller
      */
     public function edit(Organization $organization)
     {
+        $this->authorize('update', $organization);
+
         return Inertia::render('Organization/Edit', [
             'organization' => $organization->load('address')
         ]);
@@ -111,11 +113,11 @@ class OrganizationController extends Controller
             'description' => 'nullable',
             'province' => "string",
             'city' => "string",
-            'district' => "nullable",
+            'district' => "nullable|string",
         ]);
 
         $organization->update($request->only(['name', 'description']));
-        $organization->address()->first()->update($request->only([
+        $organization->address()->firstOrCreate()->update($request->only([
             'province', 'city', 'district'
         ]));
 
