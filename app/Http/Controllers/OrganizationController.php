@@ -90,7 +90,9 @@ class OrganizationController extends Controller
      */
     public function edit(Organization $organization)
     {
-        //
+        return Inertia::render('Organization/Edit', [
+            'organization' => $organization->load('address')
+        ]);
     }
 
     /**
@@ -104,14 +106,20 @@ class OrganizationController extends Controller
     {
         $this->authorize('update', $organization);
 
-        $data = $request->validate([
+        $request->validate([
             'name' => 'string',
-            'description' => 'nullable'
+            'description' => 'nullable',
+            'province' => "string",
+            'city' => "string",
+            'district' => "nullable",
         ]);
 
-        $organization->update($data);
+        $organization->update($request->only(['name', 'description']));
+        $organization->address()->first()->update($request->only([
+            'province', 'city', 'district'
+        ]));
 
-        return redirect()->back()->with('status', __('messages.success'));
+        return redirect()->route('organization.show', $organization)->with('status', __('messages.success'));
     }
 
     /**

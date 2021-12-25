@@ -42,7 +42,8 @@ class HandleInertiaRequests extends Middleware
             'policy' => [
                 'user.viewAny' => optional($request->user())->can('viewAny', User::class),
                 'organization.viewAny' => optional($request->user())->can('viewAny', Organization::class),
-            ]
+            ],
+            'status' => session('status')
         ]);
     }
 }
