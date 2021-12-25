@@ -1,7 +1,7 @@
 <template>
   <Head title="Users List"></Head>
   <authenticated-layout>
-    <template #header> Users List </template>
+    <template #header> Pengguna </template>
 
     <div class="row justify-content-center">
       <div class="col-md-8">

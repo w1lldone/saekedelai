@@ -1,5 +1,6 @@
 <?php
 
 return [
-    'success' => 'Data Updated!'
+    'success' => 'Data updated!',
+    'deleted' => 'Data deleted!'
 ];

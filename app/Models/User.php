@@ -65,6 +65,11 @@ class User extends Authenticatable
         return $this->morphOne(Address::class, 'addressable');
     }
 
+    public function organizations()
+    {
+        return $this->belongsToMany(Organization::class);
+    }
+
     public static function getRoles()
     {
         return self::$roles;

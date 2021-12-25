@@ -59,7 +59,6 @@ class UserController extends Controller
     public function show(Request $request, User $user)
     {
         $this->authorize('view', $user);
-
         $user->load('address');
 
         return Inertia::render('User/Show', [

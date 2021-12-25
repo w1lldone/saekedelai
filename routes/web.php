@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AddressController;
+use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserAddressController;
 use App\Http\Controllers\UserController;
@@ -51,5 +52,6 @@ Route::prefix('/user/{user}')->middleware(['auth'])->name('user.')->group(functi
     Route::put('/role', [UserRoleController::class, 'update'])->name('role.update');
 });
 
+Route::middleware(['auth'])->resource('organization', OrganizationController::class);
 
 require __DIR__.'/auth.php';

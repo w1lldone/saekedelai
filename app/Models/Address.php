@@ -19,10 +19,11 @@ class Address extends Model
 
     public function getFormattedAddressAttribute()
     {
-        if ($this->province == null) {
-            return null;
-        }
+        $collection = collect($this->only('province', 'city', 'district', 'subdistrict', 'address'))->filter(function ($item)
+        {
+            return $item != null;
+        });
 
-        return "{$this->province}, {$this->city}, {$this->district}, {$this->subdistrict}, {$this->address}";
+        return $collection->join(", ");
     }
 }

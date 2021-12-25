@@ -137,14 +137,26 @@
             </li>
             <li class="sidebar-item pt-2">
               <Link
-                v-if="$page.props.can['user.viewAny']"
+                v-if="$page.props.policy['user.viewAny']"
                 class="sidebar-link waves-effect waves-dark"
                 :class="{ active: route().current('user.index') }"
                 :href="route('user.index')"
                 aria-expanded="false"
               >
                 <i class="far fa-user" aria-hidden="true"></i>
-                <span class="hide-menu">User</span>
+                <span class="hide-menu">Pengguna</span>
+              </Link>
+            </li>
+            <li class="sidebar-item pt-2">
+              <Link
+                v-if="$page.props.policy['organization.viewAny']"
+                class="sidebar-link waves-effect waves-dark"
+                :class="{ active: route().current('organization.index') }"
+                :href="route('organization.index')"
+                aria-expanded="false"
+              >
+                <i class="fa fa-users" aria-hidden="true"></i>
+                <span class="hide-menu">Kelompok tani</span>
               </Link>
             </li>
             <div class="px-4 d-md-none">
@@ -166,6 +178,7 @@
                 class="sidebar-link waves-effect waves-dark "
                 :href="route('logout')"
                 method="post"
+                as="button"
                 aria-expanded="false"
               >
                 <i class="fa fa-sign-out-alt" aria-hidden="true"></i>
