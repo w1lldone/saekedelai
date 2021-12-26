@@ -33,11 +33,7 @@
       </div>
 
       <div class="d-flex align-items-center justify-content-between mt-4">
-        <Link
-          v-if="canResetPassword"
-          :href="route('password.request')"
-          class="underline text-sm text-gray-600 hover:text-gray-900"
-        >
+        <Link v-if="canResetPassword" :href="route('password.request')">
           Forgot your password?
         </Link>
 
@@ -48,6 +44,12 @@
         >
           Log in
         </button>
+      </div>
+      <div class="mt-4 text-center">
+        <p>
+          Doesn't have an account?
+          <Link :href="route('register')">Register here</Link>
+        </p>
       </div>
     </form>
     <template v-slot:outside>

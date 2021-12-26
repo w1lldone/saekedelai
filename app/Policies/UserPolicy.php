@@ -17,7 +17,7 @@ class UserPolicy
      */
     public function viewAny(User $user)
     {
-        if ($user->is_superadmin) {
+        if ($user->is_superadmin || $user->hasRole(['enumerator'])) {
             return true;
         }
     }
