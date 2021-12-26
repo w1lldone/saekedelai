@@ -33,6 +33,17 @@ class UserFeatureTest extends TestCase
     }
 
     /** @test */
+    public function enumerator_can_see_users_list()
+    {
+        $enumerator = User::factory()->create(['role' => 'enumerator']);
+        $this->login($enumerator);
+
+        $response = $this->get(route('user.index'));
+
+        $response->assertOk();
+    }
+
+    /** @test */
     public function admin_can_update_user()
     {
         $this->login();

@@ -22770,29 +22770,10 @@ var _hoisted_7 = {
 var _hoisted_8 = {
   "class": "navbar-nav ms-auto d-flex align-items-center"
 };
-
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
-  "class": "in"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
-  role: "search",
-  "class": "app-search d-none d-md-block me-3"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-  type: "text",
-  placeholder: "Search...",
-  "class": "form-control mt-0"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-  href: "",
-  "class": "active"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-  "class": "fa fa-search"
-})])])], -1
-/* HOISTED */
-);
-
-var _hoisted_10 = {
+var _hoisted_9 = {
   "class": "nav-item dropdown"
 };
-var _hoisted_11 = {
+var _hoisted_10 = {
   "class": "nav-link dropdown-toggle",
   href: "#",
   id: "navbarDropdown",
@@ -22801,151 +22782,151 @@ var _hoisted_11 = {
   "aria-expanded": "false"
 };
 
-var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "fa fa-chevron-down"
 }, null, -1
 /* HOISTED */
 );
 
-var _hoisted_13 = {
+var _hoisted_12 = {
   "class": "dropdown-menu dropdown-menu-end",
   "aria-labelledby": "navbarDropdown"
 };
 
-var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Profile");
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Profile");
 
-var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", {
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", {
   "class": "dropdown-divider"
 })], -1
 /* HOISTED */
 );
 
-var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Logout");
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Logout");
 
-var _hoisted_17 = {
+var _hoisted_16 = {
   "class": "left-sidebar",
   "data-sidebarbg": "skin6"
 };
-var _hoisted_18 = {
+var _hoisted_17 = {
   "class": "scroll-sidebar"
 };
-var _hoisted_19 = {
+var _hoisted_18 = {
   "class": "sidebar-nav"
 };
-var _hoisted_20 = {
+var _hoisted_19 = {
   id: "sidebarnav"
 };
-var _hoisted_21 = {
+var _hoisted_20 = {
   "class": "sidebar-item pt-2"
 };
 
-var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "far fa-clock",
   "aria-hidden": "true"
 }, null, -1
 /* HOISTED */
 );
 
-var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "hide-menu"
 }, "Dashboard", -1
 /* HOISTED */
 );
 
-var _hoisted_24 = {
+var _hoisted_23 = {
   "class": "sidebar-item pt-2"
 };
 
-var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-  "class": "far fa-user",
-  "aria-hidden": "true"
-}, null, -1
-/* HOISTED */
-);
-
-var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-  "class": "hide-menu"
-}, "Pengguna", -1
-/* HOISTED */
-);
-
-var _hoisted_27 = {
-  "class": "sidebar-item pt-2"
-};
-
-var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "fa fa-users",
   "aria-hidden": "true"
 }, null, -1
 /* HOISTED */
 );
 
-var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "hide-menu"
 }, "Kelompok tani", -1
 /* HOISTED */
 );
 
-var _hoisted_30 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_26 = {
+  "class": "sidebar-item pt-2"
+};
+
+var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+  "class": "far fa-user",
+  "aria-hidden": "true"
+}, null, -1
+/* HOISTED */
+);
+
+var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "class": "hide-menu"
+}, "Pengguna", -1
+/* HOISTED */
+);
+
+var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "px-4 d-md-none"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr")], -1
 /* HOISTED */
 );
 
-var _hoisted_31 = {
+var _hoisted_30 = {
   "class": "sidebar-item pt-2 d-md-none"
 };
 
-var _hoisted_32 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+var _hoisted_31 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "far fa-clock",
   "aria-hidden": "true"
 }, null, -1
 /* HOISTED */
 );
 
-var _hoisted_33 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_32 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "hide-menu"
 }, "Profile", -1
 /* HOISTED */
 );
 
-var _hoisted_34 = {
+var _hoisted_33 = {
   "class": "sidebar-item pt-2 d-md-none"
 };
 
-var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+var _hoisted_34 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "fa fa-sign-out-alt",
   "aria-hidden": "true"
 }, null, -1
 /* HOISTED */
 );
 
-var _hoisted_36 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "hide-menu"
 }, "Logout", -1
 /* HOISTED */
 );
 
-var _hoisted_37 = {
+var _hoisted_36 = {
   "class": "page-wrapper"
 };
-var _hoisted_38 = {
+var _hoisted_37 = {
   "class": "page-breadcrumb bg-white"
 };
-var _hoisted_39 = {
+var _hoisted_38 = {
   "class": "row align-items-center"
 };
-var _hoisted_40 = {
+var _hoisted_39 = {
   "class": "col-md-8"
 };
-var _hoisted_41 = {
+var _hoisted_40 = {
   "class": "page-title"
 };
-var _hoisted_42 = {
+var _hoisted_41 = {
   "class": "container-fluid"
 };
 
-var _hoisted_43 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("footer", {
+var _hoisted_42 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("footer", {
   "class": "footer text-center"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 2021 © Ample Admin brought to you by "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
   href: "https://www.wrappixel.com/"
@@ -22968,35 +22949,35 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   }, 8
   /* PROPS */
-  , ["href"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Logo "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" toggle and nav items "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), _hoisted_6]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Logo "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Right side toggle and nav items "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Search "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" User profile and search "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.auth.user.name) + " ", 1
+  , ["href"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Logo "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" toggle and nav items "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), _hoisted_6]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Logo "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Right side toggle and nav items "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Search "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <li class=\"in\">\n              <form role=\"search\" class=\"app-search d-none d-md-block me-3\">\n                <input\n                  type=\"text\"\n                  placeholder=\"Search...\"\n                  class=\"form-control mt-0\"\n                />\n                <a href=\"\" class=\"active\">\n                  <i class=\"fa fa-search\"></i>\n                </a>\n              </form>\n            </li> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" User profile and search "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.auth.user.name) + " ", 1
   /* TEXT */
-  ), _hoisted_12]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
+  ), _hoisted_11]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
     "class": "dropdown-item",
     href: _ctx.route('profile.index')
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_14];
+      return [_hoisted_13];
     }),
     _: 1
     /* STABLE */
 
   }, 8
   /* PROPS */
-  , ["href"])]), _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
+  , ["href"])]), _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
     method: "post",
     as: "button",
     "class": "dropdown-item",
     href: _ctx.route('logout')
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_16];
+      return [_hoisted_15];
     }),
     _: 1
     /* STABLE */
 
   }, 8
   /* PROPS */
-  , ["href"])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" User profile and search "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== ")])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Topbar header "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Left Sidebar - style you can find in sidebar.scss  "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("aside", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Sidebar scroll"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Sidebar navigation"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("nav", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" User Profile"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
+  , ["href"])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" User profile and search "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== ")])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Topbar header "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Left Sidebar - style you can find in sidebar.scss  "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("aside", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Sidebar scroll"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Sidebar navigation"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("nav", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" User Profile"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["sidebar-link waves-effect waves-dark", {
       active: _ctx.route().current('dashboard')
     }]),
@@ -23004,30 +22985,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "aria-expanded": "false"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_22, _hoisted_23];
+      return [_hoisted_21, _hoisted_22];
     }),
     _: 1
     /* STABLE */
 
   }, 8
   /* PROPS */
-  , ["class", "href"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_24, [_ctx.$page.props.policy['user.viewAny'] ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Link, {
-    key: 0,
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["sidebar-link waves-effect waves-dark", {
-      active: _ctx.route().current('user.index')
-    }]),
-    href: _ctx.route('user.index'),
-    "aria-expanded": "false"
-  }, {
-    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_25, _hoisted_26];
-    }),
-    _: 1
-    /* STABLE */
-
-  }, 8
-  /* PROPS */
-  , ["class", "href"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_27, [_ctx.$page.props.policy['organization.viewAny'] ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Link, {
+  , ["class", "href"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_23, [_ctx.$page.props.policy['organization.viewAny'] ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Link, {
     key: 0,
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["sidebar-link waves-effect waves-dark", {
       active: _ctx.route().current('organization.index')
@@ -23036,14 +23001,30 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "aria-expanded": "false"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_28, _hoisted_29];
+      return [_hoisted_24, _hoisted_25];
     }),
     _: 1
     /* STABLE */
 
   }, 8
   /* PROPS */
-  , ["class", "href"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), _hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
+  , ["class", "href"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_26, [_ctx.$page.props.policy['user.viewAny'] ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Link, {
+    key: 0,
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["sidebar-link waves-effect waves-dark", {
+      active: _ctx.route().current('user.index')
+    }]),
+    href: _ctx.route('user.index'),
+    "aria-expanded": "false"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_27, _hoisted_28];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["class", "href"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), _hoisted_29, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["sidebar-link waves-effect waves-dark", {
       active: _ctx.route().current('profile.index')
     }]),
@@ -23051,14 +23032,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "aria-expanded": "false"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_32, _hoisted_33];
+      return [_hoisted_31, _hoisted_32];
     }),
     _: 1
     /* STABLE */
 
   }, 8
   /* PROPS */
-  , ["class", "href"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_34, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
+  , ["class", "href"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_33, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
     "class": "sidebar-link waves-effect waves-dark",
     href: _ctx.route('logout'),
     method: "post",
@@ -23066,14 +23047,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "aria-expanded": "false"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_35, _hoisted_36];
+      return [_hoisted_34, _hoisted_35];
     }),
     _: 1
     /* STABLE */
 
   }, 8
   /* PROPS */
-  , ["href"])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Sidebar navigation ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Sidebar scroll")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Left Sidebar - style you can find in sidebar.scss  "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Page wrapper  "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_37, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Bread crumb and right sidebar toggle "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_39, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_40, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", _hoisted_41, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "header")])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /.col-lg-12 ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Bread crumb and right sidebar toggle "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Container fluid  "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_42, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "default")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Container fluid  "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" footer "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), _hoisted_43, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End footer "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== ")])])], 2112
+  , ["href"])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Sidebar navigation ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Sidebar scroll")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Left Sidebar - style you can find in sidebar.scss  "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Page wrapper  "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_36, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Bread crumb and right sidebar toggle "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_37, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_39, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", _hoisted_40, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "header")])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /.col-lg-12 ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Bread crumb and right sidebar toggle "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Container fluid  "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_41, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "default")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Container fluid  "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" footer "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), _hoisted_42, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End footer "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ============================================================== ")])])], 2112
   /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */
   );
 }
@@ -23350,9 +23331,17 @@ var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNo
 
 var _hoisted_11 = ["disabled"];
 var _hoisted_12 = {
+  "class": "mt-4 text-center"
+};
+
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Doesn't have an account? ");
+
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Register here");
+
+var _hoisted_15 = {
   "class": "row justify-content-center"
 };
-var _hoisted_13 = {
+var _hoisted_16 = {
   "class": "col-md-3 text-center"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -23370,7 +23359,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     title: "Log in"
   }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeGuestLayout, null, {
     outside: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_GoogleButton)])])];
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_GoogleButton)])])];
     }),
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeValidationErrors, {
@@ -23409,8 +23398,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       /* NEED_PATCH */
       ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $data.form.remember]]), _hoisted_8])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [$props.canResetPassword ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Link, {
         key: 0,
-        href: _ctx.route('password.request'),
-        "class": "underline text-sm text-gray-600 hover:text-gray-900"
+        href: _ctx.route('password.request')
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [_hoisted_10];
@@ -23427,7 +23415,18 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         disabled: $data.form.processing
       }, " Log in ", 10
       /* CLASS, PROPS */
-      , _hoisted_11)])], 32
+      , _hoisted_11)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
+        href: _ctx.route('register')
+      }, {
+        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+          return [_hoisted_14];
+        }),
+        _: 1
+        /* STABLE */
+
+      }, 8
+      /* PROPS */
+      , ["href"])])])], 32
       /* HYDRATE_EVENTS */
       )];
     }),
