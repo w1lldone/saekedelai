@@ -58,4 +58,14 @@ class UserModelTest extends TestCase
         ]);
         $this->assertCount(1, $user->organizations);
     }
+
+    /** @test */
+    public function it_can_generate_fake_email()
+    {
+        $user = new User;
+        $user->name = "Dyas Selvi";
+        $user->phone_number = "08123224999";
+
+        $this->assertEquals("dyas_selvi999@fake.com", $user->generateFakeEmail());
+    }
 }

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Inertia\Inertia;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
 class UserController extends Controller
@@ -47,7 +49,36 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->authorize('create', User::class);
+
+        $request->validate([
+            'name' => 'required|string',
+            'email' => 'email|nullable|unique:users',
+            'id_number' => 'required|string|min:16|max:16|unique:users',
+            'phone_number' => 'required|string|unique:users',
+            'password' => 'nullable|min:6',
+            'organization_id' => 'exists:organizations,id|nullable',
+            'province' => 'string|nullable',
+            'city' => 'string|nullable',
+            'district' => 'string|nullable',
+            'subdistrict' => 'string|nullable',
+        ]);
+
+        $user = new User;
+        $user->name = $request->name;
+        $user->phone_number = $request->phone_number;
+        $user->id_number = $request->id_number;
+        $user->email = $request->email ?: $user->generateFakeEmail();
+        $user->password = $request->password ?: Hash::make(Str::random());
+        $user->save();
+
+        $user->address()->update($request->only('province', 'city', 'district', 'subdistrict'));
+
+        if ($request->filled('organization_id')) {
+            $user->organizations()->syncWithoutDetaching($request->organization_id);
+        }
+
+        return redirect()->route('user.show', $user->id);
     }
 
     /**
@@ -59,7 +90,7 @@ class UserController extends Controller
     public function show(Request $request, User $user)
     {
         $this->authorize('view', $user);
-        $user->load('address');
+        $user->load('address', 'organizations:id,name');
 
         return Inertia::render('User/Show', [
             'user' => $user,

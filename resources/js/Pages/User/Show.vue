@@ -8,27 +8,31 @@
     </template>
 
     <div class="row justify-content-center">
-      <div class="col-md-8">
+      <div class="col-md-6">
         <div class="card card-body p-4">
           <div>
             <div>
-              <span class="font-semibold text-gray-400">Nama</span>
-              <h3 class="font-semibold text-xl text-gray-800">
+              <h3 class="font-bold m-0">Nama</h3>
+              <h3>
                 {{ user.name }}
               </h3>
             </div>
             <div class="mt-3">
-              <span class="font-semibold text-gray-400">Email</span>
-              <h3 class="font-semibold text-xl text-gray-800">
+              <h3 class="font-bold m-0">Role pengguna</h3>
+              <h3 v-if="user.role">
+                {{ user.role }}
+              </h3>
+              <h3 v-else class="text-muted">Pengguna tidak memiliki role</h3>
+            </div>
+            <div class="mt-3">
+              <h3 class="font-bold m-0">Email</h3>
+              <h3>
                 {{ user.email }}
               </h3>
             </div>
             <div class="mt-3">
-              <span class="font-semibold text-gray-400">No Hp</span>
-              <h3
-                v-if="user.phone_number"
-                class="font-semibold text-xl text-gray-800"
-              >
+              <h3 class="font-bold m-0">No Hp</h3>
+              <h3 v-if="user.phone_number">
                 {{ user.phone_number }}
               </h3>
               <h3 v-else class="text-gray-400">Tidak tersedia</h3>
@@ -44,11 +48,19 @@
               </h3>
             </div>
             <div class="mt-3">
-              <span class="font-semibold text-gray-400">Alamat</span>
-              <h3 class="font-semibold text-xl text-gray-800" v-if="user.address.formatted_address">
+              <h3 class="font-bold m-0">Alamat</h3>
+              <h3 v-if="user.address.formatted_address">
                 {{ user.address.formatted_address }}
               </h3>
               <h3 class="text-muted" v-else>Alamat tidak tersedia</h3>
+            </div>
+            <div class="mt-3">
+              <h3 class="font-bold">Kelompok tani</h3>
+              <ul v-if="user.organizations.length">
+                  <li v-for="organization in user.organizations" :key="organization.id">
+                      <Link :href="route('organization.show', organization.id)">{{ organization.name }}</Link> (anggota)
+                  </li>
+              </ul>
             </div>
 
             <div class="mt-3 d-flex justify-content-end">
