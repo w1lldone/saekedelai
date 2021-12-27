@@ -20899,7 +20899,7 @@ __webpack_require__.r(__webpack_exports__);
     var setsidebartype = function setsidebartype() {
       var width = window.innerWidth > 0 ? window.innerWidth : this.screen.width;
 
-      if (width < 1170) {
+      if (width < 991) {
         $("#main-wrapper").attr("data-sidebartype", "mini-sidebar");
       } else {
         $("#main-wrapper").attr("data-sidebartype", "full");
