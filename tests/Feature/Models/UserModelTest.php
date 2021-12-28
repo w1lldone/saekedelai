@@ -66,6 +66,6 @@ class UserModelTest extends TestCase
         $user->name = "Dyas Selvi";
         $user->phone_number = "08123224999";
 
-        $this->assertEquals("dyas_selvi999@fake.com", $user->generateFakeEmail());
+        $this->assertEquals("dyas_selvi999@saekedelai.com", $user->generateFakeEmail());
     }
 }

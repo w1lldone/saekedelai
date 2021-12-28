@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Address;
 use App\Models\Organization;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -64,5 +65,21 @@ class OrganizationFeatureTest extends TestCase
 
         $reponse->assertRedirect();
         $this->assertDeleted($organization);
+    }
+
+    /** @test */
+    public function admin_can_batch_attach_users_to_organization()
+    {
+        $this->login();
+        $users = User::factory(3)->create();
+        $organization = Organization::factory()->create();
+
+        $response = $this->postJson(route('organization.user.store', $organization), [
+            'user_id' => $users->pluck('id')->toArray(),
+            'member_type' => 'member'
+        ]);
+
+        $response->assertRedirect();
+        $this->assertCount(3, $organization->users()->wherePivot('member_type', 'member')->get());
     }
 }

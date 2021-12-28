@@ -137,4 +137,23 @@ class UserFeatureTest extends TestCase
         $response->assertRedirect();
         $this->assertDatabaseHas('addresses', $address);
     }
+
+    /** @test */
+    public function admin_can_filter_user_by_keyword()
+    {
+        $this->login();
+        User::factory(5)->create([
+            'name' => 'name'
+        ]);
+        User::factory(3)->create([
+            'name' => 'other'
+        ]);
+
+        $response = $this->getJson(route('user.index', [
+            'keyword' => 'name'
+        ]));
+
+        $response->assertOk()
+            ->assertJsonCount(5, 'data');
+    }
 }

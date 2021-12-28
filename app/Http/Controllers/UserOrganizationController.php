@@ -43,6 +43,6 @@ class UserOrganizationController extends Controller
 
         $user->organizations()->detach($organization);
 
-        return redirect()->route('user.organization.edit', $user)->with('status', __('messages.deleted'));
+        return redirect()->back()->with('status', __('messages.deleted'));
     }
 }

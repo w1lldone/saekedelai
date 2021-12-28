@@ -165,6 +165,7 @@
                 <span class="text-muted">(opsional)</span></label
               >
               <vue-select
+                :value="organization_id"
                 :reduce="(organization) => organization.id"
                 label="name"
                 v-model="form.organization_id"
@@ -228,6 +229,7 @@ import VueSelect from "vue-select";
 export default {
   props: {
     organizations: Array,
+    organization_id: String,
   },
   components: {
     Head,
@@ -260,6 +262,10 @@ export default {
   },
   mounted() {
     this.fetchProvinces();
+    if (this.organization_id) {
+        var index = this.organizations.findIndex((item) => item.id == this.organization_id)
+        this.form.organization_id = this.organizations[index]
+    }
   },
   methods: {
     submit() {

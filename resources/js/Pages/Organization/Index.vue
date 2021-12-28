@@ -29,9 +29,7 @@
             ></button>
           </div>
           <table class="table">
-            <thead
-              class="text-xs font-semibold uppercase text-gray-400 bg-gray-50"
-            >
+            <thead>
               <tr>
                 <th class="text-left">Nama Kelompok</th>
                 <th class="text-left">Lokasi</th>
@@ -39,7 +37,7 @@
               </tr>
             </thead>
 
-            <tbody class="divide-y divide-gray-100">
+            <tbody>
               <tr
                 v-for="organization in organizations.data"
                 :key="organization.id"

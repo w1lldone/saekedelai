@@ -23,9 +23,21 @@ class UserController extends Controller
 
         $query = User::query();
 
-        $query->select('id', 'name', 'email', 'is_superadmin', 'role');
+        $query->select('id', 'name', 'email', 'is_superadmin', 'role', 'id_number');
 
-        $users = $query->paginate()->appends($request->all());
+        if ($request->filled('keyword')) {
+            $query->where(function ($user) use ($request)
+            {
+                $user->where('name', 'like', "%$request->keyword%")
+                    ->orWhere('id_number', 'like', "%$request->keyword");
+            });
+        }
+
+        $users = $query->with('address')->paginate()->appends($request->all());
+
+        if ($request->wantsJson()) {
+            return $users;
+        }
 
         return Inertia::render('User/Index', [
             'users' => $users
@@ -37,14 +49,15 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         $this->authorize('create', User::class);
 
         $organizations = Organization::select('id', 'name')->get();
 
         return Inertia::render('User/Create', [
-            'organizations' => $organizations
+            'organizations' => $organizations,
+            'organization_id' => $request->organization_id
         ]);
     }
 
