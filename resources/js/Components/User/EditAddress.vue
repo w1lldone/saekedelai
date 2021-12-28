@@ -1,18 +1,6 @@
 <template>
   <form @submit.prevent="submit()">
-    <div
-      v-if="status"
-      class="alert alert-success alert-dismissible fade show"
-      role="alert"
-    >
-      <strong>Success!</strong> {{ status }}
-      <button
-        type="button"
-        class="btn-close"
-        data-bs-dismiss="alert"
-        aria-label="Close"
-      ></button>
-    </div>
+    <Status></Status>
     <div class="mb-3">
       <label for="province" class="form-label">Provinsi</label>
       <vue-select
@@ -78,15 +66,16 @@
 
 <script>
 import VueSelect from "vue-select";
+import Status from "@/Components/Status.vue";
 
 export default {
   components: {
     VueSelect,
+    Status,
   },
   props: {
     address: Object,
     submitUrl: String,
-    status: String
   },
   data() {
     return {

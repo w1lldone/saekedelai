@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Organization;
 use App\Models\User;
 use Inertia\Inertia;
 use Illuminate\Support\Str;
@@ -38,7 +39,13 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $this->authorize('create', User::class);
+
+        $organizations = Organization::select('id', 'name')->get();
+
+        return Inertia::render('User/Create', [
+            'organizations' => $organizations
+        ]);
     }
 
     /**
@@ -55,13 +62,14 @@ class UserController extends Controller
             'name' => 'required|string',
             'email' => 'email|nullable|unique:users',
             'id_number' => 'required|string|min:16|max:16|unique:users',
-            'phone_number' => 'required|string|unique:users',
+            'phone_number' => 'string|unique:users|nullable',
             'password' => 'nullable|min:6',
             'organization_id' => 'exists:organizations,id|nullable',
             'province' => 'string|nullable',
             'city' => 'string|nullable',
             'district' => 'string|nullable',
             'subdistrict' => 'string|nullable',
+            'address' => 'string|nullable'
         ]);
 
         $user = new User;
@@ -70,12 +78,15 @@ class UserController extends Controller
         $user->id_number = $request->id_number;
         $user->email = $request->email ?: $user->generateFakeEmail();
         $user->password = $request->password ?: Hash::make(Str::random());
+        $user->role = 'member';
         $user->save();
 
-        $user->address()->update($request->only('province', 'city', 'district', 'subdistrict'));
+        $user->address->update($request->only('province', 'city', 'district', 'subdistrict', 'address'));
 
         if ($request->filled('organization_id')) {
-            $user->organizations()->syncWithoutDetaching($request->organization_id);
+            $user->organizations()->syncWithoutDetaching([$request->organization_id => [
+                'member_type' => $request->member_type
+            ]]);
         }
 
         return redirect()->route('user.show', $user->id);
@@ -115,8 +126,6 @@ class UserController extends Controller
 
         return Inertia::render('User/Edit', [
             'user' => $user,
-            'status' => session('status'),
-            'roles' => User::getRoles()
         ]);
     }
 
@@ -153,5 +162,8 @@ class UserController extends Controller
     {
         $this->authorize('delete', $user);
 
+        $user->delete();
+
+        return redirect()->route('user.index')->with('status', __('messages.deleted'));
     }
 }

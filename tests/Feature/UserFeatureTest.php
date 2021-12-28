@@ -103,12 +103,13 @@ class UserFeatureTest extends TestCase
         $data = User::factory()->make()->only(['name', 'phone_number', 'id_number']);
 
         $response = $this->postJson(route('user.store'), array_merge(
-            $data, ['organization_id' => $organization->id]
+            $data, ['organization_id' => $organization->id, 'member_type' => 'member']
         ));
 
         $response->assertRedirect();
         $this->assertDatabaseHas('users', $data);
         $this->assertCount(1, $organization->users);
+        $this->assertEquals('member', $organization->users->first()->pivot['member_type']);
     }
 
     /** @test */

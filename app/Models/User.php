@@ -15,7 +15,7 @@ class User extends Authenticatable
 
     public static $roles = ['enumerator', 'viewer', 'member'];
 
-    public static $fakeEmail = "fake.com";
+    public static $fakeEmail = "saekedelai.com";
 
     /**
      * The attributes that are mass assignable.
@@ -70,7 +70,7 @@ class User extends Authenticatable
 
     public function organizations()
     {
-        return $this->belongsToMany(Organization::class);
+        return $this->belongsToMany(Organization::class)->withPivot('member_type');
     }
 
     public static function getRoles()

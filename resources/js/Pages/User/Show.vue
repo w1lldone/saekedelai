@@ -57,22 +57,33 @@
             <div class="mt-3">
               <h3 class="font-bold">Kelompok tani</h3>
               <ul v-if="user.organizations.length">
-                  <li v-for="organization in user.organizations" :key="organization.id">
-                      <Link :href="route('organization.show', organization.id)">{{ organization.name }}</Link> (anggota)
-                  </li>
+                <li
+                  v-for="organization in user.organizations"
+                  :key="organization.id"
+                >
+                  <Link class="h3 text-cyan" :href="route('organization.show', organization.id)">{{
+                    organization.name
+                  }}</Link>
+                  (anggota)
+                </li>
               </ul>
-            </div>
-
-            <div class="mt-3 d-flex justify-content-end">
-              <Link
-                class="btn btn-primary"
-                v-if="can.update"
-                :href="route('user.edit', user.id)"
-              >
-                Edit
-              </Link>
+              <h3 v-else class="text-muted">
+                Pengguna tidak terdaftar pada kelompok tani
+              </h3>
             </div>
           </div>
+        </div>
+        <div class="mt-3 d-flex justify-content-between">
+          <Link
+            class="btn btn-warning"
+            v-if="can.update"
+            :href="route('user.edit', user.id)"
+          >
+            <i class="fa fa-edit"></i> Edit anggota
+          </Link>
+            <delete-button :submitUrl="route('user.destroy', user.id)" entity="Angota">
+                <i class="fa fa-trash"></i> Hapus Anggota
+            </delete-button>
         </div>
       </div>
     </div>
@@ -84,6 +95,7 @@ import { Head, Link } from "@inertiajs/inertia-vue3";
 import AuthenticatedLayout from "@/Layouts/Auth.vue";
 import EditUser from "@/Components/User/Edit.vue";
 import BreezeButton from "@/Components/Button.vue";
+import DeleteButton from '@/Components/DeleteButton.vue';
 
 export default {
   components: {
@@ -92,6 +104,7 @@ export default {
     Link,
     EditUser,
     BreezeButton,
+    DeleteButton
   },
   props: {
     user: Object,

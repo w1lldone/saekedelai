@@ -1,5 +1,6 @@
 <template>
   <form @submit.prevent="submit()">
+    <Status></Status>
     <div class="mb-3">
       <label for="role">Pilih Role</label>
       <div>
@@ -19,13 +20,18 @@
       </div>
     </div>
     <div class="d-flex justify-content-end">
-        <button class="btn btn-success" type="submit">Simpan Role</button>
+      <button class="btn btn-success" type="submit">Simpan Role</button>
     </div>
   </form>
 </template>
 
 <script>
+import Status from "@/Components/Status.vue";
+
 export default {
+  components: {
+    Status,
+  },
   props: {
     role: String,
     roles: Array,
@@ -39,10 +45,10 @@ export default {
     };
   },
   methods: {
-      submit() {
-          this.form.put(this.submitUrl)
-      }
-  }
+    submit() {
+      this.form.put(this.submitUrl);
+    },
+  },
 };
 </script>
 

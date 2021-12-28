@@ -5,6 +5,7 @@ use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserAddressController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserOrganizationController;
 use App\Http\Controllers\UserRoleController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -47,9 +48,13 @@ Route::middleware(['auth'])->resource('user', UserController::class);
 
 Route::prefix('/user/{user}')->middleware(['auth'])->name('user.')->group(function ()
 {
-    Route::put('/address', [UserAddressController::class, 'update'])
-        ->name('address.update');
+    Route::get('/address/edit', [UserAddressController::class, 'edit'])->name('address.edit');
+    Route::put('/address', [UserAddressController::class, 'update'])->name('address.update');
+    Route::get('/role/edit', [UserRoleController::class, 'edit'])->name('role.edit');
     Route::put('/role', [UserRoleController::class, 'update'])->name('role.update');
+    Route::get('/organization/edit', [UserOrganizationController::class, 'edit'])->name('organization.edit');
+    Route::post('/organization', [UserOrganizationController::class, 'store'])->name('organization.store');
+    Route::delete('/organization/{organization}', [UserOrganizationController::class, 'destroy'])->name('organization.delete');
 });
 
 Route::middleware(['auth'])->resource('organization', OrganizationController::class);
