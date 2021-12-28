@@ -10,6 +10,8 @@
 
     <div class="row justify-content-center">
       <div class="col-md-8">
+        <NavShow :organization="organization" class="mb-3"></NavShow>
+
         <Status class="my-2"></Status>
         <div class="card card-body p-4">
           <h3 class="text-primary font-bold">{{ organization.name }}</h3>
@@ -48,6 +50,7 @@ import { Head, InertiaLink } from "@inertiajs/inertia-vue3";
 import AuthenticatedLayout from "@/Layouts/Auth.vue";
 import DeleteButton from "@/Components/DeleteButton.vue";
 import Status from "@/Components/Status.vue";
+import NavShow from "@/Components/Organization/NavShow.vue";
 
 export default {
   components: {
@@ -56,6 +59,7 @@ export default {
     AuthenticatedLayout,
     DeleteButton,
     Status,
+    NavShow,
   },
   props: {
     organization: Object,

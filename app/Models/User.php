@@ -2,17 +2,20 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Str;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
     public static $roles = ['enumerator', 'viewer', 'member'];
+
+    public static $fakeEmail = "saekedelai.com";
 
     /**
      * The attributes that are mass assignable.
@@ -67,7 +70,7 @@ class User extends Authenticatable
 
     public function organizations()
     {
-        return $this->belongsToMany(Organization::class);
+        return $this->belongsToMany(Organization::class)->withPivot('member_type');
     }
 
     public static function getRoles()
@@ -88,5 +91,10 @@ class User extends Authenticatable
         }
 
         return false;
+    }
+
+    public function generateFakeEmail()
+    {
+        return Str::snake($this->name).substr($this->phone_number,-3)."@".self::$fakeEmail;
     }
 }

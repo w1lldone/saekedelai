@@ -1,19 +1,6 @@
 <template>
   <form @submit.prevent="submit()" class="form">
-    <div
-      v-if="status"
-      class="alert alert-success alert-dismissible fade show"
-      role="alert"
-    >
-      <strong>Success!</strong> {{ status }}
-      <button
-        type="button"
-        class="btn-close"
-        data-bs-dismiss="alert"
-        aria-label="Close"
-      ></button>
-    </div>
-
+    <Status></Status>
     <div class="mb-3">
       <label for="email" class="form-label">Email</label>
       <input type="email" class="form-control" v-model="form.email" />
@@ -30,9 +17,7 @@
       <label for="id_number" class="form-label">NIK</label>
       <input type="text" class="form-control" v-model="form.id_number" />
     </div>
-    <div class="mb-3">
-
-    </div>
+    <div class="mb-3"></div>
     <div class="d-flex justify-content-end">
       <button
         type="submit"
@@ -47,10 +32,12 @@
 
 <script>
 import BreezeValidationErrors from "@/Components/ValidationErrors.vue";
+import Status from "@/Components/Status.vue";
 
 export default {
   components: {
     BreezeValidationErrors,
+    Status,
   },
   props: {
     user: Object,

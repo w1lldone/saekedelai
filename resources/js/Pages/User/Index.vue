@@ -5,6 +5,15 @@
 
     <div class="row justify-content-center">
       <div class="col-md-8">
+          <Status></Status>
+        <div class="d-flex justify-content-end mb-3">
+          <InertiaLink
+            :href="route('user.create')"
+            class="btn btn-primary"
+          >
+            <i class="fa fa-plus me-2"></i> Daftarkan Anggota
+          </InertiaLink>
+        </div>
         <div class="card card-body p-4 table-responsive">
           <table class="table">
             <thead
@@ -20,12 +29,12 @@
             <tbody class="divide-y divide-gray-100">
               <tr v-for="user in users.data" :key="user.id">
                 <td>
-                  <Link
+                  <InertiaLink
                     class="underline text-blue-600"
                     :href="route('user.show', user.id)"
                   >
                     {{ user.name }}
-                  </Link>
+                  </InertiaLink>
                 </td>
                 <td>{{ user.email }}</td>
                 <td>
@@ -46,15 +55,17 @@
 
 <script>
 import AuthenticatedLayout from "@/Layouts/Auth.vue";
-import { Head, Link } from "@inertiajs/inertia-vue3";
+import { Head, InertiaLink } from "@inertiajs/inertia-vue3";
 import Pagination from "@/Components/Pagination.vue";
+import Status from '@/Components/Status.vue';
 
 export default {
   components: {
     Head,
     AuthenticatedLayout,
     Pagination,
-    Link,
+    InertiaLink,
+    Status
   },
   props: {
     users: Object,

@@ -1,5 +1,5 @@
 <template>
-  <button @click="submit()" class="btn btn-outline-danger" :class="{ disabled: form.processing }" method="delete">
+  <button @click="submit()" data-bs-toggle="tooltip" class="btn btn-outline-danger" :class="{ disabled: form.processing }" method="delete">
     <slot></slot>
   </button>
 </template>

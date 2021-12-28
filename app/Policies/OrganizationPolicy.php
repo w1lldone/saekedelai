@@ -32,7 +32,9 @@ class OrganizationPolicy
      */
     public function view(User $user, Organization $organization)
     {
-        //
+        if ($user->is_superadmin || $user->hasRole(['enumerator'])) {
+            return true;
+        }
     }
 
     /**

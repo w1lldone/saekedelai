@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Organization;
 use App\Models\User;
 use Inertia\Inertia;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
 class UserController extends Controller
@@ -20,9 +23,21 @@ class UserController extends Controller
 
         $query = User::query();
 
-        $query->select('id', 'name', 'email', 'is_superadmin', 'role');
+        $query->select('id', 'name', 'email', 'is_superadmin', 'role', 'id_number');
 
-        $users = $query->paginate()->appends($request->all());
+        if ($request->filled('keyword')) {
+            $query->where(function ($user) use ($request)
+            {
+                $user->where('name', 'like', "%$request->keyword%")
+                    ->orWhere('id_number', 'like', "%$request->keyword");
+            });
+        }
+
+        $users = $query->with('address')->paginate()->appends($request->all());
+
+        if ($request->wantsJson()) {
+            return $users;
+        }
 
         return Inertia::render('User/Index', [
             'users' => $users
@@ -34,9 +49,16 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $this->authorize('create', User::class);
+
+        $organizations = Organization::select('id', 'name')->get();
+
+        return Inertia::render('User/Create', [
+            'organizations' => $organizations,
+            'organization_id' => $request->organization_id
+        ]);
     }
 
     /**
@@ -47,7 +69,40 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->authorize('create', User::class);
+
+        $request->validate([
+            'name' => 'required|string',
+            'email' => 'email|nullable|unique:users',
+            'id_number' => 'required|string|min:16|max:16|unique:users',
+            'phone_number' => 'string|unique:users|nullable',
+            'password' => 'nullable|min:6',
+            'organization_id' => 'exists:organizations,id|nullable',
+            'province' => 'string|nullable',
+            'city' => 'string|nullable',
+            'district' => 'string|nullable',
+            'subdistrict' => 'string|nullable',
+            'address' => 'string|nullable'
+        ]);
+
+        $user = new User;
+        $user->name = $request->name;
+        $user->phone_number = $request->phone_number;
+        $user->id_number = $request->id_number;
+        $user->email = $request->email ?: $user->generateFakeEmail();
+        $user->password = $request->password ?: Hash::make(Str::random());
+        $user->role = 'member';
+        $user->save();
+
+        $user->address->update($request->only('province', 'city', 'district', 'subdistrict', 'address'));
+
+        if ($request->filled('organization_id')) {
+            $user->organizations()->syncWithoutDetaching([$request->organization_id => [
+                'member_type' => $request->member_type
+            ]]);
+        }
+
+        return redirect()->route('user.show', $user->id);
     }
 
     /**
@@ -59,7 +114,7 @@ class UserController extends Controller
     public function show(Request $request, User $user)
     {
         $this->authorize('view', $user);
-        $user->load('address');
+        $user->load('address', 'organizations:id,name');
 
         return Inertia::render('User/Show', [
             'user' => $user,
@@ -84,8 +139,6 @@ class UserController extends Controller
 
         return Inertia::render('User/Edit', [
             'user' => $user,
-            'status' => session('status'),
-            'roles' => User::getRoles()
         ]);
     }
 
@@ -122,5 +175,8 @@ class UserController extends Controller
     {
         $this->authorize('delete', $user);
 
+        $user->delete();
+
+        return redirect()->route('user.index')->with('status', __('messages.deleted'));
     }
 }

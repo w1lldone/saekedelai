@@ -12,13 +12,16 @@
 
     <div class="row justify-content-center">
       <div class="col-md-6">
-        <NavEdit :user="user" class="mb-3"></NavEdit>
+
+          <NavEdit :user="user" class="mb-3"></NavEdit>
+
         <div class="card card-body p-4">
-          <EditUserBasic
-            :user="user"
-            :submit-route="route('user.update', user.id)"
-            @success="isEditing = false"
-          ></EditUserBasic>
+
+          <EditAddress
+                :address="user.address"
+                :submit-url="route('user.address.update', user.id)"
+              ></EditAddress>
+
         </div>
       </div>
     </div>
@@ -28,21 +31,23 @@
 <script>
 import { Head, Link } from "@inertiajs/inertia-vue3";
 import AuthenticatedLayout from "@/Layouts/Auth.vue";
-import EditUserBasic from "@/Components/User/Edit.vue";
-import NavEdit from "@/Components/User/NavEdit.vue";
-import Status from "@/Components/Status.vue";
+import EditAddress from "@/Components/User/EditAddress.vue";
+import NavEdit from '@/Components/User/NavEdit.vue';
+import Status from '@/Components/Status.vue';
 
 export default {
   components: {
     AuthenticatedLayout,
     Head,
     Link,
-    EditUserBasic,
+    EditAddress,
     NavEdit,
-    Status,
+    Status
   },
   props: {
     user: Object,
+    status: String,
+    roles: Array
   },
 };
 </script>
