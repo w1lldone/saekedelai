@@ -2,10 +2,10 @@
   <Head title="User Detail" />
   <AuthenticatedLayout>
     <template #header>
-      <Link class="text-primary" :href="route('user.index')">Pengguna</Link>
+      <InertiaLink class="text-primary" :href="route('user.index')">Pengguna</InertiaLink>
       <i class="fa fa-chevron-right mx-2"></i>
-      <Link class="text-primary" :href="route('user.show', this.user.id)"
-        >Detail pengguna</Link
+      <InertiaLink class="text-primary" :href="route('user.show', this.user.id)"
+        >Detail pengguna</InertiaLink
       >
       <i class="fa fa-chevron-right mx-2"></i>Edit
     </template>
@@ -38,7 +38,11 @@
                 v-for="organization in user.organizations"
                 :key="organization.id"
               >
-                <td>{{ organization.name }}</td>
+                <td>
+                    <InertiaLink :href="route('organization.show', organization.id)">
+                        {{ organization.name }}
+                    </InertiaLink>
+                </td>
                 <td>{{ organization.pivot.member_type }}</td>
                 <td>
                   <DeleteButton
@@ -47,7 +51,7 @@
                     class="btn-sm"
                     title="Keluarkan dari kelompok ini"
                   >
-                    <i class="fa fa-sign-out-alt"></i>
+                    <i class="fa fa-trash"></i>
                   </DeleteButton>
                 </td>
               </tr>
@@ -60,7 +64,7 @@
 </template>
 
 <script>
-import { Head, Link } from "@inertiajs/inertia-vue3";
+import { Head, InertiaLink } from "@inertiajs/inertia-vue3";
 import AuthenticatedLayout from "@/Layouts/Auth.vue";
 import NavEdit from "@/Components/User/NavEdit.vue";
 import Status from "@/Components/Status.vue";
@@ -71,7 +75,7 @@ export default {
   components: {
     AuthenticatedLayout,
     Head,
-    Link,
+    InertiaLink,
     NavEdit,
     Status,
     DeleteButton,

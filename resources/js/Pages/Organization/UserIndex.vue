@@ -30,7 +30,11 @@
               </thead>
               <tbody>
                 <tr v-for="user in users.data" :key="user.id">
-                  <td>{{ user.name }}</td>
+                  <td>
+                      <InertiaLink :href="route('user.show', user.id)">
+                          {{ user.name }}
+                      </InertiaLink>
+                  </td>
                   <td>{{ user.pivot.member_type }}</td>
                   <td>
                     <DeleteButton
@@ -43,7 +47,7 @@
                         ])
                       "
                     >
-                      <i class="fa fa-sign-out-alt"></i>
+                      <i class="fa fa-trash"></i>
                     </DeleteButton>
                   </td>
                 </tr>
