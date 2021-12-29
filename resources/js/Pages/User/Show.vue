@@ -8,68 +8,71 @@
     </template>
 
     <div class="row justify-content-center">
-      <div class="col-md-6">
+      <div class="col-md-8">
         <div class="card card-body p-4">
+          <h2 class="text-primary font-bold">Data Pengguna</h2>
           <div>
             <div>
-              <h3 class="font-bold m-0">Nama</h3>
-              <h3>
+              <h4 class="font-bold m-0">Nama</h4>
+              <h4>
                 {{ user.name }}
-              </h3>
+              </h4>
             </div>
             <div class="mt-3">
-              <h3 class="font-bold m-0">Role pengguna</h3>
-              <h3 v-if="user.role">
+              <h4 class="font-bold m-0">Role pengguna</h4>
+              <h4 v-if="user.role">
                 {{ user.role }}
-              </h3>
-              <h3 v-else class="text-muted">Pengguna tidak memiliki role</h3>
+              </h4>
+              <h4 v-else class="text-muted">Pengguna tidak memiliki role</h4>
             </div>
             <div class="mt-3">
-              <h3 class="font-bold m-0">Email</h3>
-              <h3>
+              <h4 class="font-bold m-0">Email</h4>
+              <h4>
                 {{ user.email }}
-              </h3>
+              </h4>
             </div>
             <div class="mt-3">
-              <h3 class="font-bold m-0">No Hp</h3>
-              <h3 v-if="user.phone_number">
+              <h4 class="font-bold m-0">No Hp</h4>
+              <h4 v-if="user.phone_number">
                 {{ user.phone_number }}
-              </h3>
-              <h3 v-else class="text-gray-400">Tidak tersedia</h3>
+              </h4>
+              <h4 v-else class="text-gray-400">Tidak tersedia</h4>
             </div>
             <div class="mt-3">
-              <h3 class="font-semibold text-xl">
-                <span class="text-green-600" v-if="user.id_number"
+              <h4 class="font-bold">
+                <span v-if="user.id_number"
                   ><i class="fa fa-id-card"></i> NIK Tersedia</span
                 >
-                <span class="text-gray-400" v-else>
+                <span class="text-muted" v-else>
                   <i class="fa fa-id-card"></i> NIK Tidak Tersedia
                 </span>
-              </h3>
+              </h4>
             </div>
             <div class="mt-3">
-              <h3 class="font-bold m-0">Alamat</h3>
-              <h3 v-if="user.address.formatted_address">
+              <h4 class="font-bold m-0">Alamat</h4>
+              <h4 v-if="user.address.formatted_address">
                 {{ user.address.formatted_address }}
-              </h3>
-              <h3 class="text-muted" v-else>Alamat tidak tersedia</h3>
+              </h4>
+              <h4 class="text-muted" v-else>Alamat tidak tersedia</h4>
             </div>
             <div class="mt-3">
-              <h3 class="font-bold">Kelompok tani</h3>
+              <h4 class="font-bold">Kelompok tani</h4>
               <ul v-if="user.organizations.length">
                 <li
                   v-for="organization in user.organizations"
                   :key="organization.id"
                 >
-                  <Link class="h3 text-cyan" :href="route('organization.show', organization.id)">{{
-                    organization.name
-                  }}</Link>
-                  (anggota)
+                  <Link
+                    class="h4 text-cyan"
+                    :href="route('organization.show', organization.id)"
+                    >{{ organization.name }}</Link
+                  >
+                  ({{ organization.pivot.member_type }})
                 </li>
               </ul>
-              <h3 v-else class="text-muted">
+              <h4 v-else class="text-muted">
                 Pengguna tidak terdaftar pada kelompok tani
-              </h3>
+              </h4>
             </div>
           </div>
         </div>
@@ -81,9 +84,12 @@
           >
             <i class="fa fa-edit"></i> Edit anggota
           </Link>
-            <delete-button :submitUrl="route('user.destroy', user.id)" entity="Angota">
-                <i class="fa fa-trash"></i> Hapus Anggota
-            </delete-button>
+          <delete-button
+            :submitUrl="route('user.destroy', user.id)"
+            entity="Angota"
+          >
+            <i class="fa fa-trash"></i> Hapus Anggota
+          </delete-button>
         </div>
       </div>
     </div>
@@ -95,7 +101,7 @@ import { Head, Link } from "@inertiajs/inertia-vue3";
 import AuthenticatedLayout from "@/Layouts/Auth.vue";
 import EditUser from "@/Components/User/Edit.vue";
 import BreezeButton from "@/Components/Button.vue";
-import DeleteButton from '@/Components/DeleteButton.vue';
+import DeleteButton from "@/Components/DeleteButton.vue";
 
 export default {
   components: {
@@ -104,7 +110,7 @@ export default {
     Link,
     EditUser,
     BreezeButton,
-    DeleteButton
+    DeleteButton,
   },
   props: {
     user: Object,
