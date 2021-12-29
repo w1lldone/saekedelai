@@ -34,4 +34,19 @@ class OrganizationModelTest extends TestCase
         ]);
         $this->assertCount(1, $organiztion->users);
     }
+
+    /** @test */
+    public function it_detaches_users_after_deleted()
+    {
+        $user = User::factory()->create();
+        $organization = Organization::factory()->create();
+
+        $user->organizations()->attach($organization);
+        $organization->delete();
+
+        $this->assertDatabaseMissing('organization_user', [
+            'user_id' => $user->id,
+            'organization_id' => $organization->id
+        ]);
+    }
 }
