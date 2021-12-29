@@ -12,6 +12,19 @@ class Organization extends Model
 
     protected $guarded = ['id'];
 
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
+    protected static function booted()
+    {
+        static::deleted(function ($organization) {
+            $organization->address()->delete();
+            $organization->users()->detach();
+        });
+    }
+
     public function users()
     {
         return $this->belongsToMany(User::class)->withPivot('member_type');

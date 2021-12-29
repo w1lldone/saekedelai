@@ -61,6 +61,11 @@ class User extends Authenticatable
         static::created(function ($user) {
             $user->address()->firstOrCreate();
         });
+
+        static::deleted(function ($user) {
+            $user->address()->delete();
+            $user->organizations()->detach();
+        });
     }
 
     public function address()

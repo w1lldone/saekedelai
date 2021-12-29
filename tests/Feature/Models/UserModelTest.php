@@ -68,4 +68,19 @@ class UserModelTest extends TestCase
 
         $this->assertEquals("dyas_selvi999@saekedelai.com", $user->generateFakeEmail());
     }
+
+    /** @test */
+    public function it_detaches_organizations_after_deleted()
+    {
+        $user = User::factory()->create();
+        $organization = Organization::factory()->create();
+
+        $user->organizations()->attach($organization);
+        $user->delete();
+
+        $this->assertDatabaseMissing('organization_user', [
+            'user_id' => $user->id,
+            'organization_id' => $organization->id
+        ]);
+    }
 }
