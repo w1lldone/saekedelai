@@ -11,7 +11,7 @@
             :href="route('user.create')"
             class="btn btn-primary"
           >
-            <i class="fa fa-plus me-2"></i> Daftarkan Anggota
+            <i class="fa fa-plus me-2"></i> Daftarkan Pengguna
           </InertiaLink>
         </div>
         <div class="card card-body p-4 table-responsive">
