@@ -156,4 +156,16 @@ class UserFeatureTest extends TestCase
         $response->assertOk()
             ->assertJsonCount(5, 'data');
     }
+
+    /** @test */
+    public function it_can_create_user_with_a_role()
+    {
+        $this->login();
+        $data = User::factory()->make()->only(['name', 'phone_number', 'id_number', 'email', 'role']);
+
+        $response = $this->postJson(route('user.store'), $data);
+
+        $response->assertRedirect();
+        $this->assertDatabaseHas('users', $data);
+    }
 }
