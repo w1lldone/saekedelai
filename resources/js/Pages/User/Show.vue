@@ -82,7 +82,7 @@
             v-if="can.update"
             :href="route('user.edit', user.id)"
           >
-            <i class="fa fa-edit"></i> Edit anggota
+            <i class="fa fa-edit"></i> Edit Pengguna
           </Link>
           <delete-button
             :submitUrl="route('user.destroy', user.id)"

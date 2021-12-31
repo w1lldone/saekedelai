@@ -57,7 +57,8 @@ class UserController extends Controller
 
         return Inertia::render('User/Create', [
             'organizations' => $organizations,
-            'organization_id' => $request->organization_id
+            'organization_id' => $request->organization_id,
+            'roles' => User::getRoles()
         ]);
     }
 
@@ -82,7 +83,8 @@ class UserController extends Controller
             'city' => 'string|nullable',
             'district' => 'string|nullable',
             'subdistrict' => 'string|nullable',
-            'address' => 'string|nullable'
+            'address' => 'string|nullable',
+            'role' => ['nullable', Rule::in(User::getRoles())]
         ]);
 
         $user = new User;
@@ -91,7 +93,7 @@ class UserController extends Controller
         $user->id_number = $request->id_number;
         $user->email = $request->email ?: $user->generateFakeEmail();
         $user->password = $request->password ?: Hash::make(Str::random());
-        $user->role = 'member';
+        $user->role = $request->role ?: 'member';
         $user->save();
 
         $user->address->update($request->only('province', 'city', 'district', 'subdistrict', 'address'));

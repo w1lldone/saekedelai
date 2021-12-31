@@ -91,6 +91,24 @@
                 anggota</span
               >
             </div>
+            <div class="mb-3" v-show="hasEmail">
+              <label for="role">Pilih Role</label>
+              <div clz>
+                <div class="form-check" v-for="role in roles" :key="role">
+                  <input
+                    v-model="form.role"
+                    :value="role"
+                    class="form-check-input"
+                    type="radio"
+                    name="flexRadioDefault"
+                    :id="role"
+                  />
+                  <label class="form-check-label" :for="role">
+                    {{ role }}
+                  </label>
+                </div>
+              </div>
+            </div>
             <h3 class="text-primary font-bold">Alamat</h3>
             <div class="mb-3">
               <label for="province" class="form-label">Provinsi</label>
@@ -230,6 +248,7 @@ export default {
   props: {
     organizations: Array,
     organization_id: String,
+    roles: Array,
   },
   components: {
     Head,
@@ -252,6 +271,7 @@ export default {
         address: null,
         organization_id: null,
         member_type: null,
+        role: "member",
       }),
       hasEmail: false,
       provinces: [],
@@ -263,8 +283,10 @@ export default {
   mounted() {
     this.fetchProvinces();
     if (this.organization_id) {
-        var index = this.organizations.findIndex((item) => item.id == this.organization_id)
-        this.form.organization_id = this.organizations[index]
+      var index = this.organizations.findIndex(
+        (item) => item.id == this.organization_id
+      );
+      this.form.organization_id = this.organizations[index];
     }
   },
   methods: {
