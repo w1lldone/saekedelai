@@ -27,10 +27,12 @@
               <label for="id_number" class="form-label">NIK</label>
               <input
                 type="text"
+                maxlength="16"
                 class="form-control"
                 v-model="form.id_number"
                 :class="{ 'is-invalid': form.errors.id_number }"
               />
+              <span class="form-text">{{ form.id_number.length }} / 16</span>
               <span class="invalid-feedback">{{ form.errors.id_number }}</span>
             </div>
             <div class="mb-3">
@@ -261,7 +263,7 @@ export default {
       form: this.$inertia.form({
         name: null,
         email: null,
-        id_number: null,
+        id_number: '',
         phone_number: null,
         password: null,
         province: { name: null },
