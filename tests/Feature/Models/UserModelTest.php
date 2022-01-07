@@ -5,6 +5,8 @@ namespace Tests\Feature\Models;
 use Tests\TestCase;
 use App\Models\User;
 use App\Models\Organization;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -82,5 +84,19 @@ class UserModelTest extends TestCase
             'user_id' => $user->id,
             'organization_id' => $organization->id
         ]);
+    }
+
+    /** @test */
+    public function user_can_load_profile_picture_relation()
+    {
+        Storage::fake('public');
+        /** @var User */
+        $user = User::factory()->create();
+        $file = UploadedFile::fake()->image('map.svg');
+        $media = $user->addMedia($file)->toMediaCollection('profile_picture');
+
+        $user = User::withProfilePicture()->find($user->id);
+
+        $this->assertTrue($user->profilePicture->is($media));
     }
 }

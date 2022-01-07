@@ -8,10 +8,13 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class User extends Authenticatable
+class User extends Authenticatable implements HasMedia
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, InteractsWithMedia;
 
     public static $roles = ['enumerator', 'viewer', 'member'];
 
@@ -68,6 +71,26 @@ class User extends Authenticatable
         });
     }
 
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('profile_picture')->singleFile();
+    }
+
+    public function scopeWithProfilePicture($query)
+    {
+        $query->addSelect([
+            'profile_picture_id' => Media::select('id')
+                ->where('model_type', User::class)
+                ->whereColumn('model_id', 'users.id')
+                ->limit(1)
+        ])->with('profilePicture');
+    }
+
+    public function profilePicture()
+    {
+        return $this->belongsTo(Media::class);
+    }
+
     public function address()
     {
         return $this->morphOne(Address::class, 'addressable');
@@ -100,6 +123,6 @@ class User extends Authenticatable
 
     public function generateFakeEmail()
     {
-        return Str::snake($this->name).substr($this->phone_number,-3)."@".self::$fakeEmail;
+        return Str::snake($this->name) . substr($this->phone_number, -3) . "@" . self::$fakeEmail;
     }
 }
