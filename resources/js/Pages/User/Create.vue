@@ -49,6 +49,10 @@
                 form.errors.phone_number
               }}</span>
             </div>
+            <div class="mb-3">
+              <label for="formFile" class="form-label">Unggah Foto <span class="text-muted">(opsional)</span></label>
+              <input class="form-control" type="file" id="formFile" @input="form.profile_picture = $event.target.files[0]" />
+            </div>
             <div class="form-check py-2">
               <input
                 class="form-check-input"
@@ -263,7 +267,7 @@ export default {
       form: this.$inertia.form({
         name: null,
         email: null,
-        id_number: '',
+        id_number: "",
         phone_number: null,
         password: null,
         province: { name: null },
@@ -274,6 +278,7 @@ export default {
         organization_id: null,
         member_type: null,
         role: "member",
+        profile_picture: null,
       }),
       hasEmail: false,
       provinces: [],

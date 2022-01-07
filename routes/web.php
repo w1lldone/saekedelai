@@ -6,6 +6,7 @@ use App\Http\Controllers\OrganizationUserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserAddressController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserMediaController;
 use App\Http\Controllers\UserOrganizationController;
 use App\Http\Controllers\UserRoleController;
 use Illuminate\Foundation\Application;
@@ -54,6 +55,9 @@ Route::prefix('/user/{user}')->middleware(['auth'])->name('user.')->group(functi
     Route::get('/organization/edit', [UserOrganizationController::class, 'edit'])->name('organization.edit');
     Route::post('/organization', [UserOrganizationController::class, 'store'])->name('organization.store');
     Route::delete('/organization/{organization}', [UserOrganizationController::class, 'destroy'])->name('organization.delete');
+
+    Route::post('/media', [UserMediaController::class, 'store'])->name('media.store');
+    Route::get('/media/{media}', [UserMediaController::class, 'show'])->name('media.show');
 });
 
 Route::middleware(['auth'])->resource('organization', OrganizationController::class);

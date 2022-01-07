@@ -84,6 +84,7 @@ class UserController extends Controller
             'district' => 'string|nullable',
             'subdistrict' => 'string|nullable',
             'address' => 'string|nullable',
+            'profile_picture' => 'nullable|file',
             'role' => ['nullable', Rule::in(User::getRoles())]
         ]);
 
@@ -104,6 +105,10 @@ class UserController extends Controller
             ]]);
         }
 
+        if ($request->file('profile_picture')) {
+            $user->addMediaFromRequest('profile_picture')->toMediaCollection('profile_picture');
+        }
+
         return redirect()->route('user.show', $user->id);
     }
 
@@ -113,16 +118,18 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, User $user)
+    public function show(Request $request, $user)
     {
+        $user = User::withProfilePicture()->with('address', 'organizations:id,name')->findOrFail($user);
+
         $this->authorize('view', $user);
-        $user->load('address', 'organizations:id,name');
 
         return Inertia::render('User/Show', [
             'user' => $user,
             'status' => session('status'),
             'can' => [
-                'update' => $request->user()->can('update', $user)
+                'update' => $request->user()->can('update', $user),
+                'delete' => $request->user()->can('delete', $user)
             ]
         ]);
     }

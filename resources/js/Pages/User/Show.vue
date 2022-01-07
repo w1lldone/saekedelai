@@ -9,10 +9,22 @@
 
     <div class="row justify-content-center">
       <div class="col-md-8">
+        <Status></Status>
+
         <div class="card card-body p-4">
           <h2 class="text-primary font-bold">Data Pengguna</h2>
           <div>
-            <div>
+            <Photo
+              :can-update="can.update"
+              class="my-3"
+              :submitUrl="route('user.media.store', user.id)"
+              :src="
+                user.profile_picture
+                  ? route('user.media.show', [user.id, user.profile_picture.id])
+                  : null
+              "
+            ></Photo>
+            <div class="mt-3">
               <h4 class="font-bold m-0">Nama</h4>
               <h4>
                 {{ user.name }}
@@ -85,6 +97,7 @@
             <i class="fa fa-edit"></i> Edit Pengguna
           </Link>
           <delete-button
+            v-if="can.delete"
             :submitUrl="route('user.destroy', user.id)"
             entity="Angota"
           >
@@ -102,6 +115,8 @@ import AuthenticatedLayout from "@/Layouts/Auth.vue";
 import EditUser from "@/Components/User/Edit.vue";
 import BreezeButton from "@/Components/Button.vue";
 import DeleteButton from "@/Components/DeleteButton.vue";
+import Photo from "@/Components/User/Photo.vue";
+import Status from '@/Components/Status.vue';
 
 export default {
   components: {
@@ -111,6 +126,8 @@ export default {
     EditUser,
     BreezeButton,
     DeleteButton,
+    Photo,
+    Status
   },
   props: {
     user: Object,
