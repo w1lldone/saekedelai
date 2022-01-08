@@ -34,6 +34,10 @@ class UserPolicy
         if ($user->is_superadmin || $user->hasRole(['enumerator'])) {
             return true;
         }
+
+        if ($user->is($model)) {
+            return true;
+        }
     }
 
     /**
