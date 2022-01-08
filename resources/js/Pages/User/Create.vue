@@ -51,7 +51,8 @@
             </div>
             <div class="mb-3">
               <label for="formFile" class="form-label">Unggah Foto <span class="text-muted">(opsional)</span></label>
-              <input class="form-control" type="file" id="formFile" @input="form.profile_picture = $event.target.files[0]" />
+              <input class="form-control" :class="{ 'is-invalid': form.errors.profile_picture }" type="file" id="formFile" @input="form.profile_picture = $event.target.files[0]" />
+              <span class="invalid-feedback">{{ form.errors.profile_picture }}</span>
             </div>
             <div class="form-check py-2">
               <input
