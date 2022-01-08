@@ -9,9 +9,12 @@
     <div class="col-md-8 d-flex flex-column" v-if="canUpdate">
       <div>
         <h3>Unggah Foto pengguna</h3>
-        Resolusi optimal 300px &times; 300px
+        Ukuran maksimal 5MB
       </div>
-      <div class="mt-auto">
+      <div v-if="form.errors.media" class="form-text text-danger">
+        {{ form.errors.media }}
+      </div>
+      <div class="mt-auto d-flex">
         <form @submit.prevent="submit">
           <label class="btn btn-file btn-primary" v-if="!form.progress">
             Unggah
@@ -30,17 +33,25 @@
             Mengunggah {{ form.progress.percentage }} %
           </button>
         </form>
+        <DeleteButton v-if="src" :submitUrl="src" entity="Foto" class="ms-3">
+          <i class="fa fa-trash"></i>
+        </DeleteButton>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import DeleteButton from "@/Components/DeleteButton.vue";
+
 export default {
   props: {
     submitUrl: String,
     src: String,
-    canUpdate: Boolean
+    canUpdate: Boolean,
+  },
+  components: {
+    DeleteButton,
   },
   data() {
     return {

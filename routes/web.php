@@ -58,6 +58,7 @@ Route::prefix('/user/{user}')->middleware(['auth'])->name('user.')->group(functi
 
     Route::post('/media', [UserMediaController::class, 'store'])->name('media.store');
     Route::get('/media/{media}', [UserMediaController::class, 'show'])->name('media.show');
+    Route::delete('/media/{media}', [UserMediaController::class, 'destroy'])->name('media.delete');
 });
 
 Route::middleware(['auth'])->resource('organization', OrganizationController::class);

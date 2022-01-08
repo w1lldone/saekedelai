@@ -15,7 +15,7 @@ class UserMediaController extends Controller
 
         $request->validate([
             'collection' => ['required', Rule::in($user->getRegisteredMediaCollections()->pluck('name'))],
-            'media' => 'required|file'
+            'media' => 'required|file|max:5120'
         ]);
 
         $user->addMediaFromRequest('media')->toMediaCollection($request->collection);
@@ -30,5 +30,15 @@ class UserMediaController extends Controller
         $media = $user->media()->findOrFail($media);
 
         return response()->file($media->getPath());
+    }
+
+    /** @test */
+    public function destroy(User $user, $media)
+    {
+        $this->authorize('update', $user);
+
+        $user->media()->findOrFail($media)->delete();
+
+        return redirect()->back()->with('status', __('messages.deleted'));
     }
 }
