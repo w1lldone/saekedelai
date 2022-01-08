@@ -45,4 +45,20 @@ class UserMediaFeatureTest extends TestCase
 
         $response->assertOk()->assertHeader('content-type', "image/jpeg");
     }
+
+    /** @test */
+    public function user_can_delete_a_media()
+    {
+        $this->login();
+        Storage::fake('public');
+        /** @var User */
+        $user = User::factory()->create();
+        $file = UploadedFile::fake()->image('map.jpg');
+        $media = $user->addMedia($file)->toMediaCollection('profile_picture');
+
+        $response = $this->deleteJson(route('user.media.show', [$user, $media]));
+
+        $response->assertRedirect();
+        $this->assertDeleted($media);
+    }
 }
