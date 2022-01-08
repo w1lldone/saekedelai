@@ -84,7 +84,7 @@ class UserController extends Controller
             'district' => 'string|nullable',
             'subdistrict' => 'string|nullable',
             'address' => 'string|nullable',
-            'profile_picture' => 'nullable|file',
+            'profile_picture' => 'nullable|file|max:5120',
             'role' => ['nullable', Rule::in(User::getRoles())]
         ]);
 
