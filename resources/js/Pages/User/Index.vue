@@ -6,7 +6,8 @@
     <div class="row justify-content-center">
       <div class="col-md-8">
           <Status></Status>
-        <div class="d-flex justify-content-end mb-3">
+        <div class="d-flex justify-content-md-between mb-3">
+            <Filter :query="query" :submitUrl="route('user.index')"></Filter>
           <InertiaLink
             :href="route('user.create')"
             class="btn btn-primary"
@@ -58,6 +59,7 @@ import AuthenticatedLayout from "@/Layouts/Auth.vue";
 import { Head, InertiaLink } from "@inertiajs/inertia-vue3";
 import Pagination from "@/Components/Pagination.vue";
 import Status from '@/Components/Status.vue';
+import Filter from '@/Components/User/Filter.vue';
 
 export default {
   components: {
@@ -65,10 +67,12 @@ export default {
     AuthenticatedLayout,
     Pagination,
     InertiaLink,
-    Status
+    Status,
+    Filter
   },
   props: {
     users: Object,
+    query: Object
   },
 };
 </script>
