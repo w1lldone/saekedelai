@@ -8,17 +8,22 @@ use Inertia\Inertia;
 
 class OrganizationUserController extends Controller
 {
+    use UserFilter;
+
     public function index(Request $request, Organization $organization)
     {
         $this->authorize('view', $organization);
 
         $query = $organization->users();
 
+        $query = $this->filterUser($query, $request);
+
         $users = $query->paginate();
 
         return Inertia::render('Organization/UserIndex', [
             'users' => $users,
-            'organization' => $organization
+            'organization' => $organization,
+            'query' => $request->all()
         ]);
     }
 

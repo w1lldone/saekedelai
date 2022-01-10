@@ -12,7 +12,8 @@
       <div class="col-md-8">
         <NavShow :organization="organization" class="mb-3"></NavShow>
 
-        <div class="d-flex justify-content-end mb-3">
+        <div class="d-flex justify-content-md-between mb-3">
+            <Filter :submitUrl="route('organization.user.index', organization.id)" :query="query"></Filter>
           <UserAddModal :organization="organization"></UserAddModal>
         </div>
 
@@ -71,11 +72,13 @@ import NavShow from "@/Components/Organization/NavShow.vue";
 import Status from "@/Components/Status.vue";
 import DeleteButton from "@/Components/DeleteButton.vue";
 import UserAddModal from "@/Components/Organization/UserAddModal.vue";
+import Filter from '@/Components/User/Filter.vue';
 
 export default {
   props: {
     users: Object,
     organization: Object,
+    query: Object
   },
   components: {
     AuthenticatedLayout,
@@ -86,6 +89,7 @@ export default {
     Status,
     DeleteButton,
     UserAddModal,
+    Filter
   },
 };
 </script>

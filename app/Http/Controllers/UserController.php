@@ -12,6 +12,8 @@ use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
+    use UserFilter;
+
     /**
      * Display a listing of the resource.
      *
@@ -25,13 +27,7 @@ class UserController extends Controller
 
         $query->select('id', 'name', 'email', 'is_superadmin', 'role', 'id_number');
 
-        if ($request->filled('keyword')) {
-            $query->where(function ($user) use ($request)
-            {
-                $user->where('name', 'like', "%$request->keyword%")
-                    ->orWhere('id_number', 'like', "%$request->keyword");
-            });
-        }
+        $query = $this->filterUser($query, $request);
 
         $users = $query->with('address')->paginate()->appends($request->all());
 
@@ -40,7 +36,8 @@ class UserController extends Controller
         }
 
         return Inertia::render('User/Index', [
-            'users' => $users
+            'users' => $users,
+            'query' => $request->all()
         ]);
     }
 
