@@ -101,6 +101,11 @@ class User extends Authenticatable implements HasMedia
         return $this->belongsToMany(Organization::class)->withPivot('member_type');
     }
 
+    public function fields()
+    {
+        return $this->hasMany(Field::class);
+    }
+
     public static function getRoles()
     {
         return self::$roles;
