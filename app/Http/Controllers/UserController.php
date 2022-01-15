@@ -29,7 +29,7 @@ class UserController extends Controller
 
         $query = $this->filterUser($query, $request);
 
-        $users = $query->with('address')->paginate()->appends($request->all());
+        $users = $query->with('address', 'organizations:id,name')->paginate()->appends($request->all());
 
         if ($request->wantsJson()) {
             return $users;

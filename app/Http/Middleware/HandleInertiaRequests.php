@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Field;
 use App\Models\Organization;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -42,6 +43,7 @@ class HandleInertiaRequests extends Middleware
             'policy' => [
                 'user.viewAny' => optional($request->user())->can('viewAny', User::class),
                 'organization.viewAny' => optional($request->user())->can('viewAny', Organization::class),
+                'field.viewAny' => optional($request->user())->can('viewAny', Field::class)
             ],
             'status' => session('status')
         ]);

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AddressController;
+use App\Http\Controllers\FieldController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\OrganizationUserController;
 use App\Http\Controllers\ProfileController;
@@ -66,6 +67,17 @@ Route::middleware(['auth'])->resource('organization', OrganizationController::cl
 Route::prefix('/organization/{organization}')->name('organization.')->middleware(['auth'])->group(function () {
     Route::get('/user', [OrganizationUserController::class, 'index'])->name('user.index');
     Route::post('/user', [OrganizationUserController::class, 'store'])->name('user.store');
+});
+
+Route::prefix('field')->middleware(['auth'])->name('field.')->group(function ()
+{
+    Route::get('/', [FieldController::class, 'index'])->name('index');
+    Route::post('/', [FieldController::class, 'store'])->name('store');
+    Route::get('/create', [FieldController::class, 'create'])->name('create');
+    Route::get('/{field}', [FieldController::class, 'show'])->name('show');
+    Route::get('/{field}/edit', [FieldController::class, 'edit'])->name('edit');
+    Route::delete('/{field}', [FieldController::class, 'destroy'])->name('delete');
+    Route::put('/{field}', [FieldController::class, 'update'])->name('update');
 });
 
 require __DIR__ . '/auth.php';

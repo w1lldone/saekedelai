@@ -1,5 +1,5 @@
 <template>
-  <Head title="Create a User"></Head>
+  <Head title="Daftarkan anggota"></Head>
   <AuthenticatedLayout>
     <template #header>
       <InertiaLink class="text-primary" :href="route('user.index')"
