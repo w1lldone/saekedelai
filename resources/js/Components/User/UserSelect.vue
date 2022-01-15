@@ -15,7 +15,7 @@
           Poktan <span v-for="organization in organizations" :key="organization.id">{{ organization.name }}</span>
       </span>
       <span v-else
-        >{{ address.province }} {{ address.city }} {{ address.district }}</span
+        >{{ address.formatted_address }}</span
       >
     </template></VueSelect
   >
