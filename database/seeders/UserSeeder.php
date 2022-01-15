@@ -18,10 +18,5 @@ class UserSeeder extends Seeder
         User::factory()->superadmin()->create([
             'email' => 'admin@mail.com'
         ]);
-
-        User::factory()
-            ->count(50)
-            ->has(Address::factory())
-            ->create();
     }
 }

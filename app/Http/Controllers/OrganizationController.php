@@ -13,15 +13,23 @@ class OrganizationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $this->authorize('viewAny', Organization::class);
 
         $query = Organization::query();
 
+        if ($request->has('keyword')) {
+            $query = $query->where('name', 'like', "%$request->keyword%");
+        }
+
         $query->with('address')->withCount('users');
 
         $organizations = $query->paginate();
+
+        if ($request->wantsJson()) {
+            return $organizations;
+        }
 
         return Inertia::render('Organization/Index', [
             'organizations' => $organizations,

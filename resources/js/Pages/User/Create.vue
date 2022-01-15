@@ -1,5 +1,5 @@
 <template>
-  <Head title="Create a User"></Head>
+  <Head title="Daftarkan anggota"></Head>
   <AuthenticatedLayout>
     <template #header>
       <InertiaLink class="text-primary" :href="route('user.index')"
@@ -50,9 +50,19 @@
               }}</span>
             </div>
             <div class="mb-3">
-              <label for="formFile" class="form-label">Unggah Foto <span class="text-muted">(opsional)</span></label>
-              <input class="form-control" :class="{ 'is-invalid': form.errors.profile_picture }" type="file" id="formFile" @input="form.profile_picture = $event.target.files[0]" />
-              <span class="invalid-feedback">{{ form.errors.profile_picture }}</span>
+              <label for="formFile" class="form-label"
+                >Unggah Foto <span class="text-muted">(opsional)</span></label
+              >
+              <input
+                class="form-control"
+                :class="{ 'is-invalid': form.errors.profile_picture }"
+                type="file"
+                id="formFile"
+                @input="form.profile_picture = $event.target.files[0]"
+              />
+              <span class="invalid-feedback">{{
+                form.errors.profile_picture
+              }}</span>
             </div>
             <div class="form-check py-2">
               <input
@@ -117,59 +127,12 @@
               </div>
             </div>
             <h3 class="text-primary font-bold">Alamat</h3>
-            <div class="mb-3">
-              <label for="province" class="form-label">Provinsi</label>
-              <vue-select
-                label="name"
-                @search="fetchProvinces"
-                v-model="form.province"
-                :options="provinces"
-                @option:selected="fetchCities(null)"
-              ></vue-select>
-              <span v-if="form.errors.province" class="form-text text-danger">{{
-                form.errors.province
-              }}</span>
-            </div>
-            <div class="mb-3">
-              <label for="city" class="form-label">Kota / Kabupaten</label>
-              <vue-select
-                label="name"
-                @search="fetchCities"
-                v-model="form.city"
-                :options="cities"
-                @option:selected="fetchDistricts(null)"
-              ></vue-select>
-              <span v-if="form.errors.city" class="form-text text-danger">{{
-                form.errors.city
-              }}</span>
-            </div>
-            <div class="mb-3">
-              <label for="district" class="form-label">Kecamatan</label>
-              <vue-select
-                label="name"
-                @search="fetchDistricts"
-                v-model="form.district"
-                :options="districts"
-                @option:selected="fetchSubdistricts(null)"
-              ></vue-select>
-              <span v-if="form.errors.district" class="form-text text-danger">{{
-                form.errors.district
-              }}</span>
-            </div>
-            <div class="mb-3">
-              <label for="district" class="form-label">Kelurahan / Desa</label>
-              <vue-select
-                label="name"
-                @search="fetchSubdistricts"
-                v-model="form.subdistrict"
-                :options="subdistricts"
-              ></vue-select>
-              <span
-                v-if="form.errors.subdistrict"
-                class="form-text text-danger"
-                >{{ form.errors.subdistrict }}</span
-              >
-            </div>
+            <AddressSelect
+              v-model:province="form.province"
+              v-model:city="form.city"
+              v-model:district="form.district"
+              v-model:subdistrict="form.subdistrict"
+            ></AddressSelect>
             <div class="mb-4">
               <label for="address" class="form-label"
                 >Dusun RT/RW - <small class="form-text">Opsional</small></label
@@ -250,6 +213,7 @@
 import { Head, InertiaLink } from "@inertiajs/inertia-vue3";
 import AuthenticatedLayout from "@/Layouts/Auth.vue";
 import VueSelect from "vue-select";
+import AddressSelect from "@/Components/Address/AddressSelect.vue";
 
 export default {
   props: {
@@ -262,6 +226,7 @@ export default {
     InertiaLink,
     AuthenticatedLayout,
     VueSelect,
+    AddressSelect,
   },
   data() {
     return {
@@ -271,10 +236,10 @@ export default {
         id_number: "",
         phone_number: null,
         password: null,
-        province: { name: null },
-        city: { name: null },
-        district: { name: null },
-        subdistrict: { name: null },
+        province: null,
+        city: null,
+        district: null,
+        subdistrict: null,
         address: null,
         organization_id: null,
         member_type: null,
@@ -282,14 +247,9 @@ export default {
         profile_picture: null,
       }),
       hasEmail: false,
-      provinces: [],
-      cities: [],
-      districts: [],
-      subdistricts: [],
     };
   },
   mounted() {
-    this.fetchProvinces();
     if (this.organization_id) {
       var index = this.organizations.findIndex(
         (item) => item.id == this.organization_id
@@ -299,67 +259,7 @@ export default {
   },
   methods: {
     submit() {
-      this.form
-        .transform(function (data) {
-          data.province = data.province.name;
-          data.city = data.city.name;
-          data.district = data.district.name;
-          data.subdistrict = data.subdistrict.name;
-
-          return data;
-        })
-        .post(route("user.store"));
-    },
-    async fetchProvinces(name) {
-      try {
-        let response = await axios.get(this.route("address.provinces"), {
-          params: {
-            name: name,
-          },
-        });
-        this.provinces = response.data.data;
-      } catch (error) {
-        console.log(error);
-      }
-    },
-    async fetchCities(name) {
-      try {
-        let response = await axios.get(this.route("address.cities"), {
-          params: {
-            province_id: this.form.province.id,
-            name: name,
-          },
-        });
-        this.cities = response.data.data;
-      } catch (error) {
-        console.log(error);
-      }
-    },
-    async fetchDistricts(name) {
-      try {
-        let response = await axios.get(this.route("address.districts"), {
-          params: {
-            city_id: this.form.city.id,
-            name: name,
-          },
-        });
-        this.districts = response.data.data;
-      } catch (error) {
-        console.log(error);
-      }
-    },
-    async fetchSubdistricts(name) {
-      try {
-        let response = await axios.get(this.route("address.subdistricts"), {
-          params: {
-            district_id: this.form.district.id,
-            name: name,
-          },
-        });
-        this.subdistricts = response.data.data;
-      } catch (error) {
-        console.log(error);
-      }
+      this.form.post(route("user.store"));
     },
   },
 };

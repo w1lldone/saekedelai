@@ -30,24 +30,7 @@
           <div class="modal-body">
             <div class="mb-3">
               <label for="" class="form-label">Cari Anggota</label>
-              <VueSelect
-                multiple
-                :loading="fetching"
-                :options="users"
-                label="name"
-                :reduce="(user) => user.id"
-                v-model="form.user_id"
-                @search="onSearch"
-              >
-                <template #option="{ name, address }">
-                  <b style="margin: 0">{{ name }}</b
-                  ><br />
-                  <span
-                    >{{ address.province }} {{ address.city }}
-                    {{ address.district }}</span
-                  >
-                </template>
-              </VueSelect>
+              <UserSelect :multiple="true" v-model="form.user_id"></UserSelect>
             </div>
             <div class="mb-3">
               <label for="member_type">Tipe keanggotaan</label>
@@ -106,6 +89,7 @@
 import { InertiaLink } from "@inertiajs/inertia-vue3";
 import VueSelect from "vue-select";
 import bootstrap from "bootstrap/dist/js/bootstrap.bundle";
+import UserSelect from "@/Components/User/UserSelect.vue";
 
 export default {
   props: {
@@ -114,6 +98,7 @@ export default {
   components: {
     InertiaLink,
     VueSelect,
+    UserSelect,
   },
   data() {
     return {
@@ -125,12 +110,6 @@ export default {
       keyword: null,
       fetching: false,
     };
-  },
-  created() {
-    this.debouncedFetchUsers = _.debounce(this.fetchUsers, 300);
-  },
-  mounted() {
-    this.fetchUsers();
   },
   methods: {
     submit() {
@@ -146,22 +125,6 @@ export default {
           form.reset();
         },
       });
-    },
-    onSearch(keyword) {
-      this.keyword = keyword;
-      this.debouncedFetchUsers();
-    },
-    fetchUsers: async function () {
-      this.fetching = true;
-      let response = await axios.get(
-        route("user.index", {
-          keyword: this.keyword,
-        })
-      );
-
-      this.users = response.data.data;
-
-      this.fetching = false;
     },
   },
 };
