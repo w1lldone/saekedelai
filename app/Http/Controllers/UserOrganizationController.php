@@ -29,11 +29,8 @@ class UserOrganizationController extends Controller
     {
         $this->authorize('update', $user);
 
-        $organizations = Organization::select('name', 'id')->get();
-
         return Inertia::render('User/EditOrganization', [
             'user' => $user->load('organizations'),
-            'organizations' => $organizations
         ]);
     }
 
