@@ -4,18 +4,21 @@
     <template #header> Lahan pertanian </template>
     <div class="row justify-content-center">
       <div class="col-md-10">
-        <div class="d-flex justify-content-end mb-3">
-          <InertiaLink class="btn btn-primary" :href="route('field.create')">
-            <i class="fa fa-plus me-2"></i> Daftarkan lahan
-          </InertiaLink>
+        <div class="row mb-3 align-items-end justify-content-between">
+          <div class="col-md-9">
+            <Filter
+              :submitUrl="route('field.index')"
+              :queries="queries"
+            ></Filter>
+          </div>
+          <div class="col-md-3 d-flex">
+            <InertiaLink class="btn btn-primary ms-auto" :href="route('field.create')">
+              <i class="fa fa-plus me-2"></i> Daftarkan lahan
+            </InertiaLink>
+          </div>
         </div>
         <Status></Status>
         <div class="card card-body p-4">
-          <Filter
-            :submitUrl="route('field.index')"
-            :queries="queries"
-            v-model="fields"
-          ></Filter>
           <div class="table-responsive">
             <table class="table">
               <thead>

@@ -3,6 +3,7 @@
     <div class="form-group">
       <label for="">Provinsi</label>
       <VueSelect
+        :loading="loading.province"
         label="name"
         :options="options.provinces"
         v-model="selected.province"
@@ -24,6 +25,7 @@
     <div class="form-group">
       <label for="">Kabupaten / Kota</label>
       <VueSelect
+        :loading="loading.city"
         label="name"
         :options="options.cities"
         v-model="selected.city"
@@ -46,6 +48,7 @@
       <label class="form-label">Kecamatan</label>
       <VueSelect
         label="name"
+        :loading="loading.district"
         :options="options.districts"
         v-model="selected.district"
         placeholder="Pilih kecamatan"
@@ -66,6 +69,7 @@
     <div class="form-group">
       <label class="form-label">Desa</label>
       <VueSelect
+        :loading="loading.subdistrict"
         label="name"
         :options="options.subdistricts"
         v-model="selected.subdistrict"
@@ -113,6 +117,12 @@ export default {
         district: { name: null },
         subdistrict: { name: null },
       },
+      loading: {
+        province: false,
+        city: false,
+        district: false,
+        subdistrict: false,
+      },
       params: {
         name: null,
       },
@@ -124,18 +134,20 @@ export default {
     this.selected.city.name = this.city;
     this.selected.district.name = this.district;
     this.selected.subdistrict.name = this.subdistrict;
-
   },
   methods: {
     handleSelected(method) {},
     fetchProvinces: _.debounce(async function () {
+      this.loading.province = true;
       let response = await axios.get(this.route("address.provinces"), {
         params: this.params,
       });
 
       this.options.provinces = response.data.data;
+      this.loading.province = false;
     }, 350),
     fetchCities: _.debounce(async function () {
+      this.loading.city = true;
       let response = await axios.get(this.route("address.cities"), {
         params: {
           province_id: this.selected.province.id,
@@ -143,8 +155,10 @@ export default {
         },
       });
       this.options.cities = response.data.data;
+      this.loading.city = false;
     }, 350),
     fetchDistricts: _.debounce(async function (name) {
+      this.loading.district = true;
       let response = await axios.get(this.route("address.districts"), {
         params: {
           city_id: this.selected.city.id,
@@ -152,8 +166,10 @@ export default {
         },
       });
       this.options.districts = response.data.data;
+      this.loading.district = false;
     }, 350),
     fetchSubdistricts: _.debounce(async function (name) {
+      this.loading.subdistrict = true;
       let response = await axios.get(this.route("address.subdistricts"), {
         params: {
           district_id: this.selected.district.id,
@@ -161,6 +177,7 @@ export default {
         },
       });
       this.options.subdistricts = response.data.data;
+      this.loading.subdistrict = false;
     }, 350),
   },
 };

@@ -12,17 +12,7 @@ class FieldController extends Controller
     {
         $query = new Field();
 
-        if ($request->has('organization_id')) {
-            $query = $query->whereHas('user', function ($user) use ($request)
-            {
-                $user->whereHas('organizations', function ($organization) use ($request)
-                {
-                    $organization->where('organization_id', $request->organization_id);
-                });
-            });
-        }
-
-        if ($request->has('user_id')) {
+        if ($request->filled('user_id')) {
             $query = $query->where('user_id', $request->user_id);
         }
 
@@ -36,7 +26,7 @@ class FieldController extends Controller
 
         return Inertia::render('Field/Index', [
             'initialFields' => $fields,
-            'queries' => $request->all()
+            'queries' => $request->except('page')
         ]);
     }
 

@@ -50,11 +50,12 @@ class UserController extends Controller
     {
         $this->authorize('create', User::class);
 
-        $organizations = Organization::select('id', 'name')->get();
+        if ($request->filled('organization_id')) {
+            $organization = Organization::select('id', 'name')->find($request->organization_id);
+        }
 
         return Inertia::render('User/Create', [
-            'organizations' => $organizations,
-            'organization_id' => $request->organization_id,
+            'organization' => $request->has('organization_id') ? $organization : null,
             'roles' => User::getRoles()
         ]);
     }

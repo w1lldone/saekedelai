@@ -78,7 +78,7 @@
                 v-model:subdistrict="form.subdistrict"
               ></AddressSelect>
               <div class="form-group pt-3 d-flex justify-content-end">
-                <button class="btn btn-success" type="submit">
+                <button class="btn btn-success" type="submit" :disabled="form.processing">
                   Simpan lahan
                 </button>
               </div>

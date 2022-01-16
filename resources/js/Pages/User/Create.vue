@@ -152,13 +152,10 @@
                 >Anggota pada kelompok tani
                 <span class="text-muted">(opsional)</span></label
               >
-              <vue-select
-                :value="organization_id"
-                :reduce="(organization) => organization.id"
-                label="name"
+              <OrganizationSelect
                 v-model="form.organization_id"
-                :options="organizations"
-              ></vue-select>
+                :initialSelected="organization"
+              ></OrganizationSelect>
               <span
                 v-if="form.errors.organization_id"
                 class="form-text text-danger"
@@ -214,11 +211,13 @@ import { Head, InertiaLink } from "@inertiajs/inertia-vue3";
 import AuthenticatedLayout from "@/Layouts/Auth.vue";
 import VueSelect from "vue-select";
 import AddressSelect from "@/Components/Address/AddressSelect.vue";
+import OrganizationSelect from "@/Components/Organization/OrganizationSelect.vue";
 
 export default {
   props: {
-    organizations: Array,
-    organization_id: String,
+    organization: {
+      default: {},
+    },
     roles: Array,
   },
   components: {
@@ -227,6 +226,7 @@ export default {
     AuthenticatedLayout,
     VueSelect,
     AddressSelect,
+    OrganizationSelect,
   },
   data() {
     return {
@@ -250,11 +250,8 @@ export default {
     };
   },
   mounted() {
-    if (this.organization_id) {
-      var index = this.organizations.findIndex(
-        (item) => item.id == this.organization_id
-      );
-      this.form.organization_id = this.organizations[index];
+    if (this.organization) {
+      this.form.organization_id = this.organization.id;
     }
   },
   methods: {

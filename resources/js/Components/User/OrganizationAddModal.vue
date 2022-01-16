@@ -30,12 +30,7 @@
           <div class="modal-body">
             <div class="mb-3">
               <label class="form-label">Kelompok tani</label>
-              <vue-select
-                v-model="form.organization_id"
-                :reduce="(organization) => organization.id"
-                :options="organizations"
-                label="name"
-              ></vue-select>
+              <OrganizationSelect v-model="form.organization_id"></OrganizationSelect>
               <span
                 v-if="form.errors.organization_id"
                 class="form-text text-danger"
@@ -91,14 +86,15 @@
 <script>
 import VueSelect from "vue-select";
 import bootstrap from "bootstrap/dist/js/bootstrap.bundle";
+import OrganizationSelect from '@/Components/Organization/OrganizationSelect.vue';
 
 export default {
   props: {
-    organizations: Array,
     user: Object,
   },
   components: {
     VueSelect,
+    OrganizationSelect
   },
   data() {
     return {
