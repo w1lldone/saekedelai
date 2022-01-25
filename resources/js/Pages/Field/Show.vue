@@ -148,9 +148,23 @@
               :href="route('field.planting.index', field.id)"
               class="btn btn-outline-primary"
             >
-              Semua Riwayat Penanaman
+              Lihat Semua Riwayat Penanaman
             </InertiaLink>
           </div>
+        </div>
+      </div>
+      <div v-else class="row justify-content-center mt-5">
+        <div class="col-md-8">
+          <div class="card card-body p-4 text-center d-flex">
+            <h3 class="text-muted">Lahan ini belum punya riwayat penanaman</h3>
+          </div>
+          <div class="mt-3 text-center">
+              <InertiaLink
+                :href="route('field.planting.create', field.id)"
+                class="btn btn-outline-primary"
+                ><i class="fa fa-plus"></i> Tambah data penanaman</InertiaLink
+              >
+            </div>
         </div>
       </div>
     </Auth>

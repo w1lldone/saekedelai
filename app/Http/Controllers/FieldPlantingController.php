@@ -17,7 +17,7 @@ class FieldPlantingController extends Controller
 
         return Inertia::render('Field/Planting/Index', [
             'plantings' => $plantings,
-            'field' => $field->load('user')
+            'field' => $field->load('user', 'address')
         ]);
     }
 
@@ -26,7 +26,7 @@ class FieldPlantingController extends Controller
         $this->authorize('update', $field);
 
         return Inertia::render('Field/Planting/Create', [
-            'field' => $field->load('user'),
+            'field' => $field->load('user', 'address'),
             'varieties' => Planting::getSeedVarieties()
         ]);
     }

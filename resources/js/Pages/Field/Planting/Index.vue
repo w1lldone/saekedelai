@@ -24,7 +24,10 @@
             </div>
           <div class="card card-body p-4">
             <h3 class="text-primary font-bold">Riwayat Penanaman Lahan #{{ field.id }}</h3>
-            <div class="text-muted">
+            <div>
+                Lokasi: {{ field.address.formatted_address }}
+            </div>
+            <div>
             Pemilik Lahan: {{ field.user.name }}
             </div>
             <div class="table-responsive">

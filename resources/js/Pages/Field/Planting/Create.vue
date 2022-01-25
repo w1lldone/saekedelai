@@ -25,8 +25,9 @@
         <div class="col-md-6">
           <div class="card card-body p-4">
             <h3 class="text-primary font-bold">Formulir Penanaman Kedelai</h3>
-            <b>Lahan #{{ field.id }}</b>
-            <b>Pemilik: {{ field.user.name }}</b>
+            <span>Lahan #{{ field.id }}</span>
+            <span>Lokasi: {{ field.address.formatted_address }}</span>
+            <span>Pemilik: {{ field.user.name }}</span>
 
             <div class="form-group mt-3">
               <label for="" class="form-label">Tanggal Tanam</label>
@@ -82,7 +83,7 @@
             </div>
 
             <div class="form-group">
-              <label for="">Biaya pengolahan lahan</label>
+              <label for="">Biaya pengolahan lahan <span class="text-muted">(opsional)</span></label>
               <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">Rp</span>
                 <input
@@ -111,7 +112,7 @@
             </div>
 
             <div class="form-group">
-              <label for="">Biaya pemakaian pupuk</label>
+              <label for="">Biaya pemakaian pupuk <span class="text-muted">(opsional)</span></label>
               <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">Rp</span>
                 <input
