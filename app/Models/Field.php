@@ -21,4 +21,24 @@ class Field extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function plantings()
+    {
+        return $this->hasMany(\App\Models\Planting::class);
+    }
+
+    public function lastPlanting()
+    {
+        return $this->belongsTo(\App\Models\Planting::class);
+    }
+
+    public function scopeWithLastPlanting($query)
+    {
+        $query->addSelect([
+            'last_planting_id' => \App\Models\Planting::select('id')
+                ->whereColumn('field_id', 'fields.id')
+                ->orderByDesc('started_at')
+                ->limit(1)
+        ])->with('lastPlanting');
+    }
 }

@@ -52,6 +52,107 @@
           </div>
         </div>
       </div>
+
+      <!-- Last Planting -->
+      <div class="row justify-content-center mt-5" v-if="field.last_planting">
+        <div class="col-md-8">
+          <div class="card card-body p-4">
+            <h3 class="font-bold text-primary">
+              <InertiaLink
+                :href="
+                  route('field.planting.show', [
+                    field.id,
+                    field.last_planting.id,
+                  ])
+                "
+                >Penanaman Terkini <i class="fa fa-link"></i
+              ></InertiaLink>
+            </h3>
+
+            <div class="row mt-3">
+              <div class="col-md-6 d-flex align-items-start">
+                <div class="me-3">
+                  <i class="fa fa-seedling fa-2x text-success"></i>
+                </div>
+                <div>
+                  <b>Tanggal tanam</b><br />
+                  <span>{{
+                    format(
+                      new Date(field.last_planting.started_at),
+                      "d MMMM yyyy",
+                      {
+                        locale: id,
+                      }
+                    )
+                  }}</span>
+                </div>
+              </div>
+              <div class="col-md-6 d-flex align-items-start">
+                <div class="me-3">
+                  <i class="fab fa-pagelines fa-2x text-success"></i>
+                </div>
+                <div>
+                  <b>Tanggal panen</b><br />
+                  <span v-if="field.last_planting.harvested_at">{{
+                    format(
+                      new Date(field.last_planting.harvested_at),
+                      "d MMMM yyyy",
+                      {
+                        locale: id,
+                      }
+                    )
+                  }}</span>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-md-6 d-flex align-items-start">
+                <div class="me-3">
+                  <i class="fa fa-archive fa-2x text-success"></i>
+                </div>
+                <div>
+                  <b>Informasi bibit</b><br />
+                  <span>Varietas: {{ field.last_planting.seed_variety }}</span
+                  ><br />
+                  <span
+                    >Kuantitas: {{ field.last_planting.seed_quantity }} kg</span
+                  >
+                </div>
+              </div>
+              <div
+                class="col-md-6 d-flex align-items-start"
+                v-if="field.last_activity"
+              >
+                <div class="me-3">
+                  <i class="fa fa-calendar-check fa-2x text-success"></i>
+                </div>
+                <div>
+                  <b>Aktivitas Terkini</b><br />
+                  <span>{{ field.last_activity.activity }}</span
+                  ><br />
+                  <span>{{
+                    format(
+                      new Date(field.last_activity.timestamp),
+                      "d MMMM yyyy",
+                      {
+                        locale: id,
+                      }
+                    )
+                  }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-3 text-center">
+            <InertiaLink
+              :href="route('field.planting.index', field.id)"
+              class="btn btn-outline-primary"
+            >
+              Semua Riwayat Penanaman
+            </InertiaLink>
+          </div>
+        </div>
+      </div>
     </Auth>
   </div>
 </template>
@@ -60,7 +161,9 @@
 import Auth from "@/Layouts/Auth.vue";
 import { Head, InertiaLink } from "@inertiajs/inertia-vue3";
 import DeleteButton from "@/Components/DeleteButton.vue";
-import Status from '@/Components/Status.vue';
+import Status from "@/Components/Status.vue";
+import { format } from "date-fns";
+import { id } from "date-fns/locale";
 
 export default {
   props: {
@@ -72,6 +175,12 @@ export default {
     Head,
     DeleteButton,
     Status,
+  },
+  setup() {
+    return {
+      format,
+      id,
+    };
   },
 };
 </script>

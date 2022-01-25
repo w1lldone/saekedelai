@@ -61,12 +61,18 @@ class FieldController extends Controller
         return redirect()->route('field.show', $field)->with('status', __('messages.success'));
     }
 
-    public function show(Field $field)
+    public function show($field)
     {
+        $field = Field::withLastPlanting()->with(['user.organizations:id,name', 'address'])->findOrFail($field);
+
         $this->authorize('view', $field);
 
+        if ($field->lastPlanting) {
+            $field->last_activity = $field->lastPlanting->onfarms()->latest()->first();
+        }
+
         return Inertia::render('Field/Show', [
-            'field' => $field->load('user.organizations:id,name', 'address')
+            'field' => $field,
         ]);
     }
 

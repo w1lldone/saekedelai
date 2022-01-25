@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\FieldController;
+use App\Http\Controllers\FieldPlantingController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\OrganizationUserController;
 use App\Http\Controllers\ProfileController;
@@ -78,6 +79,10 @@ Route::prefix('field')->middleware(['auth'])->name('field.')->group(function ()
     Route::get('/{field}/edit', [FieldController::class, 'edit'])->name('edit');
     Route::delete('/{field}', [FieldController::class, 'destroy'])->name('delete');
     Route::put('/{field}', [FieldController::class, 'update'])->name('update');
+
+    Route::get('/{field}/planting', [FieldPlantingController::class, 'index'])->name('planting.index');
+    Route::get('/{field}/planting/create', [FieldPlantingController::class, 'create'])->name('planting.create');
+    Route::get('/{field}/planting/{planting}', [FieldPlantingController::class, 'show'])->name('planting.show');
 });
 
 require __DIR__ . '/auth.php';
