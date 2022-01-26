@@ -3,6 +3,7 @@
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\FieldController;
 use App\Http\Controllers\FieldPlantingController;
+use App\Http\Controllers\OnfarmMediaController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\OrganizationUserController;
 use App\Http\Controllers\ProfileController;
@@ -83,6 +84,12 @@ Route::prefix('field')->middleware(['auth'])->name('field.')->group(function ()
     Route::get('/{field}/planting', [FieldPlantingController::class, 'index'])->name('planting.index');
     Route::get('/{field}/planting/create', [FieldPlantingController::class, 'create'])->name('planting.create');
     Route::get('/{field}/planting/{planting}', [FieldPlantingController::class, 'show'])->name('planting.show');
+    Route::post('/{field}/planting', [FieldPlantingController::class, 'store'])->name('planting.store');
+});
+
+Route::prefix('onfarm/{onfarm}/media')->name('onfarm.media.')->middleware(['auth'])->group(function ()
+{
+    Route::get('/{media}', [OnfarmMediaController::class, 'show'])->name('show');
 });
 
 require __DIR__ . '/auth.php';

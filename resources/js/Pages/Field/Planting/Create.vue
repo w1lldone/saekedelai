@@ -29,140 +29,175 @@
             <span>Lokasi: {{ field.address.formatted_address }}</span>
             <span>Pemilik: {{ field.user.name }}</span>
 
-            <div class="form-group mt-3">
-              <label for="" class="form-label">Tanggal Tanam</label>
-              <div>
-                <date-picker
-                  v-model:value="form.started_at"
-                  value-type="YYYY-MM-DD"
-                  :input-class="`form-control ${
-                    form.errors.started_at ? '' : 'is_invalid'
-                  }`"
-                ></date-picker>
+            <form @submit.prevent="submit()">
+              <div class="form-group mt-3">
+                <label for="" class="form-label">Tanggal Tanam</label>
+                <div>
+                  <date-picker
+                    v-model="form.started_at"
+                    format="yyyy-MM-dd"
+                    :monthChangeOnScroll="false"
+                    :autoApply="true"
+                    :inputClassName="`form-control ${
+                      form.errors.started_at ? 'is-invalid' : ''
+                    }`"
+                  ></date-picker>
+                  <input
+                    type="hidden"
+                    class="form-control"
+                    :class="{ 'is-invalid': form.errors.started_at }"
+                  />
+                  <span class="invalid-feedback">{{
+                    form.errors.started_at
+                  }}</span>
+                </div>
               </div>
-              <span class="invalid-feedback">{{ form.errors.started_at }}</span>
-            </div>
 
-            <div class="form-group">
-              <label for="">Varietas Benih</label>
-              <div
-                class="form-check"
-                v-for="variety in varieties"
-                :key="variety"
-              >
+              <div class="form-group">
+                <label for="">Varietas Benih</label>
+                <div
+                  class="form-check"
+                  v-for="variety in varieties"
+                  :key="variety"
+                >
+                  <input
+                    class="form-check-input"
+                    :class="{ 'is-invalid': form.errors.seed_variety }"
+                    type="radio"
+                    name="flexRadioDefault"
+                    v-model="form.seed_variety"
+                    :value="variety"
+                    :id="variety"
+                  />
+                  <label class="form-check-label" :for="variety">
+                    {{ variety }}
+                  </label>
+                </div>
                 <input
-                  class="form-check-input"
+                  type="hidden"
+                  class="form-control"
                   :class="{ 'is-invalid': form.errors.seed_variety }"
-                  type="radio"
-                  name="flexRadioDefault"
-                  :id="variety"
-                />
-                <label class="form-check-label" :for="variety">
-                  {{ variety }}
-                </label>
-              </div>
-              <span class="invalid-feedback">
-                {{ form.errors.seed_variety }}
-              </span>
-            </div>
-
-            <div class="form-group">
-              <label for="">Kuantitas benih</label>
-              <div class="input-group mb-3">
-                <input
-                  type="number"
-                  class="form-control"
-                  :class="{ 'is-invalid': form.errors.seed_quantity }"
-                  v-model="form.seed_quantity"
-                />
-                <span class="input-group-text" id="basic-addon1">Kg</span>
-              </div>
-              <span class="invalid-feedback">
-                {{ form.errors.seed_quantity }}
-              </span>
-            </div>
-
-            <div class="form-group">
-              <label for="">Biaya pengolahan lahan <span class="text-muted">(opsional)</span></label>
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Rp</span>
-                <input
-                  type="number"
-                  class="form-control"
-                  :class="{ 'is-invalid': form.errors.activity_cost }"
-                  v-model="form.activity_cost"
-                />
-              </div>
-              <span class="invalid-feedback">
-                {{ form.errors.activity_cost }}
-              </span>
-            </div>
-
-            <div class="form-group">
-              <label for="">Pupuk yang digunakan</label>
-              <input
-                type="text"
-                class="form-control"
-                v-model="form.fertilizer"
-                :class="{ 'is-invalid': form.errors.fertilizer }"
-              />
-              <span class="invalid-feedback">
-                {{ form.errors.fertilizer }}
-              </span>
-            </div>
-
-            <div class="form-group">
-              <label for="">Biaya pemakaian pupuk <span class="text-muted">(opsional)</span></label>
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Rp</span>
-                <input
-                  type="number"
-                  class="form-control"
-                  v-model="form.seed_cost"
-                  :class="{ 'is-invalid': form.errors.seed_cost }"
                 />
                 <span class="invalid-feedback">
-                {{ form.errors.seed_cost }}
-              </span>
+                  {{ form.errors.seed_variety }}
+                </span>
               </div>
-            </div>
 
-            <div class="form-group">
-              <label for="formFile" class="form-label"
-                >Foto benih <span class="text-muted">(opsional)</span></label
-              >
-              <input
-                class="form-control"
-                :class="{ 'is-invalid': form.errors.seed_photo }"
-                type="file"
-                id="formFile"
-                accept="image/*"
-                @input="form.seed_photo = $event.target.files[0]"
-              />
-              <span class="invalid-feedback">{{ form.errors.seed_photo }}</span>
-            </div>
+              <div class="form-group">
+                <label for="">Kuantitas benih</label>
+                <div class="input-group mb-3">
+                  <input
+                    type="number"
+                    class="form-control"
+                    :class="{ 'is-invalid': form.errors.seed_quantity }"
+                    v-model="form.seed_quantity"
+                  />
+                  <span class="input-group-text" id="basic-addon1">Kg</span>
+                  <span class="invalid-feedback">
+                    {{ form.errors.seed_quantity }}
+                  </span>
+                </div>
+              </div>
 
-            <div class="form-group">
-              <label for="formFile" class="form-label"
-                >Foto penanaman
-                <span class="text-muted">(opsional)</span></label
-              >
-              <input
-                class="form-control"
-                :class="{ 'is-invalid': form.errors.activity_photo }"
-                type="file"
-                id="formFile"
-                accept="image/*"
-                @input="form.activity_photo = $event.target.files[0]"
-              />
-              <span class="invalid-feedback">{{
-                form.errors.activity_photo
-              }}</span>
-            </div>
+              <div class="form-group">
+                <label for=""
+                  >Biaya pengolahan lahan
+                  <span class="text-muted">(opsional)</span></label
+                >
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon1">Rp</span>
+                  <input
+                    type="number"
+                    class="form-control"
+                    :class="{ 'is-invalid': form.errors.activity_cost }"
+                    v-model="form.activity_cost"
+                  />
+                </div>
+                <span class="invalid-feedback">
+                  {{ form.errors.activity_cost }}
+                </span>
+              </div>
 
-            <div class="form-group text-end mt-3">
-                <button class="btn btn-success">Simpan penanaman</button>
-            </div>
+              <div class="form-group">
+                <label for="">Pupuk yang digunakan <span class="text-muted">(opsional)</span></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  v-model="form.fertilizer"
+                  :class="{ 'is-invalid': form.errors.fertilizer }"
+                />
+                <span class="invalid-feedback">
+                  {{ form.errors.fertilizer }}
+                </span>
+              </div>
+
+              <div class="form-group">
+                <label for=""
+                  >Biaya pemakaian pupuk
+                  <span class="text-muted">(Jika menggunakan pupuk)</span></label
+                >
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon1">Rp</span>
+                  <input
+                    type="number"
+                    class="form-control"
+                    :disabled="!form.fertilizer"
+                    v-model="form.fertilizer_cost"
+                    :class="{ 'is-invalid': form.errors.fertilizer_cost }"
+                  />
+                  <span class="invalid-feedback">
+                    {{ form.errors.fertilizer_cost }}
+                  </span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="formFile" class="form-label"
+                  >Foto benih <span class="text-muted">(opsional)</span></label
+                >
+                <input
+                  class="form-control"
+                  :class="{ 'is-invalid': form.errors.seed_photo }"
+                  type="file"
+                  id="formFile"
+                  accept="image/*"
+                  @input="form.seed_photo = $event.target.files[0]"
+                />
+                <span class="form-text">Maksimal 5Mb</span><br />
+                <span class="invalid-feedback">{{
+                  form.errors.seed_photo
+                }}</span>
+              </div>
+
+              <div class="form-group">
+                <label for="formFile" class="form-label"
+                  >Foto penanaman
+                  <span class="text-muted">(opsional)</span></label
+                >
+                <input
+                  class="form-control"
+                  :class="{ 'is-invalid': form.errors.activity_photo }"
+                  type="file"
+                  id="formFile"
+                  accept="image/*"
+                  @input="form.activity_photo = $event.target.files[0]"
+                />
+                <span class="form-text">Maksimal 5Mb</span><br />
+                <span class="invalid-feedback">{{
+                  form.errors.activity_photo
+                }}</span>
+              </div>
+
+              <div class="form-group text-end mt-3">
+                <button
+                  class="btn btn-success"
+                  type="submit"
+                  :disabled="form.processing"
+                >
+                  Simpan penanaman
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
@@ -175,8 +210,8 @@ import { Head, InertiaLink } from "@inertiajs/inertia-vue3";
 import Auth from "@/Layouts/Auth.vue";
 import { format, formatDistanceToNow } from "date-fns";
 import { id } from "date-fns/locale";
-import DatePicker from "vue-datepicker-next";
-import "vue-datepicker-next/index.css";
+import DatePicker from "vue3-date-time-picker";
+import "vue3-date-time-picker/dist/main.css";
 
 export default {
   props: {
@@ -210,6 +245,11 @@ export default {
         activity_photo: null,
       }),
     };
+  },
+  methods: {
+    submit() {
+      this.form.post(route("field.planting.store", this.field.id));
+    },
   },
 };
 </script>

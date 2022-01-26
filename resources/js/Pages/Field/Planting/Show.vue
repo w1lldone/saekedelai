@@ -40,9 +40,7 @@
                 </div>
                 <div>
                   <b>Pemilik Lahan</b><br />
-                  <span>{{
-                    planting.field.user.name
-                  }}</span>
+                  <span>{{ planting.field.user.name }}</span>
                 </div>
               </div>
               <div class="col-md-6 d-flex align-items-start">
@@ -51,9 +49,7 @@
                 </div>
                 <div>
                   <b>Luas Lahan</b><br />
-                  <span>{{
-                    planting.field.area
-                  }} Ha</span>
+                  <span>{{ planting.field.area }} Ha</span>
                 </div>
               </div>
             </div>
@@ -109,6 +105,11 @@
                   <i class="fa fa-seedling me-3 fa-2x"></i>
                   <div class="flex-grow-1">
                     <h4>{{ onfarm.activity }}</h4>
+                    <div v-if="onfarm.cost">
+                      <i class="fas fa-coins"></i> Biaya : Rp{{
+                        onfarm.cost.toLocaleString("id-ID")
+                      }},00
+                    </div>
                     <p>{{ onfarm.notes }}</p>
                   </div>
                   <div class="text-end">
@@ -118,6 +119,20 @@
                         addSuffix: true,
                       })
                     }}
+                  </div>
+                </div>
+                <div class="row ps-4 mt-3">
+                  <div
+                    v-for="media in onfarm.media"
+                    class="col-md-4"
+                    :key="media.id"
+                  >
+                    <img
+                      :src="route('onfarm.media.show', [onfarm.id, media.id])"
+                      alt=""
+                      class="img-fluid rounded img-thumbnail"
+                    />
+                    <div class="mt-2">{{ media.name }}</div>
                   </div>
                 </div>
               </div>
