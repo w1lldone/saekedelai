@@ -69,4 +69,18 @@ class FieldPlantingFeatureTest extends TestCase
             'name' => 'Pengolahan lahan'
         ]);
     }
+
+    /** @test */
+    public function user_can_update_planting()
+    {
+        $this->login();
+        $planting = Planting::factory()->create();
+        $data = Planting::factory()->make()->only('started_at', 'seed_variety', 'seed_quantity');
+
+        $response = $this->putJson(route('field.planting.update', [$planting->field_id, $planting->id]), $data);
+
+        $response->assertRedirect();
+        $data['id'] = $planting->id;
+        $this->assertDatabaseHas('plantings', $data);
+    }
 }

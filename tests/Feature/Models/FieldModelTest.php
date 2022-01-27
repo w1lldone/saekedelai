@@ -4,6 +4,8 @@ namespace Tests\Feature\Models;
 
 use App\Models\Address;
 use App\Models\Field;
+use App\Models\Onfarm;
+use App\Models\Planting;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -39,4 +41,26 @@ class FieldModelTest extends TestCase
         $this->assertInstanceOf(Address::class, $field->address);
     }
 
+    /** @test */
+    public function it_removes_plantings_on_deleted()
+    {
+        $planting = Planting::factory()->create();
+
+        $planting->field->delete();
+
+        $this->assertDeleted($planting);
+    }
+
+    /** @test */
+    public function it_removes_address_on_deleted()
+    {
+        $field = Field::factory()->create();
+        $address = $field->address()->create(
+            Address::factory()->make()->toArray()
+        );
+
+        $field->delete();
+
+        $this->assertDeleted($address);
+    }
 }

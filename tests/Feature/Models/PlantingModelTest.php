@@ -40,4 +40,15 @@ class PlantingModelTest extends TestCase
 
         $this->assertInstanceOf(Onfarm::class, $onfarm);
     }
+
+
+    /** @test */
+    public function it_removes_onfarms_on_deleted()
+    {
+        $onfarm = Onfarm::factory()->create();
+
+        $onfarm->planting->delete();
+
+        $this->assertDeleted($onfarm);
+    }
 }

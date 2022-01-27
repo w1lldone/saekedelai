@@ -6,6 +6,7 @@ use App\Models\Onfarm;
 use App\Models\Planting;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Http\UploadedFile;
 use Tests\TestCase;
 
 class OnfarmModelTest extends TestCase
@@ -28,5 +29,19 @@ class OnfarmModelTest extends TestCase
         $onfarm = Onfarm::factory()->create();
 
         $this->assertInstanceOf(Planting::class, $onfarm->planting);
+    }
+
+    /** @test */
+    public function it_removes_media_on_delete()
+    {
+        /** @var Onfarm */
+        $onfarm = Onfarm::factory()->create();
+        $file = UploadedFile::fake()->image('image');
+
+        $media = $onfarm->addMedia($file)->toMediaCollection();
+
+        $onfarm->delete();
+
+        $this->assertDeleted($media);
     }
 }
