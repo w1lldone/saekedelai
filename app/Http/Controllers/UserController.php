@@ -127,7 +127,8 @@ class UserController extends Controller
             'status' => session('status'),
             'can' => [
                 'update' => $request->user()->can('update', $user),
-                'delete' => $request->user()->can('delete', $user)
+                'delete' => $request->user()->can('delete', $user),
+                'create' => $request->user()->can('create', User::class)
             ]
         ]);
     }
