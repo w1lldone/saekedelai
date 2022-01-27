@@ -19,6 +19,18 @@ class Onfarm extends Model implements HasMedia
         'penanaman', 'pemupukan', 'pemeliharaan'
     ];
 
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
+    protected static function booted()
+    {
+        static::deleted(function ($onfarm) {
+            $onfarm->media()->delete();
+        });
+    }
+
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('galery');

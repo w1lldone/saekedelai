@@ -12,6 +12,19 @@ class Field extends Model
 
     protected $guarded = ['id'];
 
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
+    protected static function booted()
+    {
+        static::deleted(function ($field) {
+            $field->plantings()->delete();
+            $field->address()->delete();
+        });
+    }
+
     public function address()
     {
         return $this->morphOne(Address::class, 'addressable');

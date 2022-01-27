@@ -17,6 +17,18 @@ class Planting extends Model
         'Gema', 'DETAM-2', 'Lokal Grobogan', 'Gepak Kuning', 'Gepak Ijo'
     ];
 
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
+    protected static function booted()
+    {
+        static::deleted(function ($planting) {
+            $planting->onfarms()->delete();
+        });
+    }
+
     public static function getSeedVarieties()
     {
         return self::$seedVarieties;
