@@ -1,9 +1,9 @@
 <template>
-  <Head title="Users List"></Head>
+  <Head title="Lahan pertanian"></Head>
   <Auth>
     <template #header> Lahan pertanian </template>
     <div class="row justify-content-center">
-      <div class="col-md-10">
+      <div class="col-md-12">
         <div class="row mb-3 align-items-end justify-content-between">
           <div class="col-md-9">
             <Filter
@@ -12,7 +12,10 @@
             ></Filter>
           </div>
           <div class="col-md-3 d-flex">
-            <InertiaLink class="btn btn-primary ms-auto" :href="route('field.create')">
+            <InertiaLink
+              class="btn btn-primary ms-auto"
+              :href="route('field.create')"
+            >
               <i class="fa fa-plus me-2"></i> Daftarkan lahan
             </InertiaLink>
           </div>
@@ -26,7 +29,7 @@
                   <th>Id</th>
                   <th>Pemilik</th>
                   <th>Lokasi lahan</th>
-                  <th>Luas (Ha)</th>
+                  <th style="width: 20%">Aksi</th>
                 </tr>
               </thead>
               <tbody>
@@ -46,9 +49,37 @@
                     <InertiaLink :href="route('field.show', field.id)"
                       ><b>{{ field.address.formatted_address }}</b></InertiaLink
                     ><br />
-                    <span>{{ field.description }}</span>
+                    <span>{{ field.description }} </span>
                   </td>
-                  <td>{{ field.area }}</td>
+                  <td>
+                    <InertiaLink
+                      class="btn btn-primary me-1"
+                      data-tippy-content="Lihat detail lahan"
+                      :href="route('field.show', field.id)"
+                    >
+                      <i class="fa fa-eye"></i>
+                    </InertiaLink>
+                    <InertiaLink
+                      data-tippy-content="Lihat riwayat penanaman"
+                      class="btn btn-success text-white me-1"
+                      :href="route('field.planting.index', field.id)"
+                    >
+                      <i class="far fa-calendar-alt"></i>
+                    </InertiaLink>
+                    <InertiaLink
+                      data-tippy-content="Kelola penanaman terkini"
+                      v-if="field.last_planting"
+                      class="btn btn-info text-white"
+                      :href="
+                        route('field.planting.show', [
+                          field.id,
+                          field.last_planting_id,
+                        ])
+                      "
+                    >
+                      <i class="fa fa-seedling"></i>
+                    </InertiaLink>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -74,11 +105,6 @@ export default {
     initialFields: Object,
     queries: Object,
   },
-  data() {
-    return {
-      fields: this.initialFields,
-    };
-  },
   components: {
     Head,
     InertiaLink,
@@ -86,6 +112,11 @@ export default {
     Pagination,
     Filter,
     Status,
+  },
+  data() {
+    return {
+      fields: this.initialFields,
+    };
   },
 };
 </script>

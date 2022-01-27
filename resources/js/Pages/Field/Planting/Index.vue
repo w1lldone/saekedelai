@@ -17,19 +17,23 @@
 
       <div class="row justify-content-center">
         <div class="col-md-10">
-            <div class="text-end mb-2">
-                <InertiaLink :href="route('field.planting.create', field.id)" class="btn btn-primary">
-                    <i class="fa fa-plus"></i> Tambah penanaman
-                </InertiaLink>
-            </div>
+          <div class="text-end mb-2">
+            <InertiaLink
+              :href="route('field.planting.create', field.id)"
+              class="btn btn-primary"
+            >
+              <i class="fa fa-plus"></i> Tambah penanaman
+            </InertiaLink>
+          </div>
+
+          <Status></Status>
+
           <div class="card card-body p-4">
-            <h3 class="text-primary font-bold">Riwayat Penanaman Lahan #{{ field.id }}</h3>
-            <div>
-                Lokasi: {{ field.address.formatted_address }}
-            </div>
-            <div>
-            Pemilik Lahan: {{ field.user.name }}
-            </div>
+            <h3 class="text-primary font-bold">
+              Riwayat Penanaman Lahan #{{ field.id }}
+            </h3>
+            <div>Lokasi: {{ field.address.formatted_address }}</div>
+            <div>Pemilik Lahan: {{ field.user.name }}</div>
             <div class="table-responsive">
               <table class="table">
                 <thead>
@@ -107,6 +111,7 @@ import { Head, InertiaLink } from "@inertiajs/inertia-vue3";
 import Auth from "@/Layouts/Auth.vue";
 import { format, formatDistanceToNow } from "date-fns";
 import { id } from "date-fns/locale";
+import Status from "@/Components/Status.vue";
 
 export default {
   props: {
@@ -117,6 +122,7 @@ export default {
     Head,
     InertiaLink,
     Auth,
+    Status,
   },
   setup() {
     return {

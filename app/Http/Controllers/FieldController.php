@@ -16,7 +16,7 @@ class FieldController extends Controller
             $query = $query->where('user_id', $request->user_id);
         }
 
-        $query = $query->with('address:id,addressable_id,addressable_type,province,city,district', 'user:name,id', 'user.organizations:id,name');
+        $query = $query->with('address:id,addressable_id,addressable_type,province,city,district', 'user:name,id', 'user.organizations:id,name')->withLastPlanting();
 
         $fields = $query->latest()->paginate();
 

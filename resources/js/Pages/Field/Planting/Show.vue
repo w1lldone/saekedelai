@@ -24,6 +24,9 @@
 
       <div class="row justify-content-center">
         <div class="col-md-8">
+
+          <Status></Status>
+
           <div class="card card-body p-4">
             <h3 class="text-primary font-bold">
               Penanaman Bulan
@@ -96,6 +99,25 @@
             </div>
           </div>
 
+          <div class="my-3 d-flex justify-content-between">
+            <InertiaLink
+              class="btn btn-warning"
+              :href="
+                route('field.planting.edit', [planting.field_id, planting.id])
+              "
+            >
+              <i class="fa fa-edit"></i> Edit penanaman
+            </InertiaLink>
+            <delete-button
+              entity="Penanaman"
+              :submitUrl="
+                route('field.planting.delete', [planting.field_id, planting.id])
+              "
+            >
+              <i class="fa fa-trash me-2"></i> Hapus data penanaman
+            </delete-button>
+          </div>
+
           <div class="mt-5">
             <h3 class="text-primary font-bold mb-3">Aktivitas Penanaman</h3>
 
@@ -155,15 +177,20 @@ import Auth from "@/Layouts/Auth.vue";
 import { Head, InertiaLink } from "@inertiajs/inertia-vue3";
 import { format, formatDistanceToNow } from "date-fns";
 import { id } from "date-fns/locale";
+import DeleteButton from "@/Components/DeleteButton.vue";
+import Status from "@/Components/Status.vue";
 
 export default {
   components: {
     Auth,
     Head,
     InertiaLink,
+    DeleteButton,
+    Status,
   },
   props: {
     planting: Object,
+    can: Object,
   },
   setup() {
     return {

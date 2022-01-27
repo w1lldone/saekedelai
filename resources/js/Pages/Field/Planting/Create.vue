@@ -99,6 +99,11 @@
                 </div>
               </div>
 
+                <div class="py-3">
+                    <h4 class="font-bold">Data aktifitas penanaman</h4>
+                    <span>Data di bawah ini akan ditambahkan sebagai aktivitas tanam</span>
+                </div>
+
               <div class="form-group">
                 <label for=""
                   >Biaya pengolahan lahan
@@ -119,7 +124,7 @@
               </div>
 
               <div class="form-group">
-                <label for="">Pupuk yang digunakan <span class="text-muted">(opsional)</span></label>
+                <label for="">Jenis pupuk yang digunakan <span class="text-muted">(opsional)</span></label>
                 <input
                   type="text"
                   class="form-control"

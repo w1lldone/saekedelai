@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Head title="Daftarkan lahan"></Head>
+    <Head title="Edit lahan"></Head>
     <Auth>
       <template #header>
         <InertiaLink class="text-primary" :href="route('field.index')"
