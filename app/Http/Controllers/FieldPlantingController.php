@@ -32,7 +32,7 @@ class FieldPlantingController extends Controller
         ]);
     }
 
-    public function show(Field $field, $planting)
+    public function show(Field $field, $planting, Request $request)
     {
         $this->authorize('view', $field);
 
@@ -42,7 +42,23 @@ class FieldPlantingController extends Controller
         }, 'field.user'])->findOrFail($planting);
 
         return Inertia::render('Field/Planting/Show', [
-            'planting' => $planting
+            'planting' => $planting,
+            'can' => [
+                'delete' => $request->user()->can('delete', $planting)
+            ]
+        ]);
+    }
+
+    public function edit(Field $field, $planting)
+    {
+        $this->authorize('update', $field);
+
+        $planting = $field->plantings()->findOrFail($planting);
+
+        return Inertia::render('Field/Planting/Edit', [
+            'planting' => $planting,
+            'field' => $field->load('address', 'user'),
+            'varieties' => Planting::getSeedVarieties()
         ]);
     }
 
@@ -93,5 +109,33 @@ class FieldPlantingController extends Controller
         }
 
         return redirect()->route('field.planting.show', [$field->id, $planting->id])->with('status', __('messages.success'));
+    }
+
+    public function update(Request $request, Field $field, $planting)
+    {
+        $this->authorize('update', $field);
+
+        $planting = $field->plantings()->findOrFail($planting);
+
+        $data = $request->validate([
+            'started_at' => 'date',
+            'seed_variety' => 'string',
+            'seed_quantity' => 'numeric',
+        ]);
+
+        $planting->update($data);
+
+        return redirect()->route('field.planting.show', [$field, $planting])->with('status', __('messages.success'));
+    }
+
+    public function destroy(Field $field, $planting)
+    {
+        $this->authorize('update', $field);
+
+        $planting = $field->plantings()->findOrFail($planting);
+
+        $planting->delete();
+
+        return redirect()->route('field.planting.index', $field)->with('status', __('messages.deleted'));
     }
 }
