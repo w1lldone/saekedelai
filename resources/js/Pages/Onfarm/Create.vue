@@ -56,6 +56,8 @@
                     <date-picker
                       v-model="form.started_at"
                       format="yyyy-MM-dd"
+                      locale="in-ID"
+                      :enable-time-picker="false"
                       :monthChangeOnScroll="false"
                       :autoApply="true"
                       :inputClassName="`form-control ${
@@ -69,7 +71,11 @@
                   <div class="col-md-6">
                     <label for="">Tanggal selesai (opsional)</label>
                     <date-picker
+                      :start-date="form.started_at"
+                      :markers="[{date: form.started_at}]"
                       v-model="form.finished_at"
+                      locale="in-ID"
+                      :enable-time-picker="false"
                       format="yyyy-MM-dd"
                       :monthChangeOnScroll="false"
                       :autoApply="true"
