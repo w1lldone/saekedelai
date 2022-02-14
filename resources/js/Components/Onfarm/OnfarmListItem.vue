@@ -5,19 +5,21 @@
         <i class="fa fa-seedling me-3 fa-2x"></i>
         <div class="flex-grow-1">
           <h4>{{ onfarm.name }}</h4>
-          <div v-if="onfarm.cost">
-            <i class="fas fa-coins"></i> Biaya : Rp{{
-              onfarm.cost.toLocaleString("id-ID")
-            }},00
-          </div>
-          <div v-html="onfarm.description"></div>
-        </div>
-        <div class="text-end">
+          <div class="text-secondary">
           {{
             format(new Date(onfarm.started_at), "d MMMM yyyy", {
               locale: id,
             })
           }}
+          <span v-if="onfarm.finished_at">
+            &ndash;{{
+              format(new Date(onfarm.finished_at), "d MMMM yyyy", {
+                locale: id,
+              })
+            }}
+          </span>
+        </div>
+          <div v-html="onfarm.description"></div>
         </div>
       </div>
       <div class="ps-5 mt-3" v-if="onfarm.media.length">
@@ -69,7 +71,12 @@
           </div>
         </div>
         <div class="d-flex justify-content-between mt-2">
-          <InertiaLink :href="route('planting.onfarm.edit', [onfarm.planting_id, onfarm.id])" class="btn btn-warning">
+          <InertiaLink
+            :href="
+              route('planting.onfarm.edit', [onfarm.planting_id, onfarm.id])
+            "
+            class="btn btn-warning"
+          >
             <i class="fa fa-edit"></i> Edit aktivitas
           </InertiaLink>
           <delete-button
@@ -106,7 +113,7 @@ export default {
     Carousel,
     Slide,
     Navigation,
-    InertiaLink
+    InertiaLink,
   },
   data() {
     return {
