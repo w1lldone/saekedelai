@@ -86,7 +86,7 @@
                         {{ planting.last_onfarm.activity }}
                         <small>{{
                           formatDistanceToNow(
-                            new Date(planting.last_onfarm.timestamp),
+                            new Date(planting.last_onfarm.started_at),
                             {
                               addSuffix: true,
                               locale: id,

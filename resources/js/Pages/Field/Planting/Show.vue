@@ -3,9 +3,7 @@
     <Head title="Detail Penanaman"></Head>
     <Auth>
       <template #header>
-        <InertiaLink class="text-primary" :href="route('field.index')"
-          >Lahan pertanian</InertiaLink
-        >
+        ...
         <i class="fa fa-chevron-right mx-2"></i>
         <InertiaLink
           class="text-primary"
@@ -24,7 +22,6 @@
 
       <div class="row justify-content-center">
         <div class="col-md-8">
-
           <Status></Status>
 
           <div class="card card-body p-4">
@@ -109,6 +106,7 @@
               <i class="fa fa-edit"></i> Edit penanaman
             </InertiaLink>
             <delete-button
+              v-if="can.update"
               entity="Penanaman"
               :submitUrl="
                 route('field.planting.delete', [planting.field_id, planting.id])
@@ -119,45 +117,19 @@
           </div>
 
           <div class="mt-5">
-            <h3 class="text-primary font-bold mb-3">Aktivitas Penanaman</h3>
+            <div class="d-flex justify-content-between mb-3">
+              <h3 class="text-primary font-bold m-0">Aktivitas Penanaman</h3>
+              <InertiaLink
+                class="btn btn-primary"
+                :href="route('planting.onfarm.create', planting.id)"
+              >
+                <i class="fa fa-plus"></i>
+                Tambah aktivitas
+              </InertiaLink>
+            </div>
 
             <div v-for="(onfarm, index) in planting.onfarms" :key="onfarm.id">
-              <div class="card m-0 card-body p-4">
-                <div class="d-flex">
-                  <i class="fa fa-seedling me-3 fa-2x"></i>
-                  <div class="flex-grow-1">
-                    <h4>{{ onfarm.activity }}</h4>
-                    <div v-if="onfarm.cost">
-                      <i class="fas fa-coins"></i> Biaya : Rp{{
-                        onfarm.cost.toLocaleString("id-ID")
-                      }},00
-                    </div>
-                    <p>{{ onfarm.notes }}</p>
-                  </div>
-                  <div class="text-end">
-                    {{
-                      formatDistanceToNow(new Date(onfarm.timestamp), {
-                        locale: id,
-                        addSuffix: true,
-                      })
-                    }}
-                  </div>
-                </div>
-                <div class="row ps-4 mt-3">
-                  <div
-                    v-for="media in onfarm.media"
-                    class="col-md-4"
-                    :key="media.id"
-                  >
-                    <img
-                      :src="route('onfarm.media.show', [onfarm.id, media.id])"
-                      alt=""
-                      class="img-fluid rounded img-thumbnail"
-                    />
-                    <div class="mt-2">{{ media.name }}</div>
-                  </div>
-                </div>
-              </div>
+              <onfarm-list-item :onfarm="onfarm"></onfarm-list-item>
               <div
                 class="text-center"
                 v-if="index + 1 != planting.onfarms.length"
@@ -179,6 +151,7 @@ import { format, formatDistanceToNow } from "date-fns";
 import { id } from "date-fns/locale";
 import DeleteButton from "@/Components/DeleteButton.vue";
 import Status from "@/Components/Status.vue";
+import OnfarmListItem from '@/Components/Onfarm/OnfarmListItem.vue';
 
 export default {
   components: {
@@ -187,6 +160,8 @@ export default {
     InertiaLink,
     DeleteButton,
     Status,
+    DeleteButton,
+    OnfarmListItem
   },
   props: {
     planting: Object,

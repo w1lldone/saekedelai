@@ -17,11 +17,21 @@ class OnfarmFactory extends Factory
     {
         return [
             'planting_id' => Planting::factory(),
-            'timestamp' => now(),
-            'activity' => $this->faker->word,
+            'name' => $this->faker->word,
+            'started_at' => now(),
+            'finished_at' => now()->addWeek(),
             'category' => $this->faker->randomElement(Onfarm::getCategories()),
-            'cost' => $this->faker->numberBetween(1, 30) * 100000,
-            'notes' => $this->faker->sentence()
+            'description' => $this->faker->sentence(),
+            'costs' => [
+                [
+                    'value' => 300000,
+                    'description' => "penanaman"
+                ],
+                [
+                    'value' => 2500000,
+                    'description' => 'olah lahan'
+                ]
+            ],
         ];
     }
 }

@@ -54,7 +54,7 @@ class Planting extends Model
         $query->addSelect([
             'last_onfarm_id' => \App\Models\Onfarm::select('id')
                 ->whereColumn('planting_id', 'plantings.id')
-                ->orderByDesc('timestamp')
+                ->orderByDesc('started_at')
                 ->limit(1)
         ])->with('lastOnfarm');
     }

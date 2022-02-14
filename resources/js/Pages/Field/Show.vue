@@ -128,11 +128,11 @@
                 </div>
                 <div>
                   <b>Aktivitas Terkini</b><br />
-                  <span>{{ field.last_activity.activity }}</span
+                  <span>{{ field.last_activity.name }}</span
                   ><br />
                   <span>{{
                     format(
-                      new Date(field.last_activity.timestamp),
+                      new Date(field.last_activity.started_at),
                       "d MMMM yyyy",
                       {
                         locale: id,

@@ -3,11 +3,11 @@
     <Head title="Edit Penanaman"></Head>
     <Auth>
       <template #header>
-        <InertiaLink class="text-primary" :href="route('field.index')"
-          >Lahan pertanian</InertiaLink
-        >
-        <i class="fa fa-chevron-right mx-2"></i>
         ...
+        <i class="fa fa-chevron-right mx-2"></i>
+        <InertiaLink class="text-primary" :href="route('field.planting.index', field.id)"
+          >Penanaman</InertiaLink
+        >
         <i class="fa fa-chevron-right mx-2"></i>
         <InertiaLink
           class="text-primary"

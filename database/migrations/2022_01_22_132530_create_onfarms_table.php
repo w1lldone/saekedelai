@@ -15,12 +15,14 @@ class CreateOnfarmsTable extends Migration
     {
         Schema::create('onfarms', function (Blueprint $table) {
             $table->id();
-            $table->timestamp('timestamp');
             $table->foreignId('planting_id')->index();
-            $table->string('activity')->nullable();
+            $table->string('name')->nullable();
+            $table->timestamp('started_at')->nullable();
+            $table->timestamp('finished_at')->nullable();
             $table->string('category')->nullable();
-            $table->integer('cost')->nullable();
-            $table->text('notes')->nullable();
+            $table->text('description')->nullable();
+            $table->json('costs')->nullable();
+            $table->bigInteger('total_cost')->nullable();
             $table->timestamps();
         });
     }

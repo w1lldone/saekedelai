@@ -15,4 +15,27 @@ class OnfarmMediaController extends Controller
 
         return response()->file($media->getPath());
     }
+
+    public function store(Onfarm $onfarm, Request $request)
+    {
+        $this->authorize('update', $onfarm->planting->field);
+
+        $request->validate([
+            'media' => 'required|file',
+            'collection' => 'required'
+        ]);
+
+        $media = $onfarm->addMediaFromRequest('media')->toMediaCollection($request->collection);
+
+        return redirect()->back();
+    }
+
+    public function destroy(Onfarm $onfarm, $media)
+    {
+        $this->authorize('update', $onfarm->planting->field);
+
+        $onfarm->media()->find($media)->delete();
+
+        return redirect()->back();
+    }
 }

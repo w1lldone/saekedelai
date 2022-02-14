@@ -13,7 +13,11 @@ class Onfarm extends Model implements HasMedia
 
     protected $guarded = ['id'];
 
-    protected $dates = ['timestamp'];
+    protected $dates = ['started_at', 'finished_at'];
+
+    protected $casts = [
+        'costs' => 'json'
+    ];
 
     protected static $categories = [
         'penanaman', 'pemupukan', 'pemeliharaan'
@@ -26,6 +30,11 @@ class Onfarm extends Model implements HasMedia
      */
     protected static function booted()
     {
+        static::saving(function ($onfarm)
+        {
+            $onfarm->total_cost = collect($onfarm->costs)->sum('value');
+        });
+
         static::deleted(function ($onfarm) {
             $onfarm->media()->delete();
         });
