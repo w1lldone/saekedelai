@@ -5,7 +5,9 @@
         <i class="fa fa-seedling me-3 fa-2x"></i>
         <div class="flex-grow-1">
           <h4>{{ onfarm.name }}</h4>
-          <div class="text-secondary">
+          <div v-html="onfarm.description"></div>
+        </div>
+        <div class="text-end">
           {{
             format(new Date(onfarm.started_at), "d MMMM yyyy", {
               locale: id,
@@ -18,8 +20,6 @@
               })
             }}
           </span>
-        </div>
-          <div v-html="onfarm.description"></div>
         </div>
       </div>
       <div class="ps-5 mt-3" v-if="onfarm.media.length">
