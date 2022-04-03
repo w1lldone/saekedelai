@@ -253,12 +253,16 @@
 
 <script>
 import { Link } from "@inertiajs/inertia-vue3";
+import tippy from "tippy.js";
+import "tippy.js/dist/tippy.css";
 
 export default {
   components: {
     Link,
   },
   mounted() {
+    tippy("[data-tippy-content]");
+
     "use strict";
 
     $(".preloader").fadeOut();

@@ -12,6 +12,19 @@ class Field extends Model
 
     protected $guarded = ['id'];
 
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
+    protected static function booted()
+    {
+        static::deleted(function ($field) {
+            $field->plantings()->delete();
+            $field->address()->delete();
+        });
+    }
+
     public function address()
     {
         return $this->morphOne(Address::class, 'addressable');
@@ -20,5 +33,25 @@ class Field extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function plantings()
+    {
+        return $this->hasMany(\App\Models\Planting::class);
+    }
+
+    public function lastPlanting()
+    {
+        return $this->belongsTo(\App\Models\Planting::class);
+    }
+
+    public function scopeWithLastPlanting($query)
+    {
+        $query->addSelect([
+            'last_planting_id' => \App\Models\Planting::select('id')
+                ->whereColumn('field_id', 'fields.id')
+                ->orderByDesc('started_at')
+                ->limit(1)
+        ])->with('lastPlanting');
     }
 }
