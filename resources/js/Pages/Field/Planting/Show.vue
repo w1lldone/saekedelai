@@ -119,13 +119,19 @@
           <div class="mt-5">
             <div class="d-flex justify-content-between mb-3">
               <h3 class="text-primary font-bold m-0">Aktivitas Penanaman</h3>
-              <InertiaLink
-                class="btn btn-primary"
-                :href="route('planting.onfarm.create', planting.id)"
-              >
-                <i class="fa fa-plus"></i>
-                Tambah aktivitas
-              </InertiaLink>
+              <div class="d-flex flex-column">
+                <InertiaLink
+                  class="btn btn-primary mb-2"
+                  :href="route('planting.onfarm.create', planting.id)"
+                >
+                  <i class="fa fa-plus"></i>
+                  Tambah aktivitas
+                </InertiaLink>
+                <InertiaLink class="btn btn-success" :href="route('planting.harvest.create', planting.id)">
+                    <i class="fab fa-pagelines"></i>
+                    Panen
+                </InertiaLink>
+              </div>
             </div>
 
             <div v-for="(onfarm, index) in planting.onfarms" :key="onfarm.id">
@@ -151,7 +157,7 @@ import { format, formatDistanceToNow } from "date-fns";
 import { id } from "date-fns/locale";
 import DeleteButton from "@/Components/DeleteButton.vue";
 import Status from "@/Components/Status.vue";
-import OnfarmListItem from '@/Components/Onfarm/OnfarmListItem.vue';
+import OnfarmListItem from "@/Components/Onfarm/OnfarmListItem.vue";
 
 export default {
   components: {
@@ -161,7 +167,7 @@ export default {
     DeleteButton,
     Status,
     DeleteButton,
-    OnfarmListItem
+    OnfarmListItem,
   },
   props: {
     planting: Object,

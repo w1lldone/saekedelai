@@ -6,6 +6,7 @@ use App\Http\Controllers\FieldPlantingController;
 use App\Http\Controllers\OnfarmMediaController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\OrganizationUserController;
+use App\Http\Controllers\PlantingHarvestController;
 use App\Http\Controllers\PlantingOnfarmController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserAddressController;
@@ -98,6 +99,11 @@ Route::prefix('planting/{planting}/onfarm')->name('planting.onfarm.')->middlewar
     Route::put('/{onfarm}', [PlantingOnfarmController::class, 'update'])->name('update');
     Route::post('/', [PlantingOnfarmController::class, 'store'])->name('store');
     Route::delete('/{onfarm}', [PlantingOnfarmController::class, 'destroy'])->name('delete');
+});
+
+Route::prefix('planting/{planting}/harvest')->name('planting.harvest.')->middleware(['auth'])->group(function ()
+{
+    Route::get('/create', [PlantingHarvestController::class, 'create'])->name('create');
 });
 
 Route::prefix('onfarm/{onfarm}/media')->name('onfarm.media.')->middleware(['auth'])->group(function ()
