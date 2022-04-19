@@ -13,6 +13,10 @@ class Planting extends Model
 
     protected $dates = ['started_at', 'harvested_at'];
 
+    protected $casts = [
+        'harvest_costs' => 'json'
+    ];
+
     protected static $seedVarieties = [
         'Gema', 'DETAM-2', 'Lokal Grobogan', 'Gepak Kuning', 'Gepak Ijo'
     ];
@@ -26,6 +30,11 @@ class Planting extends Model
     {
         static::deleted(function ($planting) {
             $planting->onfarms()->delete();
+        });
+
+        static::saved(function ($planting)
+        {
+            $planting->harvest_total_cost = collect($planting->harvest_costs)->sum('value');
         });
     }
 
@@ -44,9 +53,19 @@ class Planting extends Model
         return $this->hasMany(\App\Models\Onfarm::class);
     }
 
+    public function qualities()
+    {
+        return $this->hasMany(\App\Models\Quality::class);
+    }
+
     public function lastOnfarm()
     {
         return $this->belongsTo(\App\Models\Onfarm::class);
+    }
+
+    public function getHarvestQualityAttribute()
+    {
+        return $this->qualities->where('category', 'harvest')->first();
     }
 
     public function scopeWithLastOnfarm($query)

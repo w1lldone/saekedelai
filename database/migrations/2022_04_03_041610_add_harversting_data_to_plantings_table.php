@@ -15,8 +15,14 @@ class AddHarverstingDataToPlantingsTable extends Migration
     {
         Schema::table('plantings', function (Blueprint $table) {
             $table->integer('yield')->nullable();
-            $table->integer('water_content')->nullable();
             $table->integer('value')->nullable();
+            $table->integer('harvest_quantity')->nullable();
+            $table->integer('released_quantity')->nullable();
+            $table->integer('unreleased_quantity')->nullable();
+            $table->json('harvest_costs')->nullable();
+            $table->bigInteger('total_harvest_cost')->nullable();
+            $table->string('lot_code')->nullable();
+            $table->string('batch_code')->nullable();
         });
     }
 

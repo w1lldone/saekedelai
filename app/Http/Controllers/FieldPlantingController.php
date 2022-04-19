@@ -39,7 +39,7 @@ class FieldPlantingController extends Controller
         $planting = $field->plantings()->with(['onfarms' => function ($query)
         {
             $query->with('media:id,model_id,model_type,name,disk')->orderBy('started_at', 'desc')->orderBy('id', 'desc');
-        }, 'field.user'])->findOrFail($planting);
+        }, 'field.user'])->findOrFail($planting)->append('harvest_quality');
 
         return Inertia::render('Field/Planting/Show', [
             'planting' => $planting,

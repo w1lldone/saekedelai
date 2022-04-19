@@ -104,6 +104,7 @@ Route::prefix('planting/{planting}/onfarm')->name('planting.onfarm.')->middlewar
 Route::prefix('planting/{planting}/harvest')->name('planting.harvest.')->middleware(['auth'])->group(function ()
 {
     Route::get('/create', [PlantingHarvestController::class, 'create'])->name('create');
+    Route::post('/', [PlantingHarvestController::class, 'store'])->name('store');
 });
 
 Route::prefix('onfarm/{onfarm}/media')->name('onfarm.media.')->middleware(['auth'])->group(function ()
