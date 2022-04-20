@@ -49,6 +49,17 @@ class FieldPlantingController extends Controller
         ]);
     }
 
+    public function postharvest(Field $field, $planting)
+    {
+        $this->authorize('view', $field);
+
+        $planting = $field->plantings()->with('field.user', 'qualities')->findOrFail($planting)->append('harvest_quality');
+
+        return Inertia::render('Field/Planting/Postharvest', [
+            'planting' => $planting,
+        ]);
+    }
+
     public function edit(Field $field, $planting)
     {
         $this->authorize('update', $field);

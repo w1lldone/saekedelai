@@ -24,17 +24,17 @@ class PlantingHarvestController extends Controller
         $this->authorize('update', $planting->field);
 
         $request->validate([
-            'harvested_at' => 'required|date',
-            'yield' => 'required|integer',
+            'harvested_at' => 'nullable|date',
+            'yield' => 'nullable|integer',
             'released_quantity' => 'integer|nullable',
             'ureleased_quantity' => 'integer|nullable',
-            'water_content' => 'numeric|nullable',
-            'dirts' => 'numeric|nullable',
-            'discolors' => 'numeric|nullable',
-            'splits' => 'numeric|nullable',
-            'damaged' => 'numeric|nullable',
-            'fungal' => 'numeric|nullable',
-            'bugs' => 'numeric|nullable',
+            'water_content' => 'numeric|nullable|max:99',
+            'dirts' => 'numeric|nullable|max:99',
+            'discolors' => 'numeric|nullable|max:99',
+            'splits' => 'numeric|nullable|max:99',
+            'damaged' => 'numeric|nullable|max:99',
+            'fungal' => 'numeric|nullable|max:99',
+            'bugs' => 'numeric|nullable|max:99',
             'harvest_costs' => 'array|nullable',
             'harvest_costs.*.description' => 'string',
             'harvest_costs.*.value' => 'integer'
@@ -57,6 +57,6 @@ class PlantingHarvestController extends Controller
         $quality->bugs = $request->bugs;
         $quality->save();
 
-        return redirect()->route('field.planting.show', [$planting->field_id, $planting->id]);
+        return redirect()->route('field.planting.postharvest', [$planting->field_id, $planting->id]);
     }
 }

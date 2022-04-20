@@ -24,64 +24,7 @@
         <div class="col-md-8">
           <Status></Status>
 
-          <div class="card card-body p-4">
-            <h3 class="text-primary font-bold">
-              Penanaman Bulan
-              {{
-                format(new Date(planting.started_at), "MMMM", {
-                  locale: id,
-                })
-              }}
-            </h3>
-            <div class="row mt-3">
-              <div class="col-md-6 d-flex align-items-start">
-                <div class="me-3">
-                  <i class="fa fa-user fa-2x text-success"></i>
-                </div>
-                <div>
-                  <b>Pemilik Lahan</b><br />
-                  <span>{{ planting.field.user.name }}</span>
-                </div>
-              </div>
-              <div class="col-md-6 d-flex align-items-start">
-                <div class="me-3">
-                  <i class="fas fa-ruler-combined fa-2x text-success"></i>
-                </div>
-                <div>
-                  <b>Luas Lahan</b><br />
-                  <span>{{ planting.field.area }} Ha</span>
-                </div>
-              </div>
-            </div>
-            <div class="row mt-3">
-              <div class="col-md-6 d-flex align-items-start">
-                <div class="me-3">
-                  <i class="fa fa-seedling fa-2x text-success"></i>
-                </div>
-                <div>
-                  <b>Tanggal tanam</b><br />
-                  <span>{{
-                    format(new Date(planting.started_at), "d MMMM yyyy", {
-                      locale: id,
-                    })
-                  }}</span>
-                </div>
-              </div>
-            </div>
-            <div class="row mt-3">
-              <div class="col-md-6 d-flex align-items-start">
-                <div class="me-3">
-                  <i class="fa fa-archive fa-2x text-success"></i>
-                </div>
-                <div>
-                  <b>Informasi bibit</b><br />
-                  <span>Varietas: {{ planting.seed_variety }}</span
-                  ><br />
-                  <span>Kuantitas: {{ planting.seed_quantity }} kg</span>
-                </div>
-              </div>
-            </div>
-          </div>
+          <PlantingInfo :planting="planting"></PlantingInfo>
 
           <div class="my-3 d-flex justify-content-between">
             <InertiaLink
@@ -103,9 +46,9 @@
             </delete-button>
           </div>
 
-          <HarvestInfo v-if="planting.harvested_at" class="mt-5" :planting="planting"></HarvestInfo>
+          <NavShow :planting="planting" class="mt-5"></NavShow>
 
-          <div class="mt-5">
+          <div class="mt-2">
             <div class="d-flex justify-content-between mb-3">
               <h3 class="text-primary font-bold m-0">Aktivitas Penanaman</h3>
               <div class="d-flex flex-column">
@@ -115,14 +58,6 @@
                 >
                   <i class="fa fa-plus"></i>
                   Tambah aktivitas
-                </InertiaLink>
-                <InertiaLink
-                  v-if="planting.harvested_at == null"
-                  class="btn btn-success"
-                  :href="route('planting.harvest.create', planting.id)"
-                >
-                  <i class="fab fa-pagelines"></i>
-                  Panen
                 </InertiaLink>
               </div>
             </div>
@@ -151,7 +86,8 @@ import { id } from "date-fns/locale";
 import DeleteButton from "@/Components/DeleteButton.vue";
 import Status from "@/Components/Status.vue";
 import OnfarmListItem from "@/Components/Onfarm/OnfarmListItem.vue";
-import HarvestInfo from "@/Components/Planting/HarvestInfo.vue";
+import PlantingInfo from "@/Components/Planting/PlantingInfo.vue";
+import NavShow from "@/Components/Planting/NavShow.vue";
 
 export default {
   components: {
@@ -162,7 +98,8 @@ export default {
     Status,
     DeleteButton,
     OnfarmListItem,
-    HarvestInfo,
+    PlantingInfo,
+    NavShow,
   },
   props: {
     planting: Object,

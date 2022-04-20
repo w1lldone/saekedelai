@@ -1,7 +1,13 @@
 <template>
   <div>
     <h3 class="text-primary font-bold m-0">Informasi panen dan penerimaan</h3>
-    <div class="card card-body p-4 mt-3">
+    <div class="text-center p-4 border mt-3" v-if="planting.harvested_at == null">
+        <h3 class="text-muted">Tambahkan data pemanenan dan penerimaan</h3>
+        <InertiaLink class="btn btn-success" :href="route('planting.harvest.create', planting.id)">
+           <i class="fab fa-pagelines"></i> Panen
+        </InertiaLink>
+    </div>
+    <div class="card card-body p-4 mt-3" v-else>
       <div class="row">
         <div class="col-md-6 d-flex align-items-start">
           <div class="me-3">
@@ -109,6 +115,7 @@
       </div>
     </div>
     <InertiaLink
+      v-if="planting.harvested_at"
       class="btn btn-warning"
       :href="route('planting.harvest.create', planting.id)"
     >
@@ -122,7 +129,6 @@ import { format, formatDistanceToNow } from "date-fns";
 import { id } from "date-fns/locale";
 import { InertiaLink } from "@inertiajs/inertia-vue3";
 
-
 export default {
   props: {
     planting: {
@@ -131,7 +137,7 @@ export default {
     },
   },
   components: {
-      InertiaLink,
+    InertiaLink,
   },
   data() {
     return {

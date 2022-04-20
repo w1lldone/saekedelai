@@ -7,14 +7,14 @@
         <i class="fa fa-chevron-right mx-2"></i>
         <InertiaLink
           class="text-primary"
-          :href="route('field.planting.index', planting.field_id)"
-          >Penanaman</InertiaLink
+          :href="route('field.planting.show', [planting.field_id, planting.id])"
+          >Detail penanaman</InertiaLink
         >
         <i class="fa fa-chevron-right mx-2"></i>
         <InertiaLink
           class="text-primary"
-          :href="route('field.planting.show', [planting.field_id, planting.id])"
-          >Detail penanaman</InertiaLink
+          :href="route('field.planting.postharvest', [planting.field_id, planting.id])"
+          >Pasca panen</InertiaLink
         >
         <i class="fa fa-chevron-right mx-2"></i>
         Formulir panen
@@ -362,6 +362,8 @@ export default {
     DatePicker,
   },
   data() {
+    var costs = this.planting.harvest_costs ? this.planting.harvest_costs : [];
+
     return {
       form: this.$inertia.form({
         harvested_at: this.planting.harvested_at,
@@ -375,7 +377,7 @@ export default {
         damaged: this.planting.harvest_quality?.damaged,
         fungal: this.planting.harvest_quality?.fungal,
         bugs: this.planting.harvest_quality?.bugs,
-        harvest_costs: this.planting.harvest_costs,
+        harvest_costs: costs,
       }),
       format,
       id,
