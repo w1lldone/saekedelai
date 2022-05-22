@@ -11,7 +11,7 @@ class Planting extends Model
 
     protected $guarded = ['id'];
 
-    protected $dates = ['started_at', 'harvested_at'];
+    protected $dates = ['started_at', 'harvested_at', 'received_at', 'production_date', 'expired_date'];
 
     protected $casts = [
         'harvest_costs' => 'json'
@@ -30,6 +30,8 @@ class Planting extends Model
     {
         static::deleted(function ($planting) {
             $planting->onfarms()->delete();
+            $planting->packings()->delete();
+            $planting->qualities()->delete();
         });
 
         static::saved(function ($planting)
@@ -58,6 +60,11 @@ class Planting extends Model
         return $this->hasMany(\App\Models\Quality::class);
     }
 
+    public function packings()
+    {
+        return $this->hasMany(\App\Models\Packing::class);
+    }
+
     public function lastOnfarm()
     {
         return $this->belongsTo(\App\Models\Onfarm::class);
@@ -66,6 +73,11 @@ class Planting extends Model
     public function getHarvestQualityAttribute()
     {
         return $this->qualities->where('category', 'harvest')->first();
+    }
+
+    public function getProductQualityAttribute()
+    {
+        return $this->qualities->where('category', 'product')->first();
     }
 
     public function scopeWithLastOnfarm($query)

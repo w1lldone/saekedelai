@@ -60,6 +60,17 @@ class FieldPlantingController extends Controller
         ]);
     }
 
+    public function product(Field $field, $planting)
+    {
+        $this->authorize('view', $field);
+
+        $planting = $field->plantings()->with('field.user', 'qualities', 'packings')->findOrFail($planting)->append('product_quality');
+
+        return Inertia::render('Field/Planting/Product', [
+            'planting' => $planting,
+        ]);
+    }
+
     public function edit(Field $field, $planting)
     {
         $this->authorize('update', $field);

@@ -15,6 +15,7 @@ class AddHarverstingDataToPlantingsTable extends Migration
     {
         Schema::table('plantings', function (Blueprint $table) {
             $table->integer('yield')->nullable();
+            $table->timestamp('received_at')->nullable();
             $table->integer('harvest_quantity')->nullable();
             $table->integer('released_quantity')->nullable();
             $table->integer('unreleased_quantity')->nullable();
@@ -31,7 +32,7 @@ class AddHarverstingDataToPlantingsTable extends Migration
     public function down()
     {
         Schema::table('plantings', function (Blueprint $table) {
-            $table->dropColumn(['yield', 'harvest_quantity', 'released_quantity', 'unreleased_quantity', 'harvest_costs', 'total_harvest_cost']);
+            $table->dropColumn(['yield', 'harvest_quantity', 'released_quantity', 'unreleased_quantity', 'harvest_costs', 'total_harvest_cost', 'received_at']);
         });
     }
 }

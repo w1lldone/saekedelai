@@ -25,7 +25,9 @@ class PlantingHarvestController extends Controller
 
         $request->validate([
             'harvested_at' => 'nullable|date',
+            'received_at' => 'nullable|date',
             'yield' => 'nullable|integer',
+            'harvest_batch' => 'nullable|string',
             'released_quantity' => 'integer|nullable',
             'ureleased_quantity' => 'integer|nullable',
             'water_content' => 'numeric|nullable|max:99',
@@ -41,7 +43,9 @@ class PlantingHarvestController extends Controller
         ]);
 
         $planting->harvested_at = $request->harvested_at;
+        $planting->received_at = $request->received_at;
         $planting->yield = $request->yield;
+        $planting->harvest_batch = $request->harvest_batch;
         $planting->released_quantity = $request->released_quantity;
         $planting->unreleased_quantity = $request->unreleased_quantity;
         $planting->harvest_costs = $request->harvest_costs;

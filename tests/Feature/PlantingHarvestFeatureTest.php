@@ -20,6 +20,7 @@ class PlantingHarvestFeatureTest extends TestCase
         $data = [
             'harvested_at' => now(),
             'yield' => 300000,
+            'harvest_batch' => 'RM-123213',
             'released_quantity' => 260000,
             'ureleased_quantity' => 20000,
             'water_content' => 12,

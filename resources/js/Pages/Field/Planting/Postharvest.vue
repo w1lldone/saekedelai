@@ -28,7 +28,7 @@
 
           <NavShow :planting="planting" class="my-2"></NavShow>
 
-          <HarvestInfo class="mt-3" :planting="planting"></HarvestInfo>
+          <HarvestInfo :planting="planting" class="mt-4"></HarvestInfo>
 
         </div>
       </div>

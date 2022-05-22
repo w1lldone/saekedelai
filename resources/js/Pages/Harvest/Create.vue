@@ -89,6 +89,49 @@
                 </div>
               </div>
               <!-- END YIELD -->
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-md-12">
+                    <label for="">Tanggal penerimaan</label>
+                    <date-picker
+                      v-model="form.received_at"
+                      format="yyyy-MM-dd"
+                      locale="in-ID"
+                      :enable-time-picker="false"
+                      :monthChangeOnScroll="false"
+                      :autoApply="true"
+                      :inputClassName="`form-control ${
+                        form.errors.received_at ? 'is-invalid' : ''
+                      }`"
+                    ></date-picker>
+                    <span class="text-danger">{{
+                      form.errors.received_at
+                    }}</span>
+                  </div>
+                </div>
+              </div>
+              <!-- HARVEST BATCH -->
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-md-12">
+                    <label for="">LOT RM</label>
+                    <div class="input-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        v-model="form.harvest_batch"
+                        :class="{
+                          'is-invalid': form.errors.harvest_batch,
+                        }"
+                      />
+                      <span class="invalid-feedback">{{
+                        form.errors.harvest_batch
+                      }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- END RELEASED VOLUME -->
               <!-- RELEASED VOLUME -->
               <div class="form-group">
                 <div class="row">
@@ -271,7 +314,7 @@
               </div>
               <!-- END BUGS -->
               <!-- COSTS -->
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <h4 class="text-primary font-bold">Rincian biaya</h4>
                 <div
                   class="row mt-2"
@@ -331,7 +374,8 @@
                     <i class="fa fa-plus"></i> tambah biaya
                   </button>
                 </div>
-              </div>
+              </div> -->
+              <!-- END of COST -->
               <div class="form-group text-end mt-4">
                 <button class="btn btn-success">Simpan</button>
               </div>
@@ -368,6 +412,8 @@ export default {
       form: this.$inertia.form({
         harvested_at: this.planting.harvested_at,
         yield: this.planting.yield,
+        harvest_batch: this.planting.harvest_batch,
+        received_at: this.planting.received_at,
         released_quantity: this.planting.released_quantity,
         unreleased_quantity: this.planting.unreleased_quantity,
         water_content: this.planting.harvest_quality?.water_content,

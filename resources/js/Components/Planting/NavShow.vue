@@ -34,6 +34,25 @@
           >Pasca panen</InertiaLink
         >
       </li>
+      <li class="nav-item">
+        <InertiaLink
+          class="nav-link"
+          :class="{
+            active: route().current('field.planting.product', [
+              planting.field_id,
+              planting.id,
+            ]),
+          }"
+          aria-current="page"
+          :href="
+            route('field.planting.product', [
+              planting.field_id,
+              planting.id,
+            ])
+          "
+          >Produk</InertiaLink
+        >
+      </li>
     </ul>
   </div>
 </template>
