@@ -7,8 +7,8 @@
         <i class="fa fa-chevron-right mx-2"></i>
         <InertiaLink
           class="text-primary"
-          :href="route('field.planting.index', planting.field_id)"
-          >Penanaman</InertiaLink
+          :href="route('field.show', planting.field_id)"
+          >Detail lahan</InertiaLink
         >
         <i class="fa fa-chevron-right mx-2"></i>
         <InertiaLink
@@ -29,7 +29,6 @@
           <NavShow :planting="planting" class="my-2"></NavShow>
 
           <HarvestInfo :planting="planting" class="mt-4"></HarvestInfo>
-
         </div>
       </div>
     </Auth>
@@ -44,8 +43,8 @@ import { id } from "date-fns/locale";
 import DeleteButton from "@/Components/DeleteButton.vue";
 import Status from "@/Components/Status.vue";
 import HarvestInfo from "@/Components/Planting/HarvestInfo.vue";
-import PlantingInfo from '@/Components/Planting/PlantingInfo.vue';
-import NavShow from '@/Components/Planting/NavShow.vue';
+import PlantingInfo from "@/Components/Planting/PlantingInfo.vue";
+import NavShow from "@/Components/Planting/NavShow.vue";
 
 export default {
   components: {
@@ -57,7 +56,7 @@ export default {
     DeleteButton,
     HarvestInfo,
     PlantingInfo,
-    NavShow
+    NavShow,
   },
   props: {
     planting: Object,

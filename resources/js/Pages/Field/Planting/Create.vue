@@ -12,12 +12,6 @@
           >Detail lahan</InertiaLink
         >
         <i class="fa fa-chevron-right mx-2"></i>
-        <InertiaLink
-          class="text-primary"
-          :href="route('field.planting.index', field.id)"
-          >Penanaman</InertiaLink
-        >
-        <i class="fa fa-chevron-right mx-2"></i>
         Tambah penanaman
       </template>
 

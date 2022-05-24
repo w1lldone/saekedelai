@@ -50,7 +50,7 @@
               planting.id,
             ])
           "
-          >Produk</InertiaLink
+          >Produk dan pengemasan</InertiaLink
         >
       </li>
     </ul>

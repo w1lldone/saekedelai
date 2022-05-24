@@ -7,8 +7,8 @@
         <i class="fa fa-chevron-right mx-2"></i>
         <InertiaLink
           class="text-primary"
-          :href="route('field.planting.index', planting.field_id)"
-          >Penanaman</InertiaLink
+          :href="route('field.show', planting.field_id)"
+          >Detail lahan</InertiaLink
         >
         <i class="fa fa-chevron-right mx-2"></i>
         <InertiaLink
@@ -99,7 +99,7 @@
                     <th>No Karung</th>
                     <th>Berat kedelai</th>
                     <th>Status</th>
-                    <table>Aksi</table>
+                    <th>Aksi</th>
                   </tr>
                 </thead>
                 <tbody>

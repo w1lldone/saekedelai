@@ -17,7 +17,7 @@
           :href="
             route('field.planting.product', [planting.field_id, planting.id])
           "
-          >Rilis produk</InertiaLink
+          >Produk</InertiaLink
         >
         <i class="fa fa-chevron-right mx-2"></i>
         Formulir pengemasan
