@@ -171,6 +171,18 @@
                 <span class="hide-menu">Lahan pertanian</span>
               </Link>
             </li>
+            <li class="sidebar-item pt-2">
+              <Link
+                v-if="$page.props.policy['device.viewAny']"
+                class="sidebar-link waves-effect waves-dark"
+                :class="{ active: route().current('device.index') }"
+                :href="route('device.index')"
+                aria-expanded="false"
+              >
+                <i class="fa fa-microchip" aria-hidden="true"></i>
+                <span class="hide-menu">Perangkat</span>
+              </Link>
+            </li>
             <div class="px-4 d-md-none">
                 <hr>
             </div>
