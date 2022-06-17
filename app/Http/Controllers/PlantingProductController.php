@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Packing;
 use App\Models\Planting;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -20,7 +21,7 @@ class PlantingProductController extends Controller
         $planting->load('field.address', 'field.user')->append('product_quality');
 
         return Inertia::render('Field/Planting/CreateProduct', [
-            'planting' => $planting
+            'planting' => $planting,
         ]);
     }
 

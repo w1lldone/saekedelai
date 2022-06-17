@@ -54,21 +54,6 @@
         </div>
       </div>
     </div>
-    <div class="row mt-3">
-      <div class="col-md-6 d-flex align-items-start">
-        <div class="me-3">
-          <i class="fab fa-pagelines fa-2x text-success"></i>
-        </div>
-        <div>
-          <b>Tanggal panen</b><br />
-          <span v-if="planting.harvested_at">{{
-            format(new Date(planting.harvested_at), "d MMMM yyyy", {
-              locale: id,
-            })
-          }}</span>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 

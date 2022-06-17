@@ -24,13 +24,7 @@
         <div class="col-md-8">
           <Status></Status>
 
-          <PlantingInfo :planting="planting"></PlantingInfo>
-
-          <NavShow :planting="planting" class="my-2"></NavShow>
-
-          <div class="mt-3">
-            <h3 class="text-primary font-bold">Produk rilis</h3>
-          </div>
+          <NavShow :planting="planting"></NavShow>
           <div
             v-if="!planting.production_date"
             class="text-center p-4 border my-3"
@@ -41,9 +35,9 @@
               :href="route('planting.product.create', planting.id)"
               ><i class="fa fa-plus"></i> Produk rilis</InertiaLink
             >
-
           </div>
           <div class="card card-body px-4 py-3" v-if="planting.production_date">
+            <h3 class="text-primary font-bold">Produk rilis</h3>
             <div class="row">
               <div class="col-md-6 mb-2">
                 <b>Tanggal produksi</b><br />
@@ -75,9 +69,6 @@
               </div>
             </div>
           </div>
-          <div class="card card-body px-4 py-3" v-if="planting.production_date && planting.product_quality">
-              <Quality :quality="planting.product_quality"></Quality>
-          </div>
           <div class="pb-3" v-if="planting.production_date">
             <InertiaLink
               class="btn btn-warning"
@@ -85,32 +76,54 @@
               ><i class="fa fa-edit"></i> Edit produk rilis</InertiaLink
             >
           </div>
+          <div
+            class="card card-body px-4 py-3"
+            v-if="planting.production_date && planting.product_quality"
+          >
+            <Quality :quality="planting.product_quality"></Quality>
+          </div>
           <div class="mt-3 mb-2 d-flex justify-content-between">
-              <h3 class="text-primary font-bold">Pengemasan</h3>
-              <InertiaLink class="btn btn-primary" :href="route('planting.packing.create', planting.id)">
-                  <i class="fa fa-plus"></i> Tambah pengemasan
-              </InertiaLink>
+            <h3 class="text-primary font-bold">Pengemasan</h3>
+            <InertiaLink
+              class="btn btn-primary"
+              :href="route('planting.packing.create', planting.id)"
+            >
+              <i class="fa fa-plus"></i> Tambah pengemasan
+            </InertiaLink>
           </div>
           <div class="card card-body px-4 py-3">
             <div class="mt-2">
               <table class="table">
                 <thead>
                   <tr>
-                    <th>No Karung</th>
-                    <th>Berat kedelai</th>
-                    <th>Status</th>
+                    <th>Grade</th>
+                    <th>Berat karung</th>
+                    <th>Disimpan</th>
+                    <th>Dikirim</th>
                     <th>Aksi</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr v-for="packing in planting.packings" :key="packing.id">
-                    <td>{{ packing.packing_number }}</td>
-                    <td>{{ packing.quantity }} Kg</td>
-                    <td>Disimpan</td>
+                    <td>Grade {{ packing.grade }}</td>
+                    <td>{{ packing.bag_size }} Kg</td>
+                    <td>{{ packing.current_quantity }} karung</td>
                     <td>
-                        <DeleteButton :submit-url="route('planting.packing.delete', [planting.id, packing.id])" entity="Packing" :preserve-scroll="true">
-                            <i class="fa fa-trash"></i>
-                        </DeleteButton>
+                      {{ packing.initial_quantity - packing.current_quantity }} karung
+                    </td>
+                    <td>
+                      <DeleteButton
+                        :submit-url="
+                          route('planting.packing.delete', [
+                            planting.id,
+                            packing.id,
+                          ])
+                        "
+                        entity="Packing"
+                        :preserve-scroll="true"
+                      >
+                        <i class="fa fa-trash"></i>
+                      </DeleteButton>
                     </td>
                   </tr>
                 </tbody>
@@ -131,8 +144,8 @@ import { id } from "date-fns/locale";
 import Status from "@/Components/Status.vue";
 import PlantingInfo from "@/Components/Planting/PlantingInfo.vue";
 import NavShow from "@/Components/Planting/NavShow.vue";
-import Quality from '@/Components/Planting/Quality.vue';
-import DeleteButton from '@/Components/DeleteButton.vue';
+import Quality from "@/Components/Planting/Quality.vue";
+import DeleteButton from "@/Components/DeleteButton.vue";
 
 export default {
   components: {
@@ -143,7 +156,7 @@ export default {
     PlantingInfo,
     NavShow,
     Quality,
-    DeleteButton
+    DeleteButton,
   },
   props: {
     planting: Object,

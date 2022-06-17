@@ -16,8 +16,10 @@ class CreatePackingsTable extends Migration
         Schema::create('packings', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(\App\Models\Planting::class)->index();
-            $table->string('packing_number')->nullable();
-            $table->integer('quantity')->nullable();
+            $table->integer('initial_quantity')->nullable();
+            $table->integer('current_quantity')->nullable();
+            $table->integer('bag_size')->nullable();
+            $table->string('grade')->nullable()->index();
             $table->timestamps();
         });
     }

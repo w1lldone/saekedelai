@@ -20,6 +20,8 @@
         <div class="col-md-8">
           <Status></Status>
 
+          <NavShow :planting="planting"></NavShow>
+
           <PlantingInfo :planting="planting"></PlantingInfo>
 
           <div class="my-3 d-flex justify-content-between">
@@ -41,9 +43,6 @@
               <i class="fa fa-trash me-2"></i> Hapus data penanaman
             </delete-button>
           </div>
-
-          <NavShow :planting="planting" class="mt-5"></NavShow>
-
           <div class="mt-2">
             <div class="d-flex justify-content-between mb-3">
               <h3 class="text-primary font-bold m-0">Aktivitas Penanaman</h3>

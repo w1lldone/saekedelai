@@ -23,12 +23,10 @@
       <div class="row justify-content-center">
         <div class="col-md-8">
           <Status></Status>
+          <NavShow :planting="planting"></NavShow>
 
-          <PlantingInfo :planting="planting"></PlantingInfo>
-
-          <NavShow :planting="planting" class="my-2"></NavShow>
-
-          <HarvestInfo :planting="planting" class="mt-4"></HarvestInfo>
+          <!-- <PlantingInfo :planting="planting"></PlantingInfo> -->
+          <HarvestInfo :planting="planting"></HarvestInfo>
         </div>
       </div>
     </Auth>

@@ -14,26 +14,30 @@
           <Status></Status>
           <div class="card card-body p-4">
             <h3 class="font-bold text-primary">Lahan #{{ field.id }}</h3>
-            <div class="my-3">
-              <h4 class="font-bold">Pemilik</h4>
-              <span class="me-1">{{ field.user.name }}</span>
-              (<span
-                v-for="organization in field.user.organizations"
-                :key="organization.id"
-                >Poktan {{ organization.name }} </span
-              >)
+            <div class="row my-3">
+              <div class="col-md-6">
+                <h4 class="font-bold">Pemilik</h4>
+                <span class="me-1">{{ field.user.name }}</span>
+                (<span
+                  v-for="organization in field.user.organizations"
+                  :key="organization.id"
+                  >Poktan {{ organization.name }} </span
+                >)
+              </div>
+              <div class="col-md-6">
+                <h4 class="font-bold">Luas lahan</h4>
+                <span>{{ field.area }} Ha</span>
+              </div>
             </div>
-            <div class="mb-3">
-              <h4 class="font-bold">Luas lahan</h4>
-              <span>{{ field.area }} Ha</span>
-            </div>
-            <div class="mb-3">
-              <h4 class="font-bold">Deskripsi lahan</h4>
-              <span>{{ field.description }}</span>
-            </div>
-            <div class="mb-3">
-              <h4 class="font-bold">Lokasi</h4>
-              <span>{{ field.address.formatted_address }}</span>
+            <div class="row">
+              <div class="col-md-6">
+                <h4 class="font-bold">Deskripsi lahan</h4>
+                <span>{{ field.description }}</span>
+              </div>
+              <div class="col-md-6">
+                <h4 class="font-bold">Lokasi</h4>
+                <span>{{ field.address.formatted_address }}</span>
+              </div>
             </div>
           </div>
           <div class="mt-3 d-flex justify-content-between">

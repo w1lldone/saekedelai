@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Packing;
 use App\Models\Planting;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 
 class PlantingPackingController extends Controller
@@ -15,7 +17,8 @@ class PlantingPackingController extends Controller
         $this->authorize('update', $planting->field);
 
         return Inertia::render('Packing/Create', [
-            'planting' => $planting
+            'planting' => $planting,
+            'grades' => Packing::getGrades()
         ]);
     }
 
@@ -24,9 +27,12 @@ class PlantingPackingController extends Controller
         $this->authorize('update', $planting->field);
 
         $data = $request->validate([
-            'packing_number' => 'required|string',
-            'quantity' => 'required|integer',
+            'initial_quantity' => 'required|integer',
+            'bag_size' => 'required|integer',
+            'grade' => ['required', Rule::in(Packing::getGrades())]
         ]);
+
+        $data['current_quantity'] = $request->initial_quantity;
 
         $packing = $planting->packings()->create($data);
 

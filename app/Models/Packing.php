@@ -11,6 +11,15 @@ class Packing extends Model
 
     protected $guarded = ['id'];
 
+    protected static $grades = [
+        'a', 'b', 'reject'
+    ];
+
+    public static function getGrades()
+    {
+        return self::$grades;
+    }
+
     public function planting()
     {
         return $this->belongsTo(\App\Models\Planting::class);
