@@ -1,11 +1,11 @@
 <template>
   <div>
-    <h3 class="text-primary font-bold m-0">Informasi panen dan penerimaan</h3>
+    <h3 class="text-primary font-bold m-0">Informasi panen dan pasca panen</h3>
     <div
       class="text-center p-4 border mt-3"
       v-if="planting.harvested_at == null"
     >
-      <h3 class="text-muted">Tambahkan data pemanenan dan penerimaan</h3>
+      <h3 class="text-muted">Tambahkan data pemanenan dan pasca panen</h3>
       <InertiaLink
         class="btn btn-success"
         :href="route('planting.harvest.create', planting.id)"
@@ -63,28 +63,33 @@
         </div>
       </div>
     </div>
-    <div class="card card-body px-4 mt-4" v-if="planting.harvest_quality">
+
+    <h3 class="text-primary font-bold m-0">Mutu dan biaya</h3>
+
+    <div class="card card-body px-4 mt-3 py-3" v-if="planting.harvest_quality">
       <Quality :quality="planting.harvest_quality"></Quality>
+      <div class="py-1 mt-3">
+        <div class="mb-1 font-bold">Biaya panen dan pasca panen</div>
+        <div
+          v-for="cost in planting.harvest_costs"
+          :key="cost.description"
+          class="d-flex justify-content-between py-1"
+        >
+          <div>
+            {{ cost.description }}
+          </div>
+          <div>Rp{{ cost.value.toLocaleString("id-ID") }},00</div>
+        </div>
+        <hr />
+        <div class="d-flex justify-content-between font-bold">
+          <div>Total biaya</div>
+          <div>
+            Rp{{ planting.total_harvest_cost?.toLocaleString("id-ID") }},00
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- <div class="border rounded p-3 border-dark">
-      <div class="mb-1 font-bold">Rincian biaya</div>
-      <div
-        v-for="cost in planting.harvest_costs"
-        :key="cost.description"
-        class="d-flex justify-content-between py-1"
-      >
-        <div>
-          {{ cost.description }}
-        </div>
-        <div>Rp{{ cost.value }},00</div>
-      </div>
-      <hr />
-      <div class="d-flex justify-content-between font-bold">
-        <div>Total biaya</div>
-        <div>Rp{{ planting.harvest_total_cost }},00</div>
-      </div>
-    </div> -->
     <InertiaLink
       v-if="planting.harvested_at"
       class="btn btn-warning"
@@ -99,7 +104,7 @@
 import { format, formatDistanceToNow } from "date-fns";
 import { id } from "date-fns/locale";
 import { InertiaLink } from "@inertiajs/inertia-vue3";
-import Quality from '@/Components/Planting/Quality.vue';
+import Quality from "@/Components/Planting/Quality.vue";
 
 export default {
   props: {
@@ -110,7 +115,7 @@ export default {
   },
   components: {
     InertiaLink,
-    Quality
+    Quality,
   },
   data() {
     return {

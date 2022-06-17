@@ -25,7 +25,7 @@
         <div class="col-md-7">
           <div class="card card-body p-4">
             <h3 class="text-primary font-bold">
-              Formulir panen dan penerimaan material
+              Formulir panen dan pasca panen
             </h3>
             <div>
               <div>Lahan #{{ planting.field_id }}</div>
@@ -70,7 +70,7 @@
               <div class="form-group">
                 <div class="row">
                   <div class="col-md-12">
-                    <label for="">Hasil panen total</label>
+                    <label for="">Total hasil panen</label>
                     <div class="input-group">
                       <input
                         type="number"
@@ -133,7 +133,7 @@
               </div>
               <!-- END RELEASED VOLUME -->
               <!-- RELEASED VOLUME -->
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <div class="row">
                   <div class="col-md-12">
                     <label for="">Released Volume</label>
@@ -153,10 +153,10 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> -->
               <!-- END RELEASED VOLUME -->
               <!-- URELEASED VOLUME -->
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <div class="row">
                   <div class="col-md-12">
                     <label for="">Unreleased Volume</label>
@@ -176,10 +176,10 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> -->
               <!-- END URELEASED VOLUME -->
               <div class="mt-4">
-                <h4 class="text-primary font-bold">Mutu kedelai</h4>
+                <h4 class="text-primary font-bold">Mutu kedelai saat penerimaan</h4>
               </div>
               <!-- WATER CONTENT -->
               <div class="form-group">
@@ -314,8 +314,8 @@
               </div>
               <!-- END BUGS -->
               <!-- COSTS -->
-              <!-- <div class="form-group">
-                <h4 class="text-primary font-bold">Rincian biaya</h4>
+              <div class="form-group mt-4">
+                <h4 class="text-primary font-bold">Biaya panen dan pasca panen</h4>
                 <div
                   class="row mt-2"
                   v-for="(cost, index) in form.harvest_costs"
@@ -374,7 +374,7 @@
                     <i class="fa fa-plus"></i> tambah biaya
                   </button>
                 </div>
-              </div> -->
+              </div>
               <!-- END of COST -->
               <div class="form-group text-end mt-4">
                 <button class="btn btn-success">Simpan</button>
@@ -414,8 +414,8 @@ export default {
         yield: this.planting.yield,
         harvest_batch: this.planting.harvest_batch,
         received_at: this.planting.received_at,
-        released_quantity: this.planting.released_quantity,
-        unreleased_quantity: this.planting.unreleased_quantity,
+        // released_quantity: this.planting.released_quantity,
+        // unreleased_quantity: this.planting.unreleased_quantity,
         water_content: this.planting.harvest_quality?.water_content,
         dirts: this.planting.harvest_quality?.dirts,
         discolors: this.planting.harvest_quality?.discolors,
