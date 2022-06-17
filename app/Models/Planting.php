@@ -34,9 +34,9 @@ class Planting extends Model
             $planting->qualities()->delete();
         });
 
-        static::saved(function ($planting)
+        static::saving(function ($planting)
         {
-            $planting->harvest_total_cost = collect($planting->harvest_costs)->sum('value');
+            $planting->total_harvest_cost = collect($planting->harvest_costs)->sum('value');
         });
     }
 
