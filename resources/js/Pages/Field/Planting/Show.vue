@@ -3,18 +3,14 @@
     <Head title="Detail Penanaman"></Head>
     <Auth>
       <template #header>
-        ...
+        <InertiaLink class="text-primary" :href="route('field.index')"
+          >Lahan pertanian</InertiaLink
+        >
         <i class="fa fa-chevron-right mx-2"></i>
         <InertiaLink
           class="text-primary"
           :href="route('field.show', planting.field_id)"
           >Detail lahan</InertiaLink
-        >
-        <i class="fa fa-chevron-right mx-2"></i>
-        <InertiaLink
-          class="text-primary"
-          :href="route('field.planting.index', planting.field_id)"
-          >Penanaman</InertiaLink
         >
         <i class="fa fa-chevron-right mx-2"></i>
         Detail penanaman
@@ -24,77 +20,9 @@
         <div class="col-md-8">
           <Status></Status>
 
-          <div class="card card-body p-4">
-            <h3 class="text-primary font-bold">
-              Penanaman Bulan
-              {{
-                format(new Date(planting.started_at), "MMMM", {
-                  locale: id,
-                })
-              }}
-            </h3>
-            <div class="row mt-3">
-              <div class="col-md-6 d-flex align-items-start">
-                <div class="me-3">
-                  <i class="fa fa-user fa-2x text-success"></i>
-                </div>
-                <div>
-                  <b>Pemilik Lahan</b><br />
-                  <span>{{ planting.field.user.name }}</span>
-                </div>
-              </div>
-              <div class="col-md-6 d-flex align-items-start">
-                <div class="me-3">
-                  <i class="fas fa-ruler-combined fa-2x text-success"></i>
-                </div>
-                <div>
-                  <b>Luas Lahan</b><br />
-                  <span>{{ planting.field.area }} Ha</span>
-                </div>
-              </div>
-            </div>
-            <div class="row mt-3">
-              <div class="col-md-6 d-flex align-items-start">
-                <div class="me-3">
-                  <i class="fa fa-seedling fa-2x text-success"></i>
-                </div>
-                <div>
-                  <b>Tanggal tanam</b><br />
-                  <span>{{
-                    format(new Date(planting.started_at), "d MMMM yyyy", {
-                      locale: id,
-                    })
-                  }}</span>
-                </div>
-              </div>
-              <div class="col-md-6 d-flex align-items-start">
-                <div class="me-3">
-                  <i class="fab fa-pagelines fa-2x text-success"></i>
-                </div>
-                <div>
-                  <b>Tanggal panen</b><br />
-                  <span v-if="planting.harvested_at">{{
-                    format(new Date(planting.harvested_at), "d MMMM yyyy", {
-                      locale: id,
-                    })
-                  }}</span>
-                </div>
-              </div>
-            </div>
-            <div class="row mt-3">
-              <div class="col-md-6 d-flex align-items-start">
-                <div class="me-3">
-                  <i class="fa fa-archive fa-2x text-success"></i>
-                </div>
-                <div>
-                  <b>Informasi bibit</b><br />
-                  <span>Varietas: {{ planting.seed_variety }}</span
-                  ><br />
-                  <span>Kuantitas: {{ planting.seed_quantity }} kg</span>
-                </div>
-              </div>
-            </div>
-          </div>
+          <NavShow :planting="planting"></NavShow>
+
+          <PlantingInfo :planting="planting"></PlantingInfo>
 
           <div class="my-3 d-flex justify-content-between">
             <InertiaLink
@@ -115,17 +43,18 @@
               <i class="fa fa-trash me-2"></i> Hapus data penanaman
             </delete-button>
           </div>
-
-          <div class="mt-5">
+          <div class="mt-2">
             <div class="d-flex justify-content-between mb-3">
               <h3 class="text-primary font-bold m-0">Aktivitas Penanaman</h3>
-              <InertiaLink
-                class="btn btn-primary"
-                :href="route('planting.onfarm.create', planting.id)"
-              >
-                <i class="fa fa-plus"></i>
-                Tambah aktivitas
-              </InertiaLink>
+              <div class="d-flex flex-column">
+                <InertiaLink
+                  class="btn btn-primary mb-2"
+                  :href="route('planting.onfarm.create', planting.id)"
+                >
+                  <i class="fa fa-plus"></i>
+                  Tambah aktivitas
+                </InertiaLink>
+              </div>
             </div>
 
             <div v-for="(onfarm, index) in planting.onfarms" :key="onfarm.id">
@@ -151,7 +80,9 @@ import { format, formatDistanceToNow } from "date-fns";
 import { id } from "date-fns/locale";
 import DeleteButton from "@/Components/DeleteButton.vue";
 import Status from "@/Components/Status.vue";
-import OnfarmListItem from '@/Components/Onfarm/OnfarmListItem.vue';
+import OnfarmListItem from "@/Components/Onfarm/OnfarmListItem.vue";
+import PlantingInfo from "@/Components/Planting/PlantingInfo.vue";
+import NavShow from "@/Components/Planting/NavShow.vue";
 
 export default {
   components: {
@@ -161,7 +92,9 @@ export default {
     DeleteButton,
     Status,
     DeleteButton,
-    OnfarmListItem
+    OnfarmListItem,
+    PlantingInfo,
+    NavShow,
   },
   props: {
     planting: Object,

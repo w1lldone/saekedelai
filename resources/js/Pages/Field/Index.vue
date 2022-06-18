@@ -60,13 +60,6 @@
                       <i class="fa fa-eye"></i>
                     </InertiaLink>
                     <InertiaLink
-                      data-tippy-content="Lihat riwayat penanaman"
-                      class="btn btn-success text-white me-1"
-                      :href="route('field.planting.index', field.id)"
-                    >
-                      <i class="far fa-calendar-alt"></i>
-                    </InertiaLink>
-                    <InertiaLink
                       data-tippy-content="Kelola penanaman terkini"
                       v-if="field.last_planting"
                       class="btn btn-info text-white"

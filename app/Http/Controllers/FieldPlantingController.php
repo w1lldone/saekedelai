@@ -39,13 +39,35 @@ class FieldPlantingController extends Controller
         $planting = $field->plantings()->with(['onfarms' => function ($query)
         {
             $query->with('media:id,model_id,model_type,name,disk')->orderBy('started_at', 'desc')->orderBy('id', 'desc');
-        }, 'field.user'])->findOrFail($planting);
+        }, 'field.user'])->findOrFail($planting)->append('harvest_quality');
 
         return Inertia::render('Field/Planting/Show', [
             'planting' => $planting,
             'can' => [
                 'update' => $request->user()->can('update', $planting->field)
             ]
+        ]);
+    }
+
+    public function postharvest(Field $field, $planting)
+    {
+        $this->authorize('view', $field);
+
+        $planting = $field->plantings()->with('field.user', 'qualities')->findOrFail($planting)->append('harvest_quality');
+
+        return Inertia::render('Field/Planting/Postharvest', [
+            'planting' => $planting,
+        ]);
+    }
+
+    public function product(Field $field, $planting)
+    {
+        $this->authorize('view', $field);
+
+        $planting = $field->plantings()->with('field.user', 'qualities', 'packings')->findOrFail($planting)->append('product_quality');
+
+        return Inertia::render('Field/Planting/Product', [
+            'planting' => $planting,
         ]);
     }
 
