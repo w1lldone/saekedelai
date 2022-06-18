@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Packing;
 use App\Models\Planting;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -16,8 +17,10 @@ class PackingFactory extends Factory
     {
         return [
             'planting_id' => Planting::factory(),
-            'packing_number' => $this->faker->numberBetween(1,300),
-            'quantity' => $this->faker->numberBetween(50,100),
+            'initial_quantity' => $this->faker->numberBetween(50,100),
+            'current_quantity' => $this->faker->numberBetween(50,100),
+            'bag_size' => $this->faker->numberBetween(30, 50),
+            'grade' => $this->faker->randomElement(Packing::getGrades())
         ];
     }
 }
