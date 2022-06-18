@@ -1,8 +1,12 @@
 <?php
 
 use App\Http\Controllers\AddressController;
+use App\Http\Controllers\FieldController;
+use App\Http\Controllers\FieldPlantingController;
+use App\Http\Controllers\OnfarmMediaController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\OrganizationUserController;
+use App\Http\Controllers\PlantingOnfarmController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserAddressController;
 use App\Http\Controllers\UserController;
@@ -66,6 +70,41 @@ Route::middleware(['auth'])->resource('organization', OrganizationController::cl
 Route::prefix('/organization/{organization}')->name('organization.')->middleware(['auth'])->group(function () {
     Route::get('/user', [OrganizationUserController::class, 'index'])->name('user.index');
     Route::post('/user', [OrganizationUserController::class, 'store'])->name('user.store');
+});
+
+Route::prefix('field')->middleware(['auth'])->name('field.')->group(function ()
+{
+    Route::get('/', [FieldController::class, 'index'])->name('index');
+    Route::post('/', [FieldController::class, 'store'])->name('store');
+    Route::get('/create', [FieldController::class, 'create'])->name('create');
+    Route::get('/{field}', [FieldController::class, 'show'])->name('show');
+    Route::get('/{field}/edit', [FieldController::class, 'edit'])->name('edit');
+    Route::delete('/{field}', [FieldController::class, 'destroy'])->name('delete');
+    Route::put('/{field}', [FieldController::class, 'update'])->name('update');
+
+    Route::get('/{field}/planting', [FieldPlantingController::class, 'index'])->name('planting.index');
+    Route::get('/{field}/planting/create', [FieldPlantingController::class, 'create'])->name('planting.create');
+    Route::get('/{field}/planting/{planting}', [FieldPlantingController::class, 'show'])->name('planting.show');
+    Route::get('/{field}/planting/{planting}/edit', [FieldPlantingController::class, 'edit'])->name('planting.edit');
+    Route::post('/{field}/planting', [FieldPlantingController::class, 'store'])->name('planting.store');
+    Route::put('/{field}/planting/{planting}', [FieldPlantingController::class, 'update'])->name('planting.update');
+    Route::delete('/{field}/planting/{planting}', [FieldPlantingController::class, 'destroy'])->name('planting.delete');
+});
+
+Route::prefix('planting/{planting}/onfarm')->name('planting.onfarm.')->middleware(['auth'])->group(function ()
+{
+    Route::get('/create', [PlantingOnfarmController::class, 'create'])->name('create');
+    Route::get('/{onfarm}/edit', [PlantingOnfarmController::class, 'edit'])->name('edit');
+    Route::put('/{onfarm}', [PlantingOnfarmController::class, 'update'])->name('update');
+    Route::post('/', [PlantingOnfarmController::class, 'store'])->name('store');
+    Route::delete('/{onfarm}', [PlantingOnfarmController::class, 'destroy'])->name('delete');
+});
+
+Route::prefix('onfarm/{onfarm}/media')->name('onfarm.media.')->middleware(['auth'])->group(function ()
+{
+    Route::get('/{media}', [OnfarmMediaController::class, 'show'])->name('show');
+    Route::post('/', [OnfarmMediaController::class, 'store'])->name('store');
+    Route::delete('/{media}', [OnfarmMediaController::class, 'destroy'])->name('delete');
 });
 
 require __DIR__ . '/auth.php';

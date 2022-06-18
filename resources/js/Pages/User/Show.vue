@@ -79,7 +79,10 @@
                     :href="route('organization.show', organization.id)"
                     >{{ organization.name }}</Link
                   >
-                  ({{ organization.pivot.member_type }})
+                  ({{ organization.pivot.member_type }})<br>
+                  <Link v-if="can.create" :href="route('user.create', {organization_id: organization.id})">
+                  Daftarkan anggota baru pada poktan ini
+                  </Link>
                 </li>
               </ul>
               <h4 v-else class="text-muted">

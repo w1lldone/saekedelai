@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Models;
 
+use App\Models\Field;
 use Tests\TestCase;
 use App\Models\User;
 use App\Models\Organization;
@@ -98,5 +99,13 @@ class UserModelTest extends TestCase
         $user = User::withProfilePicture()->find($user->id);
 
         $this->assertTrue($user->profilePicture->is($media));
+    }
+
+    /** @test */
+    public function it_has_many_fields()
+    {
+        $user = User::factory()->has(Field::factory(2))->create();
+
+        $this->assertCount(2, $user->fields);
     }
 }

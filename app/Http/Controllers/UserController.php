@@ -29,7 +29,7 @@ class UserController extends Controller
 
         $query = $this->filterUser($query, $request);
 
-        $users = $query->with('address')->paginate()->appends($request->all());
+        $users = $query->with('address', 'organizations:id,name')->paginate()->appends($request->all());
 
         if ($request->wantsJson()) {
             return $users;
@@ -50,11 +50,12 @@ class UserController extends Controller
     {
         $this->authorize('create', User::class);
 
-        $organizations = Organization::select('id', 'name')->get();
+        if ($request->filled('organization_id')) {
+            $organization = Organization::select('id', 'name')->find($request->organization_id);
+        }
 
         return Inertia::render('User/Create', [
-            'organizations' => $organizations,
-            'organization_id' => $request->organization_id,
+            'organization' => $request->has('organization_id') ? $organization : null,
             'roles' => User::getRoles()
         ]);
     }
@@ -126,7 +127,8 @@ class UserController extends Controller
             'status' => session('status'),
             'can' => [
                 'update' => $request->user()->can('update', $user),
-                'delete' => $request->user()->can('delete', $user)
+                'delete' => $request->user()->can('delete', $user),
+                'create' => $request->user()->can('create', User::class)
             ]
         ]);
     }

@@ -30,17 +30,6 @@ class OrganizationFeatureTest extends TestCase
     }
 
     /** @test */
-    public function user_cannot_create_organization_without_address()
-    {
-        $this->login();
-        $data = Organization::factory()->make()->toArray();
-
-        $response = $this->postJson(route('organization.store'), $data);
-
-        $response->assertJsonValidationErrors(['province', 'city']);
-    }
-
-    /** @test */
     public function user_can_update_organization()
     {
         $this->login();

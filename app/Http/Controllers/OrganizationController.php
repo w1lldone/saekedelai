@@ -13,15 +13,23 @@ class OrganizationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $this->authorize('viewAny', Organization::class);
 
         $query = Organization::query();
 
+        if ($request->filled('keyword')) {
+            $query = $query->where('name', 'like', "%$request->keyword%");
+        }
+
         $query->with('address')->withCount('users');
 
         $organizations = $query->paginate();
+
+        if ($request->wantsJson()) {
+            return $organizations;
+        }
 
         return Inertia::render('Organization/Index', [
             'organizations' => $organizations,
@@ -54,14 +62,15 @@ class OrganizationController extends Controller
         $request->validate([
             'name' => 'required|string',
             'description' => 'string|nullable',
-            'province' => "required|string",
-            'city' => "required|string",
+            'province' => "string|nullable",
+            'city' => "string|nullable",
             'district' => "string|nullable",
+            'subdistrict' => "string|nullable",
         ]);
 
         $organization = Organization::create($request->only(['name', 'description']));
         $organization->address()->create($request->only([
-            'province', 'city', 'district'
+            'province', 'city', 'district', 'subdistrict'
         ]));
 
         return redirect(route('organization.show', $organization));
@@ -113,14 +122,15 @@ class OrganizationController extends Controller
         $request->validate([
             'name' => 'string',
             'description' => 'nullable',
-            'province' => "string",
-            'city' => "string",
+            'province' => "string|nullable",
+            'city' => "string|nullable",
             'district' => "nullable|string",
+            'subdistrict' => "nullable|string",
         ]);
 
         $organization->update($request->only(['name', 'description']));
         $organization->address()->firstOrCreate()->update($request->only([
-            'province', 'city', 'district'
+            'province', 'city', 'district', 'subdistrict'
         ]));
 
         return redirect()->route('organization.show', $organization)->with('status', __('messages.success'));
