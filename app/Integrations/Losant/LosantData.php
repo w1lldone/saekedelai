@@ -8,9 +8,26 @@ class LosantData
 {
     public $client;
 
+    protected static $aggregations = [
+        "FIRST",
+        "LAST",
+        "COUNT",
+        "MAX",
+        "MIN",
+        "MEDIAN",
+        "MEAN",
+        "SUM",
+        "STD_DEV"
+    ];
+
     public function __construct(LosantClient $client = null)
     {
         $this->client = $client->getClient();
+    }
+
+    public static function getAggregations()
+    {
+        return self::$aggregations;
     }
 
     public function timeSeriesQuery($query = [])
@@ -29,21 +46,14 @@ class LosantData
         ];
 
         $response = $this->client->post('data/time-series-query', [
-            'json' => $json
+            'json' => $query
         ]);
 
-        return json_decode($response->getBody()->getContents(), true);
+        return json_decode($response->getBody()->getContents(), false);
     }
 
-    public function lastValueQuery($query = [])
+    public function lastValueQuery($json = [])
     {
-        $json = [
-            'deviceIds' => [
-                '629f745f2d35cffbb2823416'
-            ],
-            'attribute' => 'humidity'
-        ];
-
         $response = $this->client->post('data/last-value-query', [
             'json' => $json
         ]);

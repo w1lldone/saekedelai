@@ -10,7 +10,7 @@
       </template>
 
       <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-10">
           <Status></Status>
 
           <div class="card card-body p-4">
@@ -86,6 +86,7 @@
               </div>
             </div>
           </div>
+          <!-- END CARD -->
           <div class="d-flex align-items-center justify-content-between">
             <InertiaLink
               class="btn btn-warning"
@@ -99,8 +100,15 @@
               >Hapus perangkat</DeleteButton
             >
           </div>
+
+          <div class="mt-3 card card-body p-4">
+            <h3 class="font-bold text-primary">Data sensor</h3>
+            <DeviceData :device="device"></DeviceData>
+          </div>
         </div>
+        <!-- END COL-8-->
       </div>
+      <!-- END ROW -->
     </Auth>
   </div>
 </template>
@@ -110,6 +118,7 @@ import Auth from "@/Layouts/Auth.vue";
 import { Head, InertiaLink } from "@inertiajs/inertia-vue3";
 import DeleteButton from "@/Components/DeleteButton.vue";
 import Status from "@/Components/Status.vue";
+import DeviceData from '@/Components/Device/DeviceData.vue';
 
 export default {
   props: {
@@ -121,6 +130,7 @@ export default {
     InertiaLink,
     Status,
     DeleteButton,
+    DeviceData
   },
 };
 </script>
