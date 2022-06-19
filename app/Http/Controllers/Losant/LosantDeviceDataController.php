@@ -52,7 +52,7 @@ class LosantDeviceDataController extends Controller
         }
 
         if ($request->filled('resolution')) {
-            $data['resolution'] = $request->resolution;
+            $data['resolution'] = (int)$request->resolution * 60000;
         }
 
         $response = $this->client->timeSeriesQuery($data);
