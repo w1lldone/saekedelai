@@ -89,6 +89,12 @@
     </div>
     <!-- END FORM -->
 
+    <!-- CHART -->
+    <div>
+        <DataChart class="mt-3" v-if="deviceData.length" :deviceData="deviceData"></DataChart>
+    </div>
+    <!-- END CHART -->
+
     <!-- DATA TABLE -->
     <div class="table-responsive mt-3">
       <table class="table" v-if="deviceData.length">
@@ -133,6 +139,7 @@ import "vue3-date-time-picker/dist/main.css";
 import { format, startOfDay } from "date-fns";
 import { id } from "date-fns/locale";
 import VueSelect from "vue-select";
+import DataChart from '@/Components/Device/DataChart.vue';
 
 export default {
   props: {
@@ -141,6 +148,7 @@ export default {
   components: {
     DatePicker,
     VueSelect,
+    DataChart
   },
   data() {
     return {
