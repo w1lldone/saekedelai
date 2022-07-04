@@ -25,7 +25,7 @@ class LosantDeviceDataController extends Controller
         $request->validate([
             'start_date' => 'date|nullable',
             'end_date' => 'date|nullable',
-            'aggregation' => ['nullable', Rule::in(LosantData::getAggregations())],
+            'aggregation' => ['nullable', Rule::in(LosantData::getAggregations()), Rule::requiredIf($request->filled('resolution'))],
             'resolution' => ['integer', 'nullable', Rule::requiredIf($request->filled('aggregation'))],
             'payload_attributes' => ['nullable', 'array'],
             'payload_attributes.*' => ['string']
