@@ -27,7 +27,7 @@
             <date-picker
               v-model="form.end_date"
               format="yyyy-MM-dd HH:mm"
-              :startTime="{ hours: 0, minutes: 0 }"
+              :startTime="{ hours: 23, minutes: 59 }"
               :monthChangeOnScroll="false"
               :inputClassName="`form-control ${
                 form.errors.end_date ? 'is-invalid' : ''
@@ -50,7 +50,7 @@
               :reduce="payload => payload.name"
               :closeOnSelect="false"
             ></VueSelect>
-            <span class="text-danger">{{ form.errors.aggregation }}</span>
+            <span class="text-danger">{{ form.errors.payload_attributes }}</span>
           </div>
           <div class="col-md-2">
             <label for="">Agregasi</label>
