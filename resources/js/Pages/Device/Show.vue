@@ -89,12 +89,14 @@
           <!-- END CARD -->
           <div class="d-flex align-items-center justify-content-between">
             <InertiaLink
+              v-if="can['device.update']"
               class="btn btn-warning"
               :href="route('device.edit', device.id)"
             >
               <i class="fa fa-edit"></i> Ubah perangkat
             </InertiaLink>
             <DeleteButton
+              v-if="can['device.delete']"
               entity="perangkat"
               :submitUrl="route('device.delete', device.id)"
               >Hapus perangkat</DeleteButton
@@ -118,11 +120,12 @@ import Auth from "@/Layouts/Auth.vue";
 import { Head, InertiaLink } from "@inertiajs/inertia-vue3";
 import DeleteButton from "@/Components/DeleteButton.vue";
 import Status from "@/Components/Status.vue";
-import DeviceData from '@/Components/Device/DeviceData.vue';
+import DeviceData from "@/Components/Device/DeviceData.vue";
 
 export default {
   props: {
     device: Object,
+    can: Object,
   },
   components: {
     Auth,
@@ -130,7 +133,7 @@ export default {
     InertiaLink,
     Status,
     DeleteButton,
-    DeviceData
+    DeviceData,
   },
 };
 </script>

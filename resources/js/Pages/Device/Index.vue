@@ -9,7 +9,7 @@
             <div class="card card-body p-4">
                 <div class="d-flex justify-content-between align-content-center">
                     <h3 class="font-bold text-primary">List Perangkat</h3>
-                    <InertiaLink class="btn btn-primary" :href="route('device.create')"><i class="fa fa-plus me-1"></i> Daftarkan perangkat</InertiaLink>
+                    <InertiaLink v-if="can['device.create']" class="btn btn-primary" :href="route('device.create')"><i class="fa fa-plus me-1"></i> Daftarkan perangkat</InertiaLink>
                 </div>
 
                 <table class="table">
@@ -54,6 +54,7 @@ import Pagination from "@/Components/Pagination.vue";
 export default {
   props: {
     devices: Object,
+    can: Object,
   },
   components: {
     Head,
