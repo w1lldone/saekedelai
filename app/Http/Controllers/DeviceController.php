@@ -16,7 +16,10 @@ class DeviceController extends Controller
         $devices = Device::with('address')->paginate();
 
         return Inertia::render('Device/Index', [
-            'devices' => $devices
+            'devices' => $devices,
+            'can' => [
+                'device.create' => $request->user()->can('create', Device::class)
+            ]
         ]);
     }
 
@@ -54,12 +57,16 @@ class DeviceController extends Controller
         return redirect()->route('device.show', $device);
     }
 
-    public function show(Device $device)
+    public function show(Device $device, Request $request)
     {
         $this->authorize('view', $device);
 
         return Inertia::render('Device/Show', [
             'device' => $device->load('address'),
+            'can' => [
+                'device.update' => $request->user()->can('update', $device),
+                'device.delete' => $request->user()->can('delete', $device)
+            ]
         ]);
     }
 

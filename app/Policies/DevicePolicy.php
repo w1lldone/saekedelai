@@ -25,7 +25,9 @@ class DevicePolicy
      */
     public function viewAny(User $user)
     {
-        //
+        if ($user->hasRole(['viewer', 'member'])) {
+            return true;
+        }
     }
 
     /**
@@ -37,7 +39,9 @@ class DevicePolicy
      */
     public function view(User $user, Device $device)
     {
-        //
+        if ($user->hasRole(['viewer', 'member'])) {
+            return true;
+        }
     }
 
     /**
