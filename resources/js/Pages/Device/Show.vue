@@ -80,21 +80,32 @@
                     v-for="attribute in device.payload_attributes"
                     class="badge bg-primary rounded-pill m-1"
                     :key="attribute.name"
-                    >{{ attribute.name }}</span
-                  >
+                    >{{ attribute.name }}
+                    <span v-if="attribute.unit">( {{ attribute.unit }} )</span>
+                  </span>
                 </div>
               </div>
             </div>
           </div>
           <!-- END CARD -->
           <div class="d-flex align-items-center justify-content-between">
-            <InertiaLink
-              v-if="can['device.update']"
-              class="btn btn-warning"
-              :href="route('device.edit', device.id)"
-            >
-              <i class="fa fa-edit"></i> Ubah perangkat
-            </InertiaLink>
+            <div>
+              <InertiaLink
+                v-if="can['device.update']"
+                class="btn btn-warning"
+                :href="route('device.edit', device.id)"
+              >
+                <i class="fa fa-edit"></i> Ubah perangkat
+              </InertiaLink>
+              <InertiaLink
+                v-if="can['device.update']"
+                class="btn btn-warning ms-2"
+                :href="route('device.editAttributes', device.id)"
+              >
+                <i class="fas fa-cog"></i> Pengaturan atribut
+              </InertiaLink>
+            </div>
+
             <DeleteButton
               v-if="can['device.delete']"
               entity="perangkat"
@@ -139,4 +150,7 @@ export default {
 </script>
 
 <style>
+.badge {
+  font-size: 100%;
+}
 </style>

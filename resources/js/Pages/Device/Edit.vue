@@ -7,7 +7,8 @@
           >Perangkat</InertiaLink
         >
         <i class="fa fa-chevron-right mx-2"></i
-        ><InertiaLink
+        >
+        <InertiaLink
           class="text-primary"
           :href="route('device.show', device.id)"
           >Detail perangkat</InertiaLink

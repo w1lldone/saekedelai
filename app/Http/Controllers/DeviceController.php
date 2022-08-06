@@ -79,6 +79,15 @@ class DeviceController extends Controller
         ]);
     }
 
+    public function editAttributes(Device $device)
+    {
+        $this->authorize('update', $device);
+
+        return Inertia::render('Device/EditAttributes', [
+            'device' => $device
+        ]);
+    }
+
     public function update(Device $device, Request $request)
     {
         $this->authorize('update', $device);
@@ -95,6 +104,22 @@ class DeviceController extends Controller
 
         $device->update($request->only('description', 'latitude', 'longitude'));
         $device->address->update($request->only('province', 'city', 'district', 'subdistrict'));
+
+        return redirect()->route('device.show', $device)->with('status', __('messages.success'));
+    }
+
+    public function updateAttributes(Device $device, Request $request)
+    {
+        $this->authorize('update', $device);
+
+        $request->validate([
+            'payload_attributes' => 'required|array',
+            'payload_attributes.*.unit' => 'nullable|string|max:15',
+            'payload_attributes.*.conversion' => 'nullable|string|max:25'
+        ]);
+
+        $device->payload_attributes = $request->payload_attributes;
+        $device->save();
 
         return redirect()->route('device.show', $device)->with('status', __('messages.success'));
     }

@@ -47,10 +47,12 @@
               label="name"
               :multiple="true"
               v-model="form.payload_attributes"
-              :reduce="payload => payload.name"
+              :reduce="(payload) => payload.name"
               :closeOnSelect="false"
             ></VueSelect>
-            <span class="text-danger">{{ form.errors.payload_attributes }}</span>
+            <span class="text-danger">{{
+              form.errors.payload_attributes
+            }}</span>
           </div>
           <div class="col-md-2">
             <label for="">Agregasi</label>
@@ -91,7 +93,11 @@
 
     <!-- CHART -->
     <div>
-        <DataChart class="mt-3" v-if="deviceData.length" :deviceData="deviceData"></DataChart>
+      <DataChart
+        class="mt-3"
+        v-if="deviceData.length"
+        :deviceData="deviceData"
+      ></DataChart>
     </div>
     <!-- END CHART -->
 
@@ -101,8 +107,15 @@
         <thead>
           <tr>
             <th>Timestamp</th>
-            <th class="text-center" v-for="(value, key) in deviceData[0].payloads" :key="key">
+            <th
+              class="text-center"
+              v-for="(value, key) in deviceData[0].payloads"
+              :key="key"
+            >
               {{ key }}
+              <span v-if="getAttributeUnit(key)"
+                >( {{ getAttributeUnit(key) }} )</span
+              >
             </th>
           </tr>
         </thead>
@@ -139,7 +152,7 @@ import "vue3-date-time-picker/dist/main.css";
 import { format, startOfDay } from "date-fns";
 import { id } from "date-fns/locale";
 import VueSelect from "vue-select";
-import DataChart from '@/Components/Device/DataChart.vue';
+import DataChart from "@/Components/Device/DataChart.vue";
 
 export default {
   props: {
@@ -148,7 +161,7 @@ export default {
   components: {
     DatePicker,
     VueSelect,
-    DataChart
+    DataChart,
   },
   data() {
     return {
@@ -199,9 +212,13 @@ export default {
 
       return "Data tidak tersedia. Anda bisa mencoba query lain.";
     },
+    hasConversion() {
+      return this.device.payload_attributes.filter((item) => item.conversion);
+    },
   },
   methods: {
     async submit() {
+      const Parser = require("expr-eval").Parser;
       this.form.errors = {};
       this.form.isLoading = true;
       this.deviceData = [];
@@ -212,8 +229,22 @@ export default {
             params: this.form,
           }
         );
-        this.deviceData = response.data.data;
+        var deviceData = response.data.data;
+        deviceData.forEach((element, key) => {
+          for (const [payloadKey, value] of Object.entries(element.payloads)) {
+            var conversion = this.hasConversion.find(
+              (item) => item.name == payloadKey
+            );
+
+            if (conversion) {
+                var converted = Parser.evaluate(conversion.conversion, { x: value })
+                deviceData[key].payloads[payloadKey] = converted
+            }
+          }
+        });
+        this.deviceData = deviceData;
       } catch (error) {
+        console.log(error)
         if (error.response.status == 422) {
           Object.keys(error.response.data.errors).forEach((key) => {
             this.form.errors[key] = error.response.data.errors[key].join(" ");
@@ -228,6 +259,17 @@ export default {
       this.form.isAdvanced = !this.form.isAdvanced;
       this.form.resolution = null;
       this.form.aggregation = null;
+    },
+    getAttributeUnit(key) {
+      var payload = this.device.payload_attributes.find(
+        (item) => item.name == key
+      );
+
+      if (!payload) {
+        return null;
+      }
+
+      return payload.unit;
     },
   },
 };
