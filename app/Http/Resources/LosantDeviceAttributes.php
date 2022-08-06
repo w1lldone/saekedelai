@@ -17,6 +17,8 @@ class LosantDeviceAttributes extends JsonResource
         return [
             'name' => $this->name,
             'type' => $this->dataType,
+            'unit' => optional($this)->unit,
+            'conversion' => optional($this)->conversion
         ];
     }
 }

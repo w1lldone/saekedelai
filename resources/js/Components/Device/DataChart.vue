@@ -1,6 +1,5 @@
 <template>
   <Line
-    :chart-options="chartOptions"
     :chart-data="computedData"
     :chart-id="chartId"
     :plugins="plugins"

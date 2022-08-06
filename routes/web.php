@@ -140,8 +140,10 @@ Route::prefix('device')->name('device.')->middleware(['auth'])->group(function (
     Route::get('/create', [DeviceController::class, 'create'])->name('create');
     Route::get('/{device}', [DeviceController::class, 'show'])->name('show');
     Route::get('/{device}/edit', [DeviceController::class, 'edit'])->name('edit');
+    Route::get('/{device}/edit-attributes', [DeviceController::class, 'editAttributes'])->name('editAttributes');
     Route::post('/', [DeviceController::class, 'store'])->name('store');
     Route::put('/{device}', [DeviceController::class, 'update'])->name('update');
+    Route::put('/{device}/attributes', [DeviceController::class, 'updateAttributes'])->name('updateAttributes');
     Route::delete('/{device}', [DeviceController::class, 'destroy'])->name('delete');
 });
 
