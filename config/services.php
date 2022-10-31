@@ -36,4 +36,9 @@ return [
         'redirect' => '/auth/google/callback'
     ],
 
+    'losant' => [
+        'api_token' => env('LOSANT_API_TOKEN'),
+        'app_id' => env('LOSANT_APP_ID')
+    ]
+
 ];

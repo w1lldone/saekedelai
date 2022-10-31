@@ -17,6 +17,19 @@
             {{ role }}
           </label>
         </div>
+        <div class="form-check">
+          <input
+            v-model="form.role"
+            :value="null"
+            class="form-check-input"
+            type="radio"
+            name="flexRadioDefault"
+            id="null"
+          />
+          <label class="form-check-label" for="null">
+            No role
+          </label>
+        </div>
       </div>
     </div>
     <div class="d-flex justify-content-end">

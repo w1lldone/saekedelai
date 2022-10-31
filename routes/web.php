@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\AddressController;
+use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\FieldController;
 use App\Http\Controllers\FieldPlantingController;
+use App\Http\Controllers\Losant\LosantDeviceController;
 use App\Http\Controllers\OnfarmMediaController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\OrganizationUserController;
@@ -132,4 +134,18 @@ Route::prefix('onfarm/{onfarm}/media')->name('onfarm.media.')->middleware(['auth
     Route::delete('/{media}', [OnfarmMediaController::class, 'destroy'])->name('delete');
 });
 
+Route::prefix('device')->name('device.')->middleware(['auth'])->group(function ()
+{
+    Route::get('/', [DeviceController::class, 'index'])->name('index');
+    Route::get('/create', [DeviceController::class, 'create'])->name('create');
+    Route::get('/{device}', [DeviceController::class, 'show'])->name('show');
+    Route::get('/{device}/edit', [DeviceController::class, 'edit'])->name('edit');
+    Route::get('/{device}/edit-attributes', [DeviceController::class, 'editAttributes'])->name('editAttributes');
+    Route::post('/', [DeviceController::class, 'store'])->name('store');
+    Route::put('/{device}', [DeviceController::class, 'update'])->name('update');
+    Route::put('/{device}/attributes', [DeviceController::class, 'updateAttributes'])->name('updateAttributes');
+    Route::delete('/{device}', [DeviceController::class, 'destroy'])->name('delete');
+});
+
 require __DIR__ . '/auth.php';
+require __DIR__ . '/losant.php';
