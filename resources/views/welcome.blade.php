@@ -48,7 +48,7 @@
     <header id="header" class="fixed-top d-flex align-items-center">
         <div class="container d-flex justify-content-between align-items-center">
             <div class="logo">
-                <h1><a href="index.html">Saekedelai</a></h1>
+                <h1><a href="/">Saekedelai</a></h1>
                 <!-- Uncomment below if you prefer to use an image logo -->
                 <!-- <a href="index.html"><img src="/assets/img/logo.png" alt="" class="img-fluid"></a>-->
             </div>
@@ -123,36 +123,40 @@
                     </div>
                 </div>
 
-                <div class="row justify-content-center mb-5">
+                <div class="row justify-content-center  mb-5 mt-5">
                     <div class="col-md-10" data-aos="fade-up">
                         <p>
                             Smart Traceability Farming Kedelai - Saekedelai merupakan
                             platform penunjang pertanian modern yang bertujuan untuk
-                            menciptakan Pusat Unggulan (Center of Excellent), Pendidikan dan
-                            Pelatihan Komoditi Kedelai yang terintegrasi dan bersinergi
-                            dengan Industri, Pemerintah, dan Kelompok Petani. Platform ini
-                            dikembangkan oleh Fakultas Teknologi Pertanian, Universitas
-                            Gadjah Mada bekerja sama dengan Badan Penelitian dan
-                            Pengembangan, Kementerian Pertanian.
+                            menciptakan Pusat Unggulan (Center of Excellent), Pendidikan dan Pelatihan Komoditi Kedelai
+                            yang terintegrasi dan bersinergi dengan Industri, Pemerintah, dan Kelompok Petani. Platform
+                            ini dikembangkan oleh Fakultas Teknologi Pertanian, Universitas Gadjah Mada dengan program
+                            Sinergitas Pentahelix System dari Tim Akademisi Fakultas Teknologi Pertanian Universitas
+                            Gadjah Mada, Off Taker Industri Kedelai baik Nasional dan Multinasional, Pemerintah baik
+                            Pusat dan Daerah dan Badan Litbang Pemerintah.
                         </p>
                         <p>
-                            Saekedelai dikembangkan dalam bentuk aplikasi berbasis web dan
-                            android untuk memudahkan petani mengakses informasi dan
-                            memonitor produksi kedelai untuk memenuhi standar kualitas mutu
-                            bahan baku Industri. Saekedelai menyediakan informasi budidaya
-                            komoditas pertanian dari lahan produksi, penanganan pasca panen
-                            dan produk akhir kedelai yang memenuhi baku mutu industri baik
-                            nasional maupun global. Platform ini bertujuan untuk membantu
-                            meningkatkan kualitas komoditas pertanian indonesia, khususnya
-                            kedelai, sehingga dapat mengoptimalkan produktivitas dan mutu
-                            hasil panen.
+                            Saekedelai dikembangkan dalam bentuk aplikasi berbasis web dan android untuk memudahkan
+                            petani mengakses informasi dan memonitor produksi kedelai untuk memenuhi standar kualitas
+                            mutu bahan baku Industri. Saekedelai menyediakan informasi budidaya komoditas pertanian dari
+                            lahan produksi, penanganan pasca panen dan produk akhir kedelai yang memenuhi baku mutu
+                            industri baik nasional maupun global. Platform ini bertujuan untuk membantu meningkatkan
+                            kualitas komoditas pertanian indonesia, khususnya kedelai, sehingga dapat mengoptimalkan
+                            produktivitas dan mutu hasil panen.
                         </p>
                         <p>
-                            Platform Saekedelai bersama Fakultas Teknologi Pertanian
-                            Universitas Gadjah Mada telah tercatat membantu petani dalam
-                            budidaya kedelai di beberapa daerah sentra kedelai meliputi
-                            Kabupaten Bantul, Kabupaten Klaten, Kabupaten Sukoharjo,
-                            Kabupaten Kulon Progo, Kabupaten Grobogan dan Kabupaten Pati.
+                            Platform Saekedelai dikembangkan oleh Tim Peneliti Khususnya Fakultas Teknologi Pertanian
+                            Universitas Gadjah Mada dalam mewujudkan pengembangan Pusat Unggulan (Center of Excellence)
+                            kedelai pada berbagai wilayah sentra produksi Kedelai dari hulu hingga hilir yang mencakup
+                            pasar hasil panen, agroindustri pengolahan kedelai, dan pemberdayaan kelompok petani /
+                            Gapoktan dan UMKM di Daerah Daerah Berbasis Kedelai.
+                        </p>
+                        <p>
+                            Saekedelai telah meningkatkan hasil panen kedelai di berbagai wilayah sentra kedelai
+                            meliputi Kabupaten Bantul, Kabupaten Klaten, Kabupaten Sukoharjo, Kabupaten Grobogan,
+                            Kabupaten Pati, Kabupaten Gunung Kidul dan Kabupaten Sleman. Sistem Tracebility yang
+                            diaplikasikan telah mendata lebih dari 2.500 kelompok petani pada tahun 2022 dalam kegiatan
+                            pemberdayaan kemitraan petani kedelai.
                         </p>
                     </div>
                 </div>
@@ -160,10 +164,6 @@
                 <div class="row justify-content-center" data-aos="fade-up">
                     <div class="col-md-4 text-center mb-4">
                         <img height="150px" src="/assets/img/logo-ugm.svg?v=2" alt="" />
-                    </div>
-                    <div class="col-md-1"></div>
-                    <div class="col-md-4 text-center mb-4">
-                        <img height="150px" src="/assets/img/logo-kementan.svg?v=2" alt="" />
                     </div>
                 </div>
 
@@ -342,7 +342,7 @@
                                 <i class="bi bi-people"></i>
                             </div>
                             <h3 class="mb-3">
-                                1500 <br />
+                                2500 <br />
                                 Petani Binaan
                             </h3>
                         </div>
@@ -383,7 +383,8 @@
                             kandungan nutrisi N, P dan K, kelembaban dan pH dalam tanah. Kondisi lahan kedelai di
                             wilayah Kabupaten Bantul, Kulon Progo, Gunung Kidul, Klaten, Sukoharjo, Grobogan dan Pati.
                             Kemitraan Petani saat ini telah makin meningkat dan Analisa Hasil Usaha Komoditi Kedelai
-                            Lokal non GMO makin memberikan harapan bagi petani.</p>
+                            Lokal non GMO makin memberikan harapan bagi petani.
+                        </p>
                     </div>
                     <div class="col-md-6" data-aos="fade-left">
                         <img src="/assets/img/activity_4.jpg" alt="Image" class="img-fluid" />
