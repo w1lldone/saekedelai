@@ -71,8 +71,11 @@ class FieldController extends Controller
             $field->last_activity = $field->lastPlanting->onfarms()->latest()->first();
         }
 
+        $plantings = $field->plantings()->withLastOnfarm()->latest()->paginate();
+
         return Inertia::render('Field/Show', [
             'field' => $field,
+            'plantings' => $plantings,
         ]);
     }
 

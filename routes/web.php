@@ -1,12 +1,17 @@
 <?php
 
 use App\Http\Controllers\AddressController;
+use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\FieldController;
 use App\Http\Controllers\FieldPlantingController;
+use App\Http\Controllers\Losant\LosantDeviceController;
 use App\Http\Controllers\OnfarmMediaController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\OrganizationUserController;
+use App\Http\Controllers\PlantingHarvestController;
 use App\Http\Controllers\PlantingOnfarmController;
+use App\Http\Controllers\PlantingPackingController;
+use App\Http\Controllers\PlantingProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserAddressController;
 use App\Http\Controllers\UserController;
@@ -85,6 +90,8 @@ Route::prefix('field')->middleware(['auth'])->name('field.')->group(function ()
     Route::get('/{field}/planting', [FieldPlantingController::class, 'index'])->name('planting.index');
     Route::get('/{field}/planting/create', [FieldPlantingController::class, 'create'])->name('planting.create');
     Route::get('/{field}/planting/{planting}', [FieldPlantingController::class, 'show'])->name('planting.show');
+    Route::get('/{field}/planting/{planting}/postharvest', [FieldPlantingController::class, 'postharvest'])->name('planting.postharvest');
+    Route::get('/{field}/planting/{planting}/product', [FieldPlantingController::class, 'product'])->name('planting.product');
     Route::get('/{field}/planting/{planting}/edit', [FieldPlantingController::class, 'edit'])->name('planting.edit');
     Route::post('/{field}/planting', [FieldPlantingController::class, 'store'])->name('planting.store');
     Route::put('/{field}/planting/{planting}', [FieldPlantingController::class, 'update'])->name('planting.update');
@@ -100,6 +107,26 @@ Route::prefix('planting/{planting}/onfarm')->name('planting.onfarm.')->middlewar
     Route::delete('/{onfarm}', [PlantingOnfarmController::class, 'destroy'])->name('delete');
 });
 
+Route::prefix('planting/{planting}/harvest')->name('planting.harvest.')->middleware(['auth'])->group(function ()
+{
+    Route::get('/create', [PlantingHarvestController::class, 'create'])->name('create');
+    Route::post('/', [PlantingHarvestController::class, 'store'])->name('store');
+});
+
+Route::prefix('planting/{planting}/product')->name('planting.product.')->middleware(['auth'])->group(function ()
+{
+    Route::get('/create', [PlantingProductController::class, 'create'])->name('create');
+    Route::post('/', [PlantingProductController::class, 'store'])->name('store');
+});
+
+Route::prefix('planting/{planting}/packing')->name('planting.packing.')->middleware(['auth'])->group(function ()
+{
+    Route::get('/create', [PlantingPackingController::class, 'create'])->name('create');
+    Route::post('/', [PlantingPackingController::class, 'store'])->name('store');
+    Route::put('/{packing}', [PlantingPackingController::class, 'update'])->name('update');
+    Route::delete('/{packing}', [PlantingPackingController::class, 'destroy'])->name('delete');
+});
+
 Route::prefix('onfarm/{onfarm}/media')->name('onfarm.media.')->middleware(['auth'])->group(function ()
 {
     Route::get('/{media}', [OnfarmMediaController::class, 'show'])->name('show');
@@ -107,4 +134,18 @@ Route::prefix('onfarm/{onfarm}/media')->name('onfarm.media.')->middleware(['auth
     Route::delete('/{media}', [OnfarmMediaController::class, 'destroy'])->name('delete');
 });
 
+Route::prefix('device')->name('device.')->middleware(['auth'])->group(function ()
+{
+    Route::get('/', [DeviceController::class, 'index'])->name('index');
+    Route::get('/create', [DeviceController::class, 'create'])->name('create');
+    Route::get('/{device}', [DeviceController::class, 'show'])->name('show');
+    Route::get('/{device}/edit', [DeviceController::class, 'edit'])->name('edit');
+    Route::get('/{device}/edit-attributes', [DeviceController::class, 'editAttributes'])->name('editAttributes');
+    Route::post('/', [DeviceController::class, 'store'])->name('store');
+    Route::put('/{device}', [DeviceController::class, 'update'])->name('update');
+    Route::put('/{device}/attributes', [DeviceController::class, 'updateAttributes'])->name('updateAttributes');
+    Route::delete('/{device}', [DeviceController::class, 'destroy'])->name('delete');
+});
+
 require __DIR__ . '/auth.php';
+require __DIR__ . '/losant.php';

@@ -14,7 +14,7 @@ class UserRoleController extends Controller
         $this->authorize('updateRole', $user);
 
         $data = $request->validate([
-            'role' => [Rule::in(User::getRoles())]
+            'role' => [Rule::in(User::getRoles()), 'nullable']
         ]);
 
         $user->update($data);
