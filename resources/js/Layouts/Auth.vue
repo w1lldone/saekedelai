@@ -183,6 +183,17 @@
                 <span class="hide-menu">Perangkat</span>
               </Link>
             </li>
+            <li class="sidebar-item pt-2">
+              <Link
+                class="sidebar-link waves-effect waves-dark"
+                :class="{ active: route().current('report.index') }"
+                :href="route('report.index')"
+                aria-expanded="false"
+              >
+                <i class="fa fa-calendar" aria-hidden="true"></i>
+                <span class="hide-menu">Laporan</span>
+              </Link>
+            </li>
             <div class="px-4 d-md-none">
                 <hr>
             </div>
