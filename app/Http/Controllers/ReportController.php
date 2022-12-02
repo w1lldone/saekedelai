@@ -51,7 +51,8 @@ class ReportController extends Controller
             'district',
             \DB::raw('COUNT(*) as user_count'),
             \DB::raw('SUM((SELECT SUM(area) FROM fields where fields.user_id = users.id group by user_id)) as total_area')
-        ])->groupBy('province', 'city', 'district')->orderByDesc('total_area')->get();
+        ])->whereNotNull('province')
+        ->groupBy('province', 'city', 'district')->having('total_area', '>', 0)->orderByDesc('total_area')->get();
 
         return Inertia::render('Report/Farmer', [
             'reports' => $reports
