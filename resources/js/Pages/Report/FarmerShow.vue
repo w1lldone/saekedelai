@@ -3,11 +3,11 @@
 
   <BreezeAuthenticatedLayout>
     <template #header>
-        <InertiaLink class="text-primary" :href="route('report.farmer')"
-          >Laporan petani</InertiaLink
-        >
-        <i class="fa fa-chevron-right mx-2"></i>{{ region }}
-      </template>
+      <InertiaLink class="text-primary" :href="route('report.farmer')"
+        >Laporan petani</InertiaLink
+      >
+      <i class="fa fa-chevron-right mx-2"></i>{{ region }}
+    </template>
 
     <div class="row justify-content-center">
       <div class="col-md-8">
@@ -21,9 +21,19 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(user) in users" :key="user.id">
-                <td>{{ user.name }}</td>
-                <td>{{ user.total_area }} Ha</td>
+              <tr v-for="user in users" :key="user.id">
+                <td>
+                  <InertiaLink :href="route('user.show', user.id)">
+                    {{ user.name }}
+                  </InertiaLink>
+                </td>
+                <td>
+                  <InertiaLink :href="route('field.index', {
+                    user_id: user.id
+                  })">
+                    {{ user.total_area ? user.total_area : 0 }} Ha
+                  </InertiaLink>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -40,12 +50,12 @@ import { Head, InertiaLink } from "@inertiajs/inertia-vue3";
 export default {
   props: {
     users: Array,
-    region: String
+    region: String,
   },
   components: {
     BreezeAuthenticatedLayout,
     Head,
-    InertiaLink
+    InertiaLink,
   },
 };
 </script>

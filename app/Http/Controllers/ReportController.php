@@ -22,12 +22,12 @@ class ReportController extends Controller
         $reports['harvests'] = Planting::whereNotNull('yield')->leftJoin('addresses', function (JoinClause $join) {
             $join->where('addressable_type', '=', 'App\Models\Field')->on('addressable_id', '=', 'plantings.field_id');
         })
-        ->select([
-            'province',
-            'city',
-            'district',
-            \DB::raw('SUM(yield) as total_yield')
-        ])->groupBy('province', 'city', 'district')->take(15)->get();
+            ->select([
+                'province',
+                'city',
+                'district',
+                \DB::raw('SUM(yield) as total_yield')
+            ])->groupBy('province', 'city', 'district')->take(15)->get();
 
         $reports['packings'] = Packing::leftJoin('plantings', function ($join) {
             $join->on('plantings.id', 'packings.planting_id');
@@ -51,8 +51,8 @@ class ReportController extends Controller
             'district',
             \DB::raw('COUNT(*) as user_count'),
             \DB::raw('SUM((SELECT SUM(area) FROM fields where fields.user_id = users.id group by user_id)) as total_area')
-        ])->whereNotNull('province')
-        ->groupBy('province', 'city', 'district')->having('total_area', '>', 0)->orderByDesc('total_area')->get();
+        ])->whereNotNull('province')->where('role', 'member')
+            ->groupBy('province', 'city', 'district')->orderByDesc('total_area')->get();
 
         return Inertia::render('Report/Farmer', [
             'reports' => $reports
@@ -68,11 +68,15 @@ class ReportController extends Controller
 
         $users = User::leftJoin('addresses', function (JoinClause $join) {
             $join->where('addressable_type', '=', 'App\Models\User')->on('addressable_id', '=', 'users.id');
-        })->where('province', $province)->where('city', $city)->where('district', $district)->addSelect([
-            'users.id',
-            'users.name',
-            \DB::raw('(SELECT SUM(area) FROM fields where fields.user_id = users.id group by user_id) as total_area')
-        ])->orderByDesc('total_area')->get();
+        })->where('province', $province)
+            ->where('city', $city)
+            ->where('district', $district)
+            ->where('role', 'member')
+            ->addSelect([
+                'users.id',
+                'users.name',
+                \DB::raw('(SELECT SUM(area) FROM fields where fields.user_id = users.id group by user_id) as total_area')
+            ])->orderByDesc('total_area')->get();
 
         return Inertia::render('Report/FarmerShow', [
             'users' => $users,
