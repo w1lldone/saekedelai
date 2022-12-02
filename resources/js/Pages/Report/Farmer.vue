@@ -25,7 +25,7 @@
                   </InertiaLink>
                 </td>
                 <td>{{ report.user_count }}</td>
-                <td>{{ report.total_area }} Ha</td>
+                <td>{{ report.total_area ? report.total_area : 0 }} Ha</td>
               </tr>
             </tbody>
           </table>
