@@ -2,7 +2,7 @@
   <Head title="Dashboard" />
 
   <BreezeAuthenticatedLayout>
-    <template #header> Report </template>
+    <template #header> Laporan Umum </template>
 
     <div class="row justify-content-center">
       <div class="col-md-4">

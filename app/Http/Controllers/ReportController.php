@@ -40,4 +40,42 @@ class ReportController extends Controller
             'reports' => $reports
         ]);
     }
+
+    public function farmer(Request $request)
+    {
+        $reports = User::leftJoin('addresses', function (JoinClause $join) {
+            $join->where('addressable_type', '=', 'App\Models\User')->on('addressable_id', '=', 'users.id');
+        })->select([
+            'province',
+            'city',
+            'district',
+            \DB::raw('COUNT(*) as user_count'),
+            \DB::raw('SUM((SELECT SUM(area) FROM fields where fields.user_id = users.id group by user_id)) as total_area')
+        ])->groupBy('province', 'city', 'district')->orderByDesc('total_area')->get();
+
+        return Inertia::render('Report/Farmer', [
+            'reports' => $reports
+        ]);
+    }
+
+    public function farmerShow(Request $request, $region)
+    {
+        $region = explode(";", $region);
+        $province = $region[0];
+        $city = $region[1];
+        $district = $region[2];
+
+        $users = User::leftJoin('addresses', function (JoinClause $join) {
+            $join->where('addressable_type', '=', 'App\Models\User')->on('addressable_id', '=', 'users.id');
+        })->where('province', $province)->where('city', $city)->where('district', $district)->addSelect([
+            'users.id',
+            'users.name',
+            \DB::raw('(SELECT SUM(area) FROM fields where fields.user_id = users.id group by user_id) as total_area')
+        ])->orderByDesc('total_area')->get();
+
+        return Inertia::render('Report/FarmerShow', [
+            'users' => $users,
+            'region' => "$province $city $district"
+        ]);
+    }
 }

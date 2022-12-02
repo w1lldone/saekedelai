@@ -151,6 +151,8 @@ Route::prefix('device')->name('device.')->middleware(['auth'])->group(function (
 Route::prefix('report')->name('report.')->middleware(['auth'])->group(function ()
 {
     Route::get('/', [ReportController::class, 'index'])->name('index');
+    Route::get('/farmer', [ReportController::class, 'farmer'])->name('farmer');
+    Route::get('/farmer/{region}', [ReportController::class, 'farmerShow'])->name('farmer.show');
 });
 
 require __DIR__ . '/auth.php';
