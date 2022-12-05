@@ -13,6 +13,7 @@ use App\Http\Controllers\PlantingOnfarmController;
 use App\Http\Controllers\PlantingPackingController;
 use App\Http\Controllers\PlantingProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\UserAddressController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserMediaController;
@@ -145,6 +146,13 @@ Route::prefix('device')->name('device.')->middleware(['auth'])->group(function (
     Route::put('/{device}', [DeviceController::class, 'update'])->name('update');
     Route::put('/{device}/attributes', [DeviceController::class, 'updateAttributes'])->name('updateAttributes');
     Route::delete('/{device}', [DeviceController::class, 'destroy'])->name('delete');
+});
+
+Route::prefix('report')->name('report.')->middleware(['auth'])->group(function ()
+{
+    Route::get('/', [ReportController::class, 'index'])->name('index');
+    Route::get('/farmer', [ReportController::class, 'farmer'])->name('farmer');
+    Route::get('/farmer/{region}', [ReportController::class, 'farmerShow'])->name('farmer.show');
 });
 
 require __DIR__ . '/auth.php';

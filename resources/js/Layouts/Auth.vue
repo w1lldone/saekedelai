@@ -183,12 +183,44 @@
                 <span class="hide-menu">Perangkat</span>
               </Link>
             </li>
+            <li class="sidebar-item pt-2">
+              <a
+                class="sidebar-link waves-effect waves-dark"
+                :class="{ active: route().current('report.*') }"
+                href="#"
+                aria-expanded="false"
+                data-bs-toggle="collapse"
+                data-bs-target="#reportCollapse"
+              >
+                <i class="fa fa-calendar" aria-hidden="true"></i>
+                <span class="hide-menu">Laporan</span>
+                <i class="fa fa-chevron-down ms-auto"></i>
+              </a>
+              <div class="collapse" id="reportCollapse" :class="{ show: route().current('report.*') }">
+                <Link
+                  class="sidebar-link waves-effect waves-dark ps-5"
+                  :class="{ active: route().current('report.index') }"
+                  :href="route('report.index')"
+                  aria-expanded="false"
+                >
+                  <span class="hide-menu">Laporan Umum</span>
+                </Link>
+                <Link
+                  class="sidebar-link waves-effect waves-dark ps-5"
+                  :class="{ active: route().current('report.farmer') }"
+                  :href="route('report.farmer')"
+                  aria-expanded="false"
+                >
+                  <span class="hide-menu">Laporan Petani</span>
+                </Link>
+              </div>
+            </li>
             <div class="px-4 d-md-none">
-                <hr>
+              <hr />
             </div>
             <li class="sidebar-item pt-2 d-md-none">
               <Link
-                class="sidebar-link waves-effect waves-dark "
+                class="sidebar-link waves-effect waves-dark"
                 :class="{ active: route().current('profile.index') }"
                 :href="route('profile.index')"
                 aria-expanded="false"
@@ -199,7 +231,7 @@
             </li>
             <li class="sidebar-item pt-2 d-md-none">
               <Link
-                class="sidebar-link waves-effect waves-dark "
+                class="sidebar-link waves-effect waves-dark"
                 :href="route('logout')"
                 method="post"
                 as="button"
@@ -275,19 +307,22 @@ export default {
   mounted() {
     tippy("[data-tippy-content]");
 
-    "use strict";
+    ("use strict");
 
     $(".preloader").fadeOut();
     // this is for close icon when navigation open in mobile view
-    $(".nav-toggler").on('click', function() {
-        $("#main-wrapper").toggleClass("show-sidebar");
-        $(".nav-toggler i").toggleClass("fa-times");
+    $(".nav-toggler").on("click", function () {
+      $("#main-wrapper").toggleClass("show-sidebar");
+      $(".nav-toggler i").toggleClass("fa-times");
     });
 
-    $(".search-box a, .search-box .app-search .srh-btn").on('click', function() {
+    $(".search-box a, .search-box .app-search .srh-btn").on(
+      "click",
+      function () {
         $(".app-search").toggle(200);
         $(".app-search input").focus();
-    });
+      }
+    );
 
     // ==============================================================
     // Resize all elements
@@ -298,13 +333,13 @@ export default {
     //****************************
     /* This is for the mini-sidebar if width is less then 1170*/
     //****************************
-    var setsidebartype = function() {
-        var width = (window.innerWidth > 0) ? window.innerWidth : this.screen.width;
-        if (width < 991) {
-            $("#main-wrapper").attr("data-sidebartype", "mini-sidebar");
-        } else {
-            $("#main-wrapper").attr("data-sidebartype", "full");
-        }
+    var setsidebartype = function () {
+      var width = window.innerWidth > 0 ? window.innerWidth : this.screen.width;
+      if (width < 991) {
+        $("#main-wrapper").attr("data-sidebartype", "mini-sidebar");
+      } else {
+        $("#main-wrapper").attr("data-sidebartype", "full");
+      }
     };
     $(window).ready(setsidebartype);
     $(window).on("resize", setsidebartype);

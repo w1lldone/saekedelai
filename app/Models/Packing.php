@@ -24,4 +24,9 @@ class Packing extends Model
     {
         return $this->belongsTo(\App\Models\Planting::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(\App\Models\User::class);
+    }
 }
