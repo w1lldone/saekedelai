@@ -251,6 +251,36 @@
                 <div class="row mb-3">
                     <div class="col-md-4">
                         <div class="step" style="height: 100%">
+                            <img src="/assets/img/fitur_10.jpg" class="img-fluid mb-3" alt="" />
+                            <h3>Regenerative Farming Kedelai</h3>
+                            <p>
+                                Kedelai dibudidayakan dengan standard budidaya ramah lingkungan (regenerative farming) dengan penerapan Regenerative Agricultural Kedelai yang menjaga dan mengendalikan unsur-unsur budidaya kedelai secara aman bagi lingkungan.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="step" style="height: 100%">
+                            <img src="/assets/img/fitur_11.jpg" class="img-fluid mb-3" alt="" />
+                            <h3>MAP Standard Mutu Benih Kedelai</h3>
+                            <p>
+                                Standard Mutu Benih Kedelai dijaga dan dipertahankan sehinggi memiliki daya tumbuh benih mencapai 90% daya tumbuh yang dimiliki. Teknologi MAP dan Inovasi dalam menjaga mutu benih kedelai dihasilkan untuk mendukung Mandiri Benih Petani.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="step" style="height: 100%">
+                            <img src="/assets/img/fitur_12.jpg" class="img-fluid mb-3" alt="" />
+                            <h3>Manajemen Sistem Informasi Saekedelai</h3>
+                            <p>
+                                Program Aplikasi yang diimplementasikan dalam mengontrol dan mendata proses Agribisnis dan Agroindustri (MIAA) Kedelai dari Hulu- Hilirisasi secara real time berbasis web. Pengelolaah dari Tata Usaha Agribisnis Kedelai, Panen, Pasca Panen dan Industri Pengolahan Kedelai dikendalikan melalui platform web <a href="{{ route('index') }}">Saekedelai.com</a>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <div class="step" style="height: 100%">
                             <img src="/assets/img/fitur_4.jpg" class="img-fluid mb-3" alt="" />
                             <!-- <span class="number">03</span> -->
                             <h3>Perawatan Tanaman</h3>
@@ -464,6 +494,24 @@
                     </div>
                     <div class="col-md-6" data-aos="fade-left">
                         <img src="/assets/img/activity_7.jpg" alt="Image" class="img-fluid" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-4 ms-auto order-2">
+                        <h2 class="mb-4">
+                            Pengendalian dan Pemeliharaan Budidaya Kedelai secara Mekanis
+                        </h2>
+                        <p class="mb-4">
+                            Budidaya kedelai dalam pengendalian hama, pemupukan tanaman kedelai dari persiapan lahan, fase vegetatif dan generatif, panen, pasca panen dan pengemasan dijalankan secara terprogram dan mekanis dengan sarana peralatan penunjang mobile power thrasher, drone, Field monitoring System, color sorting dan modified atmhospere packaging.
+                        </p>
+                    </div>
+                    <div class="col-md-6" data-aos="fade-right">
+                        <img src="/assets/img/activity_8.jpg" alt="Image" class="img-fluid" />
                     </div>
                 </div>
             </div>
