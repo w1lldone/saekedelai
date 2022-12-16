@@ -2,14 +2,16 @@
 
 namespace Tests\Feature\Models;
 
-use App\Models\Address;
+use Tests\TestCase;
+use App\Models\User;
 use App\Models\Field;
 use App\Models\Onfarm;
+use App\Models\Address;
 use App\Models\Planting;
-use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Query\JoinClause;
 use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class FieldModelTest extends TestCase
 {
@@ -62,5 +64,38 @@ class FieldModelTest extends TestCase
         $field->delete();
 
         $this->assertDeleted($address);
+    }
+
+    /** @test */
+    public function it_can_be_grouped_using_address()
+    {
+        $addressOne = Address::factory()->make()->only(['province', 'city', 'district', 'subdistrict']);
+        $addressTwo = Address::factory()->make()->only(['province', 'city', 'district', 'subdistrict']);
+        $addressThree = Address::factory()->make()->only(['province', 'city', 'district', 'subdistrict']);
+        Field::factory(5)->has(Planting::factory(3)->harvested())->create()->each(function ($field) use ($addressOne)
+        {
+            $field->address()->create($addressOne);
+        });
+
+        Field::factory(5)->has(Planting::factory(3)->harvested())->create()->each(function ($field) use ($addressTwo) {
+            $field->address()->create($addressTwo);
+        });
+
+        Field::factory(5)->has(Planting::factory(3)->harvested())->create()->each(function ($field) use ($addressThree) {
+            $field->address()->create($addressThree);
+        });
+
+        $plantings = Planting::leftJoin('addresses', function (JoinClause $join)
+        {
+            $join->where('addressable_type', '=', 'App\Models\Field')->on('addressable_id', '=', 'plantings.field_id');
+        })
+        ->select([
+            'province',
+            'city',
+            'district',
+            DB::raw('SUM(yield) as total_yield')
+        ])->groupBy('province', 'city', 'district')->get();
+
+        $this->assertCount(3, $plantings);
     }
 }

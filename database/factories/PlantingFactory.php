@@ -23,4 +23,19 @@ class PlantingFactory extends Factory
             'harvested_at' => now()->addMonths(5)
         ];
     }
+
+    /**
+     * Indicate that the planting is harvested.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    public function harvested()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'harvested_at' => now(),
+                'yield' => $this->faker->numberBetween(1000, 5000)
+            ];
+        });
+    }
 }

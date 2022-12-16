@@ -2,10 +2,13 @@
 
 namespace Tests\Feature\Models;
 
-use App\Models\Packing;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\Field;
+use App\Models\Packing;
+use App\Models\Planting;
+use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\DB;
 
 class PackingModelTest extends TestCase
 {
@@ -27,5 +30,21 @@ class PackingModelTest extends TestCase
         $packing = Packing::factory()->create();
 
         $this->assertInstanceOf(\App\Models\Planting::class, $packing->planting);
+    }
+
+    /** @test */
+    public function it_can_be_related_to_user()
+    {
+        Packing::factory(5)->create();
+        $expected = Packing::factory()->create();
+
+        $packing = Packing::leftJoin('plantings', function ($join) {
+            $join->on('plantings.id', 'packings.planting_id');
+        })->select([
+            'user_id' => Field::select('user_id')->whereColumn('fields.id', 'field_id')->limit(1),
+            DB::raw('SUM(initial_quantity) * SUM(bag_size) as total_quantity'),
+        ])->groupBy('user_id')->with('user:id,name')->find($expected->id);
+
+        $this->assertEquals($expected->planting->field->user->name, $packing->user->name);
     }
 }
