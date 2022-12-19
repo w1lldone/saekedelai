@@ -10,6 +10,7 @@ use App\Models\Organization;
 use App\Models\Packing;
 use Illuminate\Http\Request;
 use Illuminate\Database\Query\JoinClause;
+use Illuminate\Support\Facades\DB;
 
 class ReportController extends Controller
 {
@@ -81,6 +82,77 @@ class ReportController extends Controller
         return Inertia::render('Report/FarmerShow', [
             'users' => $users,
             'region' => "$province $city $district"
+        ]);
+    }
+
+    public function planting(Request $request)
+    {
+        $reports = Planting::leftJoin('fields', 'field_id', '=', 'fields.id')
+            ->leftJoin('organization_user', 'organization_user.user_id', '=', 'fields.user_id')
+            ->groupBy('organization_id')
+            ->select([
+                \DB::raw('COUNT(*) as planting_count'),
+                'organization_id',
+            ])->with('organization.address')
+            ->get();
+
+        return Inertia::render('Report/Planting', [
+            'reports' => $reports
+        ]);
+    }
+
+    public function plantingShow(Organization $organization)
+    {
+        $users = $organization->users()->pluck('users.id');
+
+        $reports = Planting::leftJoin('fields', 'field_id', '=', 'fields.id')
+            ->whereIn('user_id', $users->toArray())
+            ->select([
+                \DB::raw('COUNT(*) as planting_count'),
+                'user_id',
+                DB::raw('(SELECT name from users where users.id = user_id) as user_name')
+            ])
+            ->groupBy('user_id')->get();
+
+        return Inertia::render('Report/PlantingShow', [
+            'reports' => $reports,
+            'organization' => $organization
+        ]);
+    }
+
+    public function packing()
+    {
+        $reports = Packing::leftJoin('plantings', 'planting_id', '=', 'plantings.id')
+            ->leftJoin('fields', 'field_id', '=', 'fields.id')
+            ->leftJoin('organization_user', 'organization_user.user_id', '=', 'fields.user_id')
+            ->groupBy('organization_id')
+            ->select([
+                DB::raw('SUM(bag_size * initial_quantity) as total_quantity'),
+                'organization_id'
+            ])->with('organization.address')
+            ->get();
+
+        return Inertia::render('Report/Packing', [
+            'reports' => $reports
+        ]);
+    }
+
+    public function packingShow(Organization $organization)
+    {
+        $users = $organization->users()->pluck('users.id');
+
+        $reports = Packing::leftJoin('plantings', 'planting_id', '=', 'plantings.id')
+            ->leftJoin('fields', 'field_id', '=', 'fields.id')
+            ->whereIn('user_id', $users->toArray())
+            ->groupBy('user_id')
+            ->select([
+                DB::raw('SUM(bag_size) * SUM(initial_quantity) as total_quantity'),
+                DB::raw('(SELECT name from users where users.id = user_id) as user_name')
+            ])->get();
+
+        return Inertia::render('Report/PackingShow', [
+            'reports' => $reports,
+            'organization' => $organization
         ]);
     }
 }
