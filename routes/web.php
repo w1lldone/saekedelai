@@ -153,6 +153,10 @@ Route::prefix('report')->name('report.')->middleware(['auth'])->group(function (
     Route::get('/', [ReportController::class, 'index'])->name('index');
     Route::get('/farmer', [ReportController::class, 'farmer'])->name('farmer');
     Route::get('/farmer/{region}', [ReportController::class, 'farmerShow'])->name('farmer.show');
+    Route::get('/planting', [ReportController::class, 'planting'])->name('planting');
+    Route::get('/planting/{organization}', [ReportController::class, 'plantingShow'])->name('planting.show');
+    Route::get('/packing', [ReportController::class, 'packing'])->name('packing');
+    Route::get('/packing/{organization}', [ReportController::class, 'packingShow'])->name('packing.show');
 });
 
 require __DIR__ . '/auth.php';

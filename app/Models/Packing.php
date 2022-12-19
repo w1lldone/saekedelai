@@ -29,4 +29,9 @@ class Packing extends Model
     {
         return $this->belongsTo(\App\Models\User::class);
     }
+
+    public function organization()
+    {
+        return $this->belongsTo(\App\Models\Organization::class);
+    }
 }

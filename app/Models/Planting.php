@@ -75,6 +75,11 @@ class Planting extends Model
         return $this->qualities->where('category', 'harvest')->first();
     }
 
+    public function organization()
+    {
+        return $this->belongsTo(\App\Models\Organization::class);
+    }
+
     public function getProductQualityAttribute()
     {
         return $this->qualities->where('category', 'product')->first();

@@ -213,6 +213,22 @@
                 >
                   <span class="hide-menu">Laporan Petani</span>
                 </Link>
+                <Link
+                  class="sidebar-link waves-effect waves-dark ps-5"
+                  :class="{ active: route().current('report.planting') }"
+                  :href="route('report.planting')"
+                  aria-expanded="false"
+                >
+                  <span class="hide-menu">Laporan Penanaman</span>
+                </Link>
+                <Link
+                  class="sidebar-link waves-effect waves-dark ps-5"
+                  :class="{ active: route().current('report.packing') }"
+                  :href="route('report.packing')"
+                  aria-expanded="false"
+                >
+                  <span class="hide-menu">Laporan Produk</span>
+                </Link>
               </div>
             </li>
             <div class="px-4 d-md-none">
